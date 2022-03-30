@@ -1,0 +1,120 @@
+.ProductDetail {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  width: 200px;
+  border: 1px solid grey;
+  border-radius: 0.5rem;
+  margin-right: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.ProductDetailTop {
+  width: 100%;
+  height: 150px;
+  position: relative;
+}
+.todayImage {
+  width: 100%;
+  object-fit: cover;
+  height: 150px;
+  border-radius: 0.5rem;
+  border: 1px solid var(--lightOrangeColor);
+}
+.likeBtnContainer {
+  position: relative;
+  width: 4rem;
+}
+.likeBtn {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
+  width: 2rem;
+  cursor: pointer;
+}
+.percentageContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--whiteColor);
+  background-color: var(--orangeColor);
+  border: none;
+  width: 70px;
+  height: 36px;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  border: 1px solid var(--orangeColor);
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.percentageContainer > p {
+  font-size: 0.8rem;
+}
+
+.ProductDetailBottom {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5rem;
+}
+.productName {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.starContainer {
+  display: flex;
+  /* margin-top: 0.1rem; */
+}
+.starIcon {
+  color: var(--orangeColor);
+  margin-right: 0.2rem;
+  font-size: 0.9rem;
+}
+.shopName {
+  font-size: 0.6rem;
+  color: var(--greyColor);
+  margin-top: 0.4rem;
+}
+.priceContainer {
+  display: flex;
+  /* margin-top: 0.5rem; */
+}
+.priceContainer > p {
+  color: var(--blackColor);
+}
+.priceRight {
+  margin-left: 0.5rem;
+}
+.priceRight > del {
+  color: var(--orangeColor);
+  font-size: 0.6rem;
+}
+.priceBtnContainer {
+  cursor: pointer;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  width: 100%;
+  height: 36px;
+  background-color: transparent;
+  border: 1px solid var(--orangeColor);
+  border-radius: 0.3rem;
+  /* margin-top: 0.5rem; */
+}
+.priceBtnContainer:hover {
+  background-color: var(--orangeColor);
+}
+.priceBtnContainer > button {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  color: var(--orangeColor);
+}
+.priceBtnContainer:hover button {
+  color: var(--whiteColor);
+}
+.faCart {
+  margin-right: 0.3rem;
+}

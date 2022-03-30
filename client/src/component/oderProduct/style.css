@@ -1,0 +1,61 @@
+.orderProduct {
+  display: flex;
+  /* background-color: red; */
+  width: 25em;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  border: 2px solid var(--lightGreyColor);
+  height: 10em;
+  margin-right: 2em;
+  margin-bottom: 2em;
+}
+.orderProductLeft {
+  width: 40%;
+}
+.orderProductIMG {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.4em;
+}
+.orderProductRight {
+  width: 60%;
+  padding-left: 0.5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.orderProductRight > h1 {
+  font-size: 1em;
+  color: var(--blackColor);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 190px;
+  white-space: nowrap;
+}
+.orderProductRight > h2 {
+  font-size: 0.8em;
+  color: var(--greyColor);
+}
+.orderProductRight > h3 {
+  font-size: 0.8em;
+  color: var(--blackColor);
+}
+.orderstatusContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.orderstatusLeft {
+  background-color: var(--greenColor);
+  padding: 0.1em 0.3em;
+  border-radius: 0.3em;
+}
+.orderstatusLeft > span {
+  color: var(--whiteColor);
+}
+.orderstatusRight > span {
+  color: var(--orangeColor);
+  margin-right: 0.3em;
+  cursor: pointer;
+}

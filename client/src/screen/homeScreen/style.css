@@ -1,0 +1,248 @@
+.homePageTop {
+  display: flex;
+  width: 100%;
+  /* height: 50vh; */
+  /* padding: 0 2rem; */
+}
+.homePageTopLeft {
+  flex: 0.5;
+  /* background-color: red; */
+  background-color: var(--lightOrangeColor);
+  display: flex;
+  flex-direction: column;
+  padding-left: 4rem;
+  padding-top: 3rem;
+}
+.homePageTopLeft > h1 {
+  font-size: 3rem;
+  color: var(--orangeColor);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+.homePageTopLeft > p {
+  font-size: 1rem;
+  color: var(--blueColor);
+  font-weight: 500;
+}
+.startSelingBtn {
+  background-color: var(--orangeColor);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 9rem;
+  padding: 0.7rem;
+  border-radius: 0.3rem;
+  margin-top: 2rem;
+  cursor: pointer;
+  /* position: absolute; */
+}
+.startSelingBtn > button {
+  color: var(--whiteColor);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.homePageTopRight {
+  flex: 0.5;
+  background-color: var(--lightOrangeColor);
+  display: flex;
+  width: 100%;
+  border-radius: 0.5rem;
+  /* width: 300px; */
+  /* z-index: 99; */
+  /* height: 60vh; */
+}
+.homeScreemImageContainer {
+  width: 60%;
+  /* padding: 0.1rem;
+    border: 1px solid var(--whiteColor);
+    border-radius: 1rem;
+    z-index: 999;
+    background-color: red; */
+}
+.homeScreenImg {
+  width: 100%;
+  border-radius: 0.3rem;
+  /* border: 1px solid var(--whiteColor); */
+  border-radius: 1rem;
+}
+.productImageContainer {
+  width: 250px;
+  height: 200px;
+  object-fit: contain;
+}
+.homeProductImg {
+  width: 100%;
+  height: 200px;
+}
+/**/
+.homeTodayDetail {
+  display: flex;
+  flex-direction: column;
+  margin-top: 7rem;
+  padding: 0 2rem;
+}
+.homeTodayDetailTop {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  /* height: 50vh; */
+}
+.todayDetailTextContainer {
+  display: flex;
+  flex-direction: column;
+}
+.underline {
+  width: 5rem;
+  height: 2px;
+  background-color: var(--orangeColor);
+  margin-left: 1rem;
+  margin-top: 0.2rem;
+}
+.seeAllContainer {
+  display: flex;
+  align-items: center;
+}
+.seeAllContainer > p {
+  margin-right: 1rem;
+}
+.homeTodayDetailBottom {
+  display: flex;
+}
+/* ==== */
+.customerReviewList {
+  display: flex;
+  flex-wrap: wrap;
+}
+/* ====who are we ====*/
+.whoAreWeTop {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+.whoAreWeTop > p {
+  color: var(--balckColor);
+}
+.whoAreWeUnderline {
+  width: 5rem;
+  height: 2px;
+  background-color: var(--blueColor);
+  margin-left: 1rem;
+  margin-top: 0.2rem;
+}
+.whoAreWeBottom {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+/* ====who are we ====XX===*/
+
+/* =====subscribe to newletter ==============*/
+.newLetterContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.newLetterContainer > h2 {
+  font-size: 1.2rem;
+  color: var(--blueColor);
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+}
+.newLetterContainer > p {
+  font-size: 0.7rem;
+  color: var(--balckColor);
+  margin-bottom: 1.5rem;
+}
+.newLetterEmailContainer {
+  display: flex;
+}
+.newLetterEmailContainer > input {
+  padding: 0.3rem;
+  outline: none;
+}
+.emailSubmitBtn {
+  background-color: var(--blueColor);
+  padding: 0.3rem 0.5rem;
+  border-radius: 0.2rem;
+  cursor: pointer;
+}
+.emailSubmitBtn > button {
+  background-color: transparent;
+  border: none;
+  color: var(--whiteColor);
+  cursor: pointer;
+}
+.sellBestPriceContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.sellBestPriceContainer > h2 {
+  font-size: 1.2rem;
+  color: var(--orangeColor);
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+.sellBestPriceText {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.sellBestPriceText > p {
+  font-size: 0.8rem;
+}
+.faCircle {
+  color: var(--orangeColor);
+  font-size: 0.5rem;
+  margin-right: 0.8rem;
+}
+.becomeSellerBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--orangeColor);
+  padding: 0.5rem 0.5rem;
+  cursor: pointer;
+  border-radius: 0.3rem;
+}
+.becomeSellerBtn > button {
+  color: var(--whiteColor);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+  .whoAreWeBottom {
+    flex-direction: column;
+  }
+  .subsscribeToNewLetter {
+    flex-direction: column !important;
+  }
+  .homeTodayDetailBottom{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  
+    
+  }
+}
+
+/* //whoAreWeBottom */
+
+/* =====subscribe to newletter====x============ */
+
+/* =====Footer============================ */
+
+/* .linkIcon{
+    margin-right: 0.5rem;
+} */
+/* =====Footer====x============ */

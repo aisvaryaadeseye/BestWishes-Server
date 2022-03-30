@@ -1,0 +1,301 @@
+.registerScreen {
+  display: flex;
+  height: 100vh;
+}
+.registerScreenLeft {
+  flex: 0.45;
+  display: flex;
+  background: linear-gradient(0deg, rgba(7, 7, 7, 0.57), rgba(5, 0, 3, 0.611)),
+    url("../../assets/images/signupBg.jpg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  justify-content: center;
+}
+.registerScreenLeftTextContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+  padding-top: 3rem;
+}
+.registerScreenLeftTextContainer > h3 {
+  font-size: 1.5rem;
+  color: var(--whiteColor);
+  margin-bottom: 1rem;
+}
+.registerScreenLeftTextContainer > h4 {
+  font-size: 1.5rem;
+  color: var(--orangeColor);
+  margin-bottom: 1rem;
+}
+.regTextDivider {
+  width: 15rem;
+  height: 0.2rem;
+  background-color: var(--whiteColor);
+  margin-bottom: 1rem;
+}
+.registerScreenLeftTextContainer > h1 {
+  font-size: 1.2rem;
+  color: var(--orangeColor);
+}
+.registerScreenLeftTextContainer > h2 {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--whiteColor);
+  text-decoration: underline;
+}
+.registerScreenRight {
+  flex: 0.55;
+  display: flex;
+}
+.regNavbar {
+  /* background-color: red; */
+  display: flex;
+  margin-top: 0.5rem;
+}
+.regNavbar > p {
+  color: var(--orangeColor);
+}
+.customerNav {
+  display: flex;
+  flex-direction: column;
+
+  font-weight: 500;
+}
+.customerNavUnderline {
+  width: 3rem;
+  height: 0.1rem;
+  background-color: var(--orangeColor);
+  margin-left: 2rem;
+}
+.sellerNavUnderline {
+  width: 3rem;
+  height: 0.1rem;
+  background-color: var(--orangeColor);
+  margin-left: 2rem;
+}
+.sellerNav {
+  font-weight: 500;
+  color: green;
+}
+/* ========customer====== */
+.createAccountCustomer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2rem;
+}
+.regSuccessContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--greenColor);
+  border-radius: 1em;
+  padding: 0.5em;
+}
+.regErrorContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--orangeColor);
+  border-radius: 1em;
+  padding: 0.5em;
+}
+.registerTextContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 1rem;
+}
+.registerTextContainer > h1 > i {
+  color: var(--orangeColor);
+  margin-right: 0.8rem;
+  font-size: 0.8rem;
+}
+.registerTextContainer > h1 {
+  font-size: 1rem;
+  color: var(--orangeColor);
+}
+.registerTextContainer > p {
+  color: var(--whiteColor);
+  font-size: 0.8rem;
+  margin-bottom: 0;
+  font-weight: 300;
+}
+.registerScreenRight {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  padding-top: 2rem;
+}
+.customerNavchild {
+  color: var(--orangeColor);
+  margin-right: 1rem;
+}
+.registerScreenRightFormContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.registerScreenRightFormContainer > h1 {
+  font-size: 1.2rem;
+  color: var(--blackColor);
+  margin-bottom: 0.5rem;
+}
+.registerRole {
+  display: flex;
+  margin-top: 0.5rem;
+}
+.registerRole > p:first-child {
+  margin-right: 1rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--orangeColor);
+  cursor: pointer;
+}
+.registerRole > p:last-child {
+  margin-right: 1rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--blackColor);
+  cursor: pointer;
+}
+.registerInputContainer {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1rem;
+}
+.regInput {
+  display: flex;
+  flex-direction: column;
+  margin-right: 1rem;
+}
+.regInputField {
+  width: 85%;
+}
+.regInput > span {
+  margin-bottom: 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+.passForm {
+  width: 200px;
+}
+input {
+  font-size: 0.9rem;
+  padding: 0.2rem 0;
+}
+.signupBtnContainer {
+  display: flex;
+  background-color: var(--orangeColor);
+  width: 50%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.2rem;
+  padding: 0.2rem 0;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  color: var(--whiteColor);
+}
+.signupBtnContainer > button {
+  font-size: 0.7rem;
+  font-weight: 500;
+  background-color: transparent;
+  color: var(--whiteColor);
+  outline: none;
+  border: none;
+}
+.alreadyAccountContainer {
+  display: flex;
+  margin-top: 1rem;
+}
+.alreadyAccountContainer > p:first-child {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--blackColor);
+  margin-right: 1rem;
+}
+.alreadyAccountContainer > p:last-child {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--orangeColor);
+}
+.orCreateAccount {
+  display: flex;
+}
+.orCreateAccount > p {
+  font-size: 0.7rem;
+  color: var(--greyColor);
+  font-weight: 500;
+}
+.sigupWithGoogleContainer {
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  width: 40%;
+  border: 1px solid var(--greyColor);
+  border-radius: 0.2rem;
+  height: 25px;
+  padding-top: 0.1rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+.fa-google {
+  background: conic-gradient(
+      from -45deg,
+      #ea4335 110deg,
+      #4285f4 90deg 180deg,
+      #34a853 180deg 270deg,
+      #fbbc05 270deg
+    )
+    73% 55%/150% 150% no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  font-size: 0.7rem;
+  margin-right: 0.5rem;
+}
+.sigupWithGoogleContainer > p,
+.sigupWithFacebookContainer > p {
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+.sigupWithFacebookContainer {
+  display: flex;
+  justify-content: center;
+  width: 40%;
+  border: 1px solid var(--greyColor);
+  border-radius: 0.2rem;
+  height: 25px;
+  padding-top: 0.2rem;
+  background-color: blue;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+.sigupWithFacebookContainer > p {
+  color: var(--whiteColor);
+}
+.fa-brands {
+  margin-right: 0.5rem;
+}
+.regTermsContainer {
+  display: flex;
+  width: 40%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ====seller === */
+.createAccountSeller {
+  display: flex;
+  flex-direction: column;
+  padding-top: 2rem;
+  align-items: center;
+}
+.sellerRegBtn {
+  margin-top: 1rem;
+}

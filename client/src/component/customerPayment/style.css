@@ -1,0 +1,29 @@
+.payWithCard {
+  width: 100%;
+  display: flex;
+  margin-top: 2em;
+}
+.payWithCardLeft {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+.payWithCardRight {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+/* ===============payWithPayPal======== */
+.payWithPayPal {
+  display: flex;
+  margin-top: 2em;
+}
+.payWithPayPalLeft {
+  display: flex;
+  width: 50%;
+}
+.payWithPayPalRight {
+  display: flex;
+  width: 50%;
+}

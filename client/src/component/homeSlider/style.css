@@ -1,0 +1,135 @@
+
+.homeSliderImg1Container {
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  background-image:  url('../../assets/images/homeBg1.jpg');
+  background-position: center; 
+  background-repeat: no-repeat; 
+  background-size: cover;
+
+  padding: 6rem;
+}
+.homeSliderImg2Container {
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  background-image:  url('../../assets/images/homeBg2.jpg');
+
+  background-position: center; 
+  background-repeat: no-repeat; 
+  background-size: cover;
+  padding: 6rem;
+
+ 
+}
+.homeSliderImg3Container {
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  background-image:  url('../../assets/images/homeBg3.jpg');
+  background-position: center; 
+  background-repeat: no-repeat; 
+  background-size: cover;
+  padding: 6rem;
+
+}
+.homeSliderImg {
+  width: 100%;
+  height: 100%;
+}
+
+.homeBgOneText > h1 {
+  color: var(--orangeColor);
+  font-size: 2rem;
+}
+.homeBgOneText {
+  color: var(--blueColor);
+  font-weight: 600;
+}
+.homeBgOneText > h2 {
+  font-size: 2rem;
+}
+.homeBgOneText > h3 {
+  color: var(--orangeColor);
+  font-size: 1rem;
+}
+.buyNowBtn {
+  background-color: var(--blueColor);
+}
+.homeBgOneText > h4 {
+  color: var(--pinkColor);
+  font-size: 2rem;
+}
+
+
+.buyNowBtnPink{
+    background-color: var(--pinkColor);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 9rem;
+    padding: 0.7rem;
+    border-radius: .3rem;
+    margin-top: 2rem;
+    cursor: pointer;
+    /* position: absolute; */
+}
+.buyNowBtnPink >button{
+    color: var(--whiteColor);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+}
+.homeSlideImgeCon{
+    width: 100%;
+    height: 70vh;
+    display: flex;
+    background:linear-gradient(0deg, rgba(7, 7, 7, 0.57), rgba(5, 0, 3, 0.611)), url('../../assets/images/homeImg4.jpg');
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover;
+    justify-content: center;
+
+}
+.homeBgTwoText{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.homeBgTwoText>h4{
+    color: var(--whiteColor);
+    font-size: 2rem;
+}
+
+@media screen and (max-width: 1000px) {
+  .homeSliderImg1Container,.homeSliderImg2Container, .homeSliderImg3Container .homeSlideImgeCon, .carouselTextContainer{
+    height: 60vh;
+  }
+}
+@media screen and (max-width: 800px) {
+  .homeSliderImg1Container,.homeSliderImg2Container, .homeSliderImg3Container .homeSlideImgeCon, .carouselTextContainer{
+    height: 50vh;
+    padding: 0;
+  }
+}
+@media screen and (max-width: 500px) {
+  .homeSliderImg1Container,.homeSliderImg2Container, .homeSliderImg3Container, .homeSlideImgeCon, .carouselTextContainer{
+    height: 20vh;
+    padding: 0.3rem;
+  }
+  .homeBgOneText >h1, .homeBgOneText >h2, .homeBgOneText >h4, .homeBgTwoText>h4{
+      font-size: 0.9rem;
+  }
+  .homeBgOneText >p, .homeBgOneText >h3, .homeBgOneText >h5{
+      font-size: 0.5rem;
+  }
+  .startSelingBtn, .buyNowBtn{
+    width: 5rem;
+  }
+  .startSelingBtn >button, .buyNowBtnPink >button{
+    font-size: 0.5rem;
+  }
+}

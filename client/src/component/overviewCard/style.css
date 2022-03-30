@@ -1,0 +1,268 @@
+/* ===total sales */
+.totalSalesCard {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--pinkColor);
+  border-radius: 0.5em;
+  width: 350px;
+  padding: 1em;
+  margin-right: 2em;
+}
+.totalSalesCardTop {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+.totalSalesCardTop > h1 {
+  font-size: 1em;
+}
+.dropdownContainer {
+  border: 1px solid white;
+  outline: 0px;
+}
+.totalSalesCardMiddle {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+.totalSalesCardMiddle > h1 {
+  font-size: 2rem;
+  color: var(--pinkColor);
+}
+.totalSalesCardBottom {
+  display: flex;
+}
+.totalSalesCardBottom > p {
+  font-size: 0.9em;
+  color: var(--blackColor);
+}
+/* =========total sales ====XXX========= */
+
+/* ===total orders======= */
+.totalOrdersCard {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--darkBlueColor);
+  border-radius: 0.5em;
+  width: 350px;
+  padding: 1em;
+  margin-right: 2em;
+}
+.totalOrdersCardTop {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+.totalOrdersCardTop > h1 {
+  font-size: 1em;
+}
+.dropdownContainer {
+  border: 1px solid white;
+  outline: 0px;
+}
+.totalOrdersCardMiddle {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+.totalOrdersCardMiddle > h1 {
+  font-size: 2rem;
+  color: var(--darkBlueColor);
+}
+.totalOrdersCardBottom {
+  display: flex;
+}
+.totalOrdersCardBottom > p {
+  font-size: 0.9em;
+  color: var(--blackColor);
+}
+/* ===total order=======xx===== */
+
+/* ===total incom======= */
+.totalIcomeCard {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--greenColor);
+  border-radius: 0.5em;
+  width: 350px;
+  padding: 1em;
+  margin-right: 2em;
+}
+.totalIcomeCardTop {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+.totalIcomeCardTop > h1 {
+  font-size: 1em;
+}
+.dropdownContainer {
+  border: 1px solid white;
+  outline: 0px;
+}
+.totalIcomeCardMiddle {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+.totalIcomeCardMiddle > h1 {
+  font-size: 2rem;
+  color: var(--greenColor);
+}
+.totalIcomeCardBottom {
+  display: flex;
+}
+.totalIcomeCardBottom > p {
+  font-size: 0.9em;
+  color: var(--blackColor);
+}
+/* ===total icome=======xx===== */
+
+/* ===total product======= */
+.totalProductsCard {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--skyPurpleColor);
+  border-radius: 0.5em;
+  width: 350px;
+  padding: 1em;
+  margin-right: 2em;
+}
+.totalProductsCardTop {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+.totalProductsCardTop > h1 {
+  font-size: 1em;
+}
+.dropdownContainer {
+  border: 1px solid white;
+  outline: 0px;
+}
+.totalProductsCardMiddle {
+  display: flex;
+  justify-content: space-between;
+  /* margin-bottom: 1em; */
+}
+.totalProductsCardMiddle > h1 {
+  font-size: 2rem;
+  color: var(--skyPurpleColor);
+}
+.totalProductsCardBottom {
+  display: flex;
+}
+
+/* ===total Products=======xx===== */
+
+/* ===All product======= */
+.allProductsCard {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--skyBlueColor);
+  border-radius: 0.5em;
+  width: 350px;
+  padding: 1em;
+  margin-right: 6em;
+}
+.allProductsCardTop {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+.allProductsCardTop > h1 {
+  font-size: 1em;
+}
+.dropdownContainer {
+  border: 1px solid white;
+  outline: 0px;
+}
+.allProductsCardMiddle {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+.allProductsCardMiddle > h1 {
+  font-size: 2rem;
+  color: var(--skyBlueColor);
+}
+.allProductsCardBottom {
+  display: flex;
+}
+/* ===All product====xxxx=== */
+
+/* =====Shop Likes=========== */
+
+.shopLikes {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--orangeColor);
+  border-radius: 0.5em;
+  width: 350px;
+  padding: 1em;
+  margin-right: 6em;
+}
+.shopLikesTop {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+.shopLikesTop > h1 {
+  font-size: 1em;
+}
+.dropdownContainer {
+  border: 1px solid white;
+  outline: 0px;
+}
+.shopLikesMiddle {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+.shopLikesMiddle > h1 {
+  font-size: 2rem;
+  color: var(--orangeColor);
+}
+.shopLikesBottom {
+  display: flex;
+}
+
+/* ======shop likes======xx===== */
+
+/* =====Shop View=========== */
+
+.shopView {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--purpleColor);
+  border-radius: 0.5em;
+  width: 350px;
+  padding: 1em;
+  margin-right: 6em;
+}
+.shopViewTop {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+.shopViewTop > h1 {
+  font-size: 1em;
+}
+.dropdownContainer {
+  border: 1px solid white;
+  outline: 0px;
+}
+.shopViewMiddle {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+.shopViewMiddle > h1 {
+  font-size: 2rem;
+  color: var(--purpleColor);
+}
+.shopViewBottom {
+  display: flex;
+}
+
+/* ======shop View======xx===== */

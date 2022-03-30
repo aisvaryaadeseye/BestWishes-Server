@@ -1,0 +1,8 @@
+.orderAll,
+.orderCancelled,
+.orderPending,
+.orderCompleted {
+  margin-top: 2em;
+  display: flex;
+  flex-wrap: wrap;
+}

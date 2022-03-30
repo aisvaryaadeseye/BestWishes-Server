@@ -1,0 +1,49 @@
+.accountVerify {
+  display: flex;
+  width: 100%;
+  height: 60vh;
+  align-items: center;
+  justify-content: center;
+}
+.accountVerifyFormContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.accountVerifyInputContainer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+.accountVerifyFormContainer > h1 {
+  font-size: 1.5rem;
+}
+.accountVerifyFormContainer > p {
+  font-size: 1rem;
+}
+.accountVerifyInputContainer > span {
+  font-size: 0.7rem;
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+.accountVerifyBtnContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--orangeColor);
+  width: 100%;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  padding: 0.3rem 0;
+  margin-top: 1rem;
+}
+.accountVerifyBtnContainer > button {
+  outline: none;
+  border: none;
+  color: var(--whiteColor);
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 0.7rem;
+  font-weight: 600;
+}

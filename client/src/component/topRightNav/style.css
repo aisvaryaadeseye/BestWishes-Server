@@ -1,0 +1,50 @@
+#topRightNavContainer{
+    background-color: transparent !important;
+    width: 100%;
+}
+.topRightNavLink{
+    color: var(--blackColor) !important;
+    margin-right: 3rem !important;
+    font-size: 0.8rem;
+    text-decoration: none;
+}
+.topRightNavLink:hover {
+    color: var(--orangeColor) !important;
+}
+.topRightLink{
+    color: var(--blackColor) !important;
+    font-size: 0.8rem !important;
+    margin-bottom: 0.6rem;
+    text-decoration: none;
+ 
+}
+.topRightLink:hover {
+    color: var(--orangeColor) !important;
+}
+
+#topRightDropdown{
+    color: var(--blackColor) !important;
+    margin-right: 2rem !important;
+    font-size: 0.8rem;
+
+}
+#topRightDropdown:hover{
+    color: var(--orangeColor) !important;
+
+}
+a{
+    text-decoration: none;
+    color: var(--blackColor);
+}
+.navIcons{
+    margin-right: 0.5em;
+}
+.sellIcon, .profileIcon, .messageIcon, .logoutIcon {
+    width:2em;
+}
+.orderIcon{
+    width:1.5em;
+}
+.navLinks:hover{
+    color: var(--orangeColor) !important;
+}

@@ -1,0 +1,169 @@
+.loginScreen {
+  width: 100%;
+  display: flex;
+  /* padding: 1.5rem 0; */
+  height: 65vh;
+}
+.loginScreenLeft {
+  flex: 0.45;
+  /* background-color: red; */
+  display: flex;
+  display: flex;
+  background: linear-gradient(0deg, rgba(7, 7, 7, 0.57), rgba(5, 0, 3, 0.611)),
+    url("../../assets/images/loginBg.jpg");
+
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.loginScreenLeftTextContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-top: 5rem;
+}
+.loginScreenLeftTextContainer > h1 {
+  /* font-size: 1.5rem; */
+  color: var(--orangeColor);
+}
+.loginScreenLeftTextContainer > p {
+  font-size: 1rem;
+  color: var(--whiteColor);
+  margin-bottom: 0;
+}
+.loginScreenRight {
+  flex: 0.55;
+  /* background-color: green; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.customerLoginAccount {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  align-items: center;
+}
+.sellerLoginAccount {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  align-items: center;
+}
+.loginScreenRightFormContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.loginScreenRightFormContainer > h1 {
+  font-size: 1.5rem;
+  color: var(--blackColor);
+}
+.loginScreenRole {
+  display: flex;
+  flex-direction: column;
+  /* padding-bottom: 1rem; */
+}
+.loginScreenRole > p:first-child {
+  font-size: 0.7rem;
+  color: var(--orangeColor);
+  margin-right: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.loginScreenRole > p:last-child {
+  font-size: 0.7rem;
+  color: var(--blackColor);
+  opacity: 0.8;
+  font-weight: 600;
+  cursor: pointer;
+}
+.loginScreenCostomerForm {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+.loginScreenCostomerForm > span {
+  font-size: 0.7rem;
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+.userEmailInput {
+  outline: none;
+  border-radius: 0.3rem;
+  border: 1px solid var(--greyColor);
+  padding-left: 0.4rem;
+}
+.passwordInput {
+  outline: none;
+  border: none;
+}
+.passwordContainer {
+  display: flex;
+  border-radius: 0.3rem;
+  border: 1px solid var(--greyColor);
+  align-items: center;
+  padding-left: 0.4rem;
+}
+.forgotPassContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  width: 70%;
+}
+.forgotPassContainer > a {
+  color: var(--blueColor);
+  font-size: 0.7rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.loginBtnContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--orangeColor);
+  width: 80%;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  padding: 0.3rem 0;
+  color: var(--whiteColor);
+  cursor: pointer;
+}
+
+.dontHaveAccContainer {
+  display: flex;
+  margin-top: 1rem;
+}
+.dontHaveAccContainer > p:first-child {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--blackColor);
+  margin-right: 0.5rem;
+}
+.dontHaveAccContainer > p:last-child {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--orangeColor);
+}
+.dontHaveAccContainer > a {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--orangeColor);
+}
+.termsContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.loginTerms {
+  width: 70%;
+}
+.termsContainer > p {
+  font-size: 0.6rem;
+  font-weight: 500;
+  cursor: pointer;
+}

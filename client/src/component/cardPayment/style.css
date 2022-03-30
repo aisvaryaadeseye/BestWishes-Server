@@ -1,0 +1,53 @@
+.cardPayment {
+  display: flex;
+  width: 25em;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  border: 2px solid var(--lightGreyColor);
+  height: 9em;
+  margin-bottom: 2em;
+}
+.cardPaymentLeft {
+  display: flex;
+  width: 20%;
+  padding-top: 1em;
+}
+.cardIcon {
+  width: 100%;
+  object-fit: cover;
+}
+.cardPaymenMiddle {
+  display: flex;
+  flex-direction: column;
+  width: 50;
+  padding: 1em;
+  /* background-color: red; */
+}
+.cardPaymenMiddle > h1 {
+  font-size: 1.2em;
+  color: var(--blackColor);
+}
+.cardPaymenMiddle > h2 {
+  font-size: 0.9em;
+  color: var(--blackColor);
+}
+.cardPaymenMiddle > h3 {
+  font-size: 1em;
+  color: var(--blueColor);
+}
+.cardPaymentRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  width: 30%;
+  padding: 1em;
+}
+.cardPaymentRight > span {
+  cursor: pointer;
+  color: var(--greyColor);
+}
+.cardFaTrash {
+  margin-right: 0.5em;
+  cursor: pointer;
+}

@@ -1,0 +1,276 @@
+.customerProfileScreen {
+  display: flex;
+  width: 100%;
+}
+.customerProfileSideBar {
+  width: 20%;
+  /* flex: 0.2; */
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+.customerProfileSideBarTop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  /* justify-content: center; */
+  border: 2px solid var(--lightGreyColor);
+  border-radius: 0.4rem;
+  padding: 1em;
+}
+
+.customerProfileImg {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1em;
+}
+.customerProfileSideBarTop > h1 {
+  font-size: 1rem;
+  color: var(--blackColor);
+  margin-bottom: 1em;
+}
+.customerProfileSideBarTop > h2 {
+  font-size: 0.9rem;
+  color: var(--blackColor);
+  font-weight: 400;
+  margin-bottom: 1em;
+}
+.customerProfileSideBarTop > h3 {
+  font-size: 0.8rem;
+  color: var(--blackColor);
+  font-weight: 400;
+}
+.customerProfileSideBarTop > h3 > i {
+  color: var(--orangeColor);
+}
+.customerProfileSideBarBottom {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 2px solid var(--lightGreyColor);
+  border-radius: 0.4rem;
+  padding: 1em 0;
+}
+.customerProfileSideBarBottom > h1 {
+  font-size: 1.2em;
+  margin-left: 3em;
+  margin-bottom: 1em;
+}
+.sidebarNav {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 3em;
+  align-items: center;
+  padding: 1em 0 1em 3em;
+  cursor: pointer;
+}
+.sidebarNav:hover {
+  background-color: var(--lightOrangeColor);
+}
+.sidebarNav:hover {
+  color: var(--orangeColor);
+}
+.messageCount {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* padding: 0.2em; */
+  width: 1.6em;
+  height: 1.6em;
+  border-radius: 50%;
+  background-color: var(--orangeColor);
+  color: var(--whiteColor);
+  margin-left: 0.5em;
+}
+.iconImg {
+  width: 1.3em;
+  margin-right: 1em;
+}
+.customerProfileFeeds {
+  /* flex: 0.8; */
+  width: 80%;
+}
+
+/* ======eiditCustomerProfile=========== */
+.editCustomerProfile {
+  padding: 1em;
+}
+.editCustomerProfile > h1 {
+  font-size: 1.2em;
+  color: var(--orangeColor);
+}
+.editCustomerFormContainer {
+  display: flex;
+  flex-direction: column;
+}
+.editCustomerImgContainer {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 2em;
+}
+.editCustomerPic {
+  opacity: 0.5;
+}
+.faCamera {
+  position: absolute;
+  left: 40%;
+  top: 30%;
+}
+.customerEditInput {
+  margin-bottom: 1.5em;
+}
+.selectContainer {
+  width: 100%;
+  display: flex;
+  border-radius: 0.3rem;
+  border: 1px solid var(--greyColor);
+  align-items: center;
+  padding-left: 0.1em;
+  background-color: transparent !important;
+  height: 2.3em;
+  cursor: pointer;
+}
+.countrySelectContainer {
+  height: 0.5em !important;
+}
+.css-1s2u09g-control {
+  min-height: 0.3em !important;
+  background-color: transparent !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+}
+.editCustomerBtn {
+  background-color: var(--orangeColor);
+  width: 26em;
+  border-radius: 0.3em;
+  cursor: pointer;
+  height: 2em;
+  color: var(--whiteColor);
+}
+.editCusInputField {
+  height: 2.3em;
+}
+
+/* ============message============================= */
+
+.messageContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+}
+.messageContainer > h1 {
+  font-size: 1.2em;
+  color: var(--orangeColor);
+}
+.messageContainer > p {
+  font-size: 0em;
+  color: var(--blackColor);
+  margin-bottom: 2em;
+}
+
+/* ============customer order============== */
+.customerOrders {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+}
+.customerOrdersTop > h1 {
+  color: var(--orangeColor);
+  font-size: 1.2em;
+}
+.orderNavbarContainer {
+  display: flex;
+}
+.orderNav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 3em;
+}
+.orderNavUnderline {
+  width: 3rem;
+  height: 0.1rem;
+  background-color: var(--orangeColor);
+}
+/* =========saved item================ */
+.savedItems {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+}
+.SavedItemsTop > h1 {
+  font-size: 1.2em;
+  color: var(--orangeColor);
+}
+.SavedItemsTop > p {
+  font-size: 0.9em;
+  color: var(--orangeColor);
+}
+.SavedItemsBottom {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* ==============customerPayment================= */
+.customerPayment {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+}
+.customerPaymentTop > h1 {
+  color: var(--orangeColor);
+  font-size: 1.2em;
+}
+
+/* ===============Become A seller============= */
+.becomeSellerContainer {
+  padding: 1em;
+}
+.becomeSellerContainer > h1 {
+  font-size: 1.2em;
+  color: var(--orangeColor);
+}
+.becomeSellerFormContainer {
+  display: flex;
+  flex-direction: column;
+  padding-top: 3em;
+}
+.becomeSellerBtn {
+  background-color: var(--orangeColor);
+  width: 26em;
+  border-radius: 0.3em;
+  cursor: pointer;
+  height: 2em;
+  color: var(--whiteColor);
+}
+@media screen and (max-width: 1200px) {
+  .customerProfileSideBar {
+    width: 300px;
+  }
+  .sidebarNav {
+    padding: 0;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .customerProfileSideBar {
+    width: 300px;
+  }
+  .sidebarNav {
+    padding: 0;
+  }
+}
+@media screen and (max-width: 900px) {
+  /* .customerProfileSideBar{
+      width:300px;
+    } */
+  .sidebarNav {
+    padding: 0;
+  }
+}

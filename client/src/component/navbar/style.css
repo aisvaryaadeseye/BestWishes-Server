@@ -1,0 +1,173 @@
+.navBar{
+  display: flex;
+flex-direction :column;
+justify-content:space-between;
+align-items: center;
+background-color: var(--whiteColor);
+height: 110px;
+position: sticky;
+top: 0;
+z-index: 999;
+}
+.navbarTop {
+  display: flex;
+  height: 70px;
+  background-color: var(--whiteColor);
+  align-items: center;
+  padding: 0 0 0 2rem;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.bestWishLogo {
+  height: 4rem;
+  margin-right: 24px;
+  cursor: pointer;
+}
+.sarchbarContainer {
+  display: flex;
+}
+.searchContainer {
+  width: 300px;
+  height: 38px;
+  border-radius: 0.5rem;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  margin-right: 16px;
+}
+.searchContainer > input {
+  margin-left: 1rem;
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+.searchBtn {
+  margin-right: 1rem;
+}
+.searchBtn > button {
+  color: var(--whiteColor);
+  background-color: var(--orangeColor);
+  border: none;
+  /* width: 104px; */
+  height: 38px;
+  padding: 0 0.5rem;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  border: 1px solid var(--orangeColor);
+}
+.navBarLinkLists {
+  display: flex;
+  height: 46px;
+  align-items: center;
+  padding-top: 0.5rem;
+}
+.navBarLinkLists > ul {
+  display: flex;
+}
+
+.navBarLink {
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.7rem;
+  display: flex;
+  text-decoration: none;
+  margin-right: 20px;
+  color: var(--blackColor);
+}
+li > Link {
+  color: var(--blackColor);
+  text-decoration: none;
+}
+.navBarLink:hover {
+  color: var(--orangeColor);
+}
+.navbarBottom {
+  height: 60px;
+  background-color: var(--lightBlueColor);
+  width: 100%;
+  align-items: center;
+  display: flex;
+}
+
+.helpnavBarLink {
+  font-size: 0.6rem;
+  color: var(--blackColor);
+  display: block;
+}
+.helpnavBarLink:hover {
+  color: var(--orangeColor);
+}
+.navbarBottomnavBarLinks {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  /* height: 10vh; */
+}
+.navbarBottomLink {
+  text-decoration: none;
+  color: var(--blackColor);
+  font-size: 0.8rem;
+  /* margin-lenavbarBottomnavBarLinksft: 30px; */
+}
+.navbarBottomLink:hover {
+  color: var(--orangeColor) !important;
+}
+.navbarBottom > ul {
+  display: flex;
+  margin-right: 3rem;
+  color: pink;
+}
+.navbarBottom > ul > li {
+  list-style: none;
+  font-size: 0.8rem;
+  color: var(--blackColor);
+  cursor: pointer;
+  margin-left: 5rem;
+}
+
+.helpDropdown {
+  background-color: transparent !important;
+  color: var(--blackColor);
+  border: none !important;
+  outline: none !important;
+}
+.helpDropdown > a {
+  color: var(--blackColor);
+  font-size: 500;
+  text-decoration: none;
+}
+
+.MuiMenuItem-root {
+  /* background-color: red !important; */
+  display: block;
+}
+a {
+  text-decoration: none !important;
+  color: var(--blackColor) !important;
+}
+.accountContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 1rem;
+}
+.userImgContainer {
+  width: 2rem;
+  height: 2rem;
+  background-color: var(--greyColor);
+  border-radius: 50%;
+}
+.userImg {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+@media screen and (max-width: 800px) {
+  .navBar{
+    display: none!important;
+  }
+}

@@ -4,10 +4,10 @@ const crypto = require("crypto");
 require("dotenv").config();
 const path = require("path");
 
-
-const {  validate } = require("../middleware/validator");
+const { validate } = require("../middleware/validator");
 
 const User = require("../models/User");
+const SellerAcct = require("../models/SellerAcct");
 const VerificationToken = require("../models/VerificationToken");
 const ResetToken = require("../models/ResetToken");
 const { sendError, createrandomBytes } = require("../utils/helper");
@@ -223,6 +223,42 @@ router.get("/verify-token", isResetTokenValid, async (req, res) => {
   res.json({ success: true });
 });
 
+// become a seller ======================================
+router.post("/seller", async (req, res) => {
+  try {
+    const { userID } = req.query;
+    const user = await User.findById(userID);
+    if (!user) return sendError(res, "user not found");
+    //create new user
+    const { sellerName, storeName, storeAddress, storePhone } = req.body;
+
+    const newSeller = await new SellerAcct({
+      sellerName,
+      storeName,
+      storeAddress,
+      storePhone,
+
+      // storeImg,
+      // storeVideo,
+      // storeProductImg,
+      // storeProductVideo,
+      // bisCertificate,
+    });
+
+    const seller = await newSeller.save();
+    user.seller = true;
+
+    res.json({
+      success: true,
+      message: "Seller Account Created Successful.",
+      seller: {
+        sellerName: seller.sellerName,
+      },
+    });
+  } catch (error) {
+    res.status(500).json(error + "error saving data");
+  }
+});
 
 //reuseable function to generate token ===================================
 const sendToken = (user, statusCode, res) => {

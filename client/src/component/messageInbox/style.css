@@ -1,0 +1,25 @@
+.messageInbox{
+    display: flex;
+    flex-direction: column;
+    padding-top: 2em;
+    margin-bottom: 0;
+}
+.messageInbox:hover{
+    background-color:var(--lightOrangeColor);
+}
+.messageInbox>h1{
+    font-size: 0.9em;
+    color: var(--greyColor);
+    margin-bottom: 1em;
+}
+.messageInbox >h2{
+    color: var(--orangeColor);
+    font-size: 1em;
+    margin-bottom: 1em;
+}
+.messageInbox >p{
+    color: var(--blackColor);
+}
+.messageInboxDivider{
+    color: var(--greyColor);
+}

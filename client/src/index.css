@@ -1,0 +1,51 @@
+:root {
+  --orangeColor: #f69014;
+  --whiteColor: #ffffff;
+  --blackColor: #000;
+  --lightBlueColor: #7cd1b81a;
+  --lightOrangeColor: #fef5ed;
+  --blueColor: #12799a;
+  --greyColor: grey;
+  --pinkColor: #ff5c8d;
+  --darkBlueColor: #7b61ff;
+  --purpleColor: #ce42ff;
+  --greenColor: #00b533;
+  --skyPurpleColor: #e1529a;
+  --skyBlueColor: #0392e2;
+  --lightGreyColor: #f4f4f4;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: var(--blackColor);
+}
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+button {
+  border: none;
+}
+input {
+  outline: none;
+  background-color: white;
+}
+input:-internal-autofill-selected {
+  background-color: transparent;
+}
+/* body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+} */

@@ -1,0 +1,129 @@
+.blogScreen {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.blogScreenTop {
+  display: flex;
+  width: 100%;
+  height: 60vh;
+}
+.carouselImgContainer {
+  width: 100%;
+  height: 60vh;
+}
+.carouselImg {
+  width: 100%;
+  height: 60vh;
+}
+.blogScreenTop > h1 {
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--whiteColor);
+  margin-bottom: 1rem;
+}
+.blogScreenTop > p {
+  font-size: 1.3rem;
+  color: var(--whiteColor);
+  margin-bottom: 1rem;
+}
+.carouselTextContainer {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+  position: relative;
+}
+.carouselImg {
+  width: 100% !important;
+  height: 60vh !important;
+}
+.BlogSliderText {
+  margin-bottom: 5rem;
+}
+.carouselReadBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem;
+  border: 1px solid var(--orangeColor);
+  border-radius: 0.2rem;
+  width: 120px;
+  position: absolute;
+  bottom: 20%;
+  right: 45%;
+  margin-top: 2rem;
+}
+
+.carouselReadBtn:hover {
+  background-color: var(--orangeColor);
+}
+.carouselReadBtn:hover > button {
+  color: var(--whiteColor);
+}
+.carouselReadBtn > button {
+  background-color: transparent;
+  color: var(--orangeColor);
+  border: none;
+}
+.blogScreenImg {
+  width: 100%;
+  object-fit: cover;
+}
+.blogScreenBottom {
+  display: flex;
+}
+.blogScreenBottomLeft {
+  display: flex;
+  flex: 0.2;
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+}
+.blogScreenLeftbar {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 2px rgb(228, 215, 215);
+  padding-bottom: 1rem;
+  height: 35vh;
+  /* align-items: center; */
+  /* justify-content: center; */
+}
+
+.blogScreenLeftbar > p {
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 0.8rem auto;
+}
+.blogScreenLeftbar > ul {
+  list-style: none;
+  align-items: center;
+  margin: 0 auto;
+}
+.blogScreenLeftbar > ul > li {
+  font-size: 0.7rem;
+  margin-top: 1rem;
+}
+.blogScreenBottomRight {
+  flex: 0.8;
+}
+.blogScreenBottomRightTop {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+}
+.blogScreenBottomRightTop > i {
+  margin: 0 0.6rem;
+  font-size: 0.7rem;
+  color: var(--blackColor);
+}
+.blogScreenBottomRightTop > p {
+  font-size: 0.7rem;
+  color: var(--blackColor);
+}
+.blogScreenBottomRightBottom {
+  display: flex;
+  flex-wrap: wrap;
+}
