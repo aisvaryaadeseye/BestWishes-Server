@@ -14,6 +14,7 @@ import message from "../../assets/icons/message.png";
 import sell from "../../assets/icons/sell.svg";
 import orders from "../../assets/icons/order.png";
 import profile from "../../assets/icons/profile.svg";
+import customerImg from "../../assets/images/customerImg.jpg";
 
 const TopRightNav = ({ user }) => {
   const [show, setShow] = useState(false);
@@ -45,105 +46,121 @@ const TopRightNav = ({ user }) => {
                 id="topRightDropdown"
                 className="topRightDropdown"
               >
-                <NavDropdown.Item href="#action/3.1" className="topRightLink">
+                <NavDropdown.Item className="topRightLink">
                   Services
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2" className="topRightLink">
+                <NavDropdown.Item className="topRightLink">
                   About us
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3" className="topRightLink">
+                <NavDropdown.Item className="topRightLink">
                   Support center
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.4" className="topRightLink">
+                <NavDropdown.Item className="topRightLink">
                   Term of use
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.4" className="topRightLink">
+                <NavDropdown.Item className="topRightLink">
                   Contact
                 </NavDropdown.Item>
               </NavDropdown>
               {user ? (
-                <NavDropdown
-                  title="Account"
-                  id="topRightDropdown"
-                  className="topRightDropdown"
-                >
-                  <NavDropdown.Item className="topRightLink">
-                    {" "}
-                    <Link
-                      className="navLinks"
-                      to="customerProfileScreen/editCustomerProfile"
-                    >
-                      <img
-                        src={profile}
-                        alt=""
-                        className="navIcons profileIcon"
-                      />
-                      View Profile
-                    </Link>{" "}
-                  </NavDropdown.Item>
-                  <NavDropdown.Item className="topRightLink">
-                    <Link
-                      className="navLinks"
-                      to="customerProfileScreen/messages"
-                    >
-                      {" "}
-                      <img
-                        src={message}
-                        alt=""
-                        className="navIcons messageIcon"
-                      />
-                      Message
-                    </Link>
-                  </NavDropdown.Item>
-                  <NavDropdown.Item className="topRightLink">
-                    <Link
-                      className="navLinks"
-                      to="customerProfileScreen/customerOrders/orderAll"
-                    >
-                      {" "}
-                      <img src={orders} alt="" className="navIcons orderIcon" />
-                      Orders
-                    </Link>
-                  </NavDropdown.Item>
-                  <NavDropdown.Item className="topRightLink">
-                    <Link
-                      className="navLinks"
-                      to="/registerScreen/sellerRegisterAccount"
-                    >
-                      <img src={sell} alt="" className="navIcons sellIcon" />
-                      Sell on Best Wishes
-                    </Link>
-                  </NavDropdown.Item>
-                  <NavDropdown.Item
-                    className="topRightLink"
-                    onClick={handleShow}
+                <div className="accountDiv">
+                  <img src={customerImg} alt="" className=" accontImgNav" />
+                  <NavDropdown
+                    title="Account"
+                    id="topRightDropdown"
+                    className="topRightDropdown"
                   >
-                    {" "}
-                    <img src={logout} alt="" className="navIcons logoutIcon" />
-                    Log-out
-                  </NavDropdown.Item>
-                </NavDropdown>
+                    <NavDropdown.Item className="topRightLink">
+                      {" "}
+                      <Link
+                        className="navLinks"
+                        to="customerProfileScreen/editCustomerProfile"
+                      >
+                        <img
+                          src={profile}
+                          alt=""
+                          className="navIcons profileIcon"
+                        />
+                        View Profile
+                      </Link>{" "}
+                    </NavDropdown.Item>
+                    <NavDropdown.Item className="topRightLink">
+                      <Link
+                        className="navLinks"
+                        to="customerProfileScreen/messages"
+                      >
+                        {" "}
+                        <img
+                          src={message}
+                          alt=""
+                          className="navIcons messageIcon"
+                        />
+                        Message
+                      </Link>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item className="topRightLink">
+                      <Link
+                        className="navLinks"
+                        to="customerProfileScreen/customerOrders/orderAll"
+                      >
+                        {" "}
+                        <img
+                          src={orders}
+                          alt=""
+                          className="navIcons orderIcon"
+                        />
+                        Orders
+                      </Link>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item className="topRightLink">
+                      <Link
+                        className="navLinks"
+                        to="/registerScreen/sellerRegisterAccount"
+                      >
+                        <img src={sell} alt="" className="navIcons sellIcon" />
+                        Sell on Best Wishes
+                      </Link>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item
+                      className="topRightLink"
+                      onClick={handleShow}
+                    >
+                      {" "}
+                      <img
+                        src={logout}
+                        alt=""
+                        className="navIcons logoutIcon"
+                      />
+                      Log-out
+                    </NavDropdown.Item>
+                  </NavDropdown>
+                </div>
               ) : (
-                <NavDropdown
-                  title="Account"
-                  id="topRightDropdown"
-                  className="topRightDropdown"
-                >
-                  <NavDropdown.Item className="topRightLink">
-                    {" "}
-                    <Link to="/loginScreen/customerLoginAccount">
-                      Sign In
-                    </Link>{" "}
-                  </NavDropdown.Item>
-                  <NavDropdown.Item className="topRightLink">
-                    <Link to="/registerScreen/customerRegisterAccount">
-                      Sign Up
-                    </Link>
-                  </NavDropdown.Item>
-                </NavDropdown>
+                <div className="accountDiv">
+                  <img
+                    src={profile}
+                    alt=""
+                    className="navIcons profileIcon acctIconNav"
+                  />
+                  <NavDropdown
+                    title="Account"
+                    id="topRightDropdown"
+                    className="topRightDropdown"
+                  >
+                    <NavDropdown.Item className="topRightLink">
+                      {" "}
+                      <Link to="/loginScreen">Sign In</Link>{" "}
+                    </NavDropdown.Item>
+                    <NavDropdown.Item className="topRightLink">
+                      <Link to="/registerScreen/customerRegisterAccount">
+                        Sign Up
+                      </Link>
+                    </NavDropdown.Item>
+                  </NavDropdown>
+                </div>
               )}
 
-              <Nav.Link href="#link" className="topRightNavLink">
+              <Nav.Link className="topRightNavLink">
                 <p>
                   Cart&nbsp;<i className="fa fa-cartfa fa-shopping-cart"></i>
                 </p>

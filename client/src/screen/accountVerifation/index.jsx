@@ -34,7 +34,7 @@ const AccountVerifcationScreen = () => {
       localStorage.removeItem("userId");
       setTimeout(() => {
         setSuccess("");
-        navigate("/loginScreen/customerLoginAccount");
+        navigate("/loginScreen");
       }, 1500);
     } catch (error) {
       setError(error.response.data.error);

@@ -1,235 +1,260 @@
-import React, { useState } from "react";
+import customerImg from "../../assets/images/customerImg.jpg";
+import React, { useState, useMemo, useEffect } from "react";
+import Select from "react-select";
+import countryList from "react-select-country-list";
+import axios from "axios";
 
 const SellerRegisterAccount = () => {
   const [sellerName, setSellerName] = useState("");
+  const [storeName, setStoreName] = useState("");
+  const [storeAddress, setStoreAddress] = useState("");
+  const [storePhone, setstorePhone] = useState("");
+  const [country, setCountry] = useState();
+  const [dob, setDob] = useState();
+  const [city, setCity] = useState();
+  const [error, setError] = useState();
+  const [success, setSuccess] = useState();
 
-  const [sellerCheckBoxList, setSellerCheckboxList] = useState({
-    // selectedCheckbox: [],
-    response: [],
-  });
+  const [userID, setUserID] = useState();
 
-  //use to select the seller check list
-  const handleSellerChange = (e) => {
-    // Destructuring
-    const { value, checked } = e.target;
-    const { selectedCheckbox } = sellerCheckBoxList;
+  //   const [GenderState, setGenderState] = "Male";
 
-    if (checked) {
-      setSellerCheckboxList({
-        // selectedCheckbox: [...selectedCheckbox, value],
-        response: [...selectedCheckbox, value],
+  // function handleName(e) {
+  //   setSellerName(e.target.value);
+  // }
+
+  useEffect(() => {
+    if (localStorage.getItem("userID")) {
+      setUserID(JSON.parse(localStorage.getItem("userID")));
+    }
+ 
+  }, []);
+
+  const [value, setValue] = useState("");
+  const options = useMemo(() => countryList().getData(), []);
+
+  const changeHandler = (value) => {
+    setValue(value);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const { data } = await axios.post(`/api/auth/seller?userID=${userID}`, {
+        sellerName,
+        storeName,
+        storeAddress,
+        storePhone,
       });
-    } else {
-      setSellerCheckboxList({
-        // selectedCheckbox: selectedCheckbox.filter((e) => e !== value),
-        response: selectedCheckbox.filter((e) => e !== value),
-      });
+
+      setSuccess("Seller Account Successfull");
+
+      setTimeout(() => {
+        setSuccess("");
+        // navigate("/verifyAccount");
+      }, 1500);
+
+      //   localStorage.setItem("userId", data._id);
+      // setTimeout(() => {
+      //   setSuccess("");
+      //   navigate("/verifyAccount");
+      // }, 1500);
+
+      //   setSellerName("");
+      //   setPassword("");
+      //   setEmail("");
+      //   setPhone("");
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      }
+      setError(error.response.data.error);
+      //   setSellerName("");
+      //   setPassword("");
+      //   setEmail("");
+      //   setPhone("");
+      setTimeout(() => {
+        setError("");
+      }, 5000);
     }
   };
 
   return (
-    <div className="createAccountSeller">
-      <div className="registerInputContainer">
-        <div className="regInput passForm">
-          <span className="userEmail">Ower's Fullname (Required)</span>
-          <div className="passwordContainer">
-            <input
-              type="text"
-              required
-              value={sellerName}
-              onChange={(e) => setSellerName(e.target.value)}
-              className="passwordInput regInputField"
-            />
-          </div>
+    <div className="becomeSellerContainer">
+      <h1>Become A Seller</h1>
+      {error && (
+        <div className="regErrorContainer">
+          <span style={{ color: "#f69014" }}> {error}</span>
         </div>
-        <div className="regInput passForm">
-          <span className="userEmail">Store Name (Required)</span>
-          <div className="passwordContainer">
-            <input
-              type="text"
-              required
-              className="passwordInput regInputField"
-            />
-          </div>
+      )}
+      {success && (
+        <div className="regSuccessContainer">
+          <span style={{ color: "#00b533" }}> {success}</span>
         </div>
-      </div>
-      <div className="registerInputContainer">
-        <div className="regInput passForm">
-          <span className="userEmail">Store Address (Required)</span>
-          <div className="passwordContainer">
-            <input
-              type="text"
-              required
-              className="passwordInput regInputField"
-            />
-          </div>
-        </div>
-        <div className="regInput passForm">
-          <span className="userEmail">Store Phone number (Required)</span>
-          <div className="passwordContainer">
-            <input
-              type="text"
-              required
-              className="passwordInput regInputField"
-            />
-          </div>
-        </div>
-      </div>
-      <div className="registerInputContainer">
-        <div className="regInput passForm">
-          <span className="userEmail">Store Address (Required)</span>
-          <div className="passwordContainer">
-            <input
-              type="text"
-              required
-              className="passwordInput regInputField"
-            />
-          </div>
-        </div>
-        <div className="regInput passForm">
-          <span className="userEmail">Store Phone number (Required)</span>
-          <div className="passwordContainer">
-            <input
-              type="text"
-              required
-              className="passwordInput regInputField"
-            />
-          </div>
-        </div>
-      </div>
-      <div className="registerInputContainer">
-        <div className="regInput passForm">
-          <span className="userEmail">Store Address (Required)</span>
-          <div className="passwordContainer">
-            <input
-              type="text"
-              required
-              className="passwordInput regInputField"
-            />
-          </div>
-        </div>
-        <div className="regInput passForm">
-          <span className="userEmail">Date of birth (Optional)</span>
-          <div className="passwordContainer">
-            <input type="date" className="passwordInput regInputField" />
-          </div>
-        </div>
-      </div>
-      <div className="registerInputContainer">
-        <div className="regInput passForm">
-          <span className="userEmail">Country (Required)</span>
-          <div className="passwordContainer">
-            <input
-              type="text"
-              required
-              className="passwordInput regInputField"
-            />
-          </div>
-        </div>
-        <div className="regInput passForm">
-          <span className="userEmail">City/State (Required)</span>
-          <div className="passwordContainer">
-            <input
-              type="text"
-              required
-              className="passwordInput regInputField"
-            />
-          </div>
-        </div>
-      </div>
-      <div className="registerInputContainer">
-        <div className="regInput passForm">
-          <span className="userEmail">
-            Image of business location (Required)
-          </span>
-          <div className="passwordContainer">
-            <input
-              type="file"
-              required
-              className="passwordInput regInputField"
-            />
-          </div>
-        </div>
-        <div className="regInput passForm">
-          <span className="userEmail">
-            Video of business location (Optional)
-          </span>
-          <div className="passwordContainer">
-            <input
-              type="file"
-              required
-              className="passwordInput regInputField"
-            />
-          </div>
-        </div>
-      </div>
-      <div className="registerInputContainer">
-        <div className="regInput passForm">
-          <span className="userEmail">
-            Business registration certificate (Optional)
-          </span>
-          <div className="passwordContainer">
-            <input
-              type="file"
-              required
-              className="passwordInput regInputField"
-            />
-          </div>
-        </div>
-        <div className="regInput passForm"></div>
-      </div>
+      )}
 
-      <div className="sellerCheckBoxContainer">
-        <form>
-          <div className="checkboxRow">
-            <input
-              type="checkbox"
-              id="termsId"
-              value="terms"
-              onChange={handleSellerChange}
-            />{" "}
-            &nbsp; &nbsp;
-            <label className="checkboxLabel" htmlFor="termsId">
-              I agree to the terms and conditions
-            </label>
+      <form className=" becomeSellerFormContainer" onSubmit={handleSubmit}>
+        <form className="registerInputContainer customerEditInput">
+          <div className="regInput passForm ">
+            <span className="userEmail">Owner's Full name (Required)</span>
+            <div className="passwordContainer editCusInputField">
+              <input
+                placeholder="your name"
+                // name="sellerName"
+                value={sellerName}
+                // required
+                onChange={(e) => setSellerName(e.target.value)}
+                className="passwordInput regInputField"
+              />
+            </div>
           </div>
-          <div className="checkboxRow">
-            <input
-              type="checkbox"
-              id="confirmId"
-              value="confirm"
-              onChange={handleSellerChange}
-            />{" "}
-            &nbsp; &nbsp;
-            <label className="checkboxLabel" htmlFor="confirmId">
-              Confirm i am the one making the product not a third
-              party/intermediary
-            </label>
-          </div>
-          <div className="checkboxRow">
-            <input
-              type="checkbox"
-              id="showId"
-              value="show"
-              onChange={handleSellerChange}
-            />{" "}
-            &nbsp; &nbsp;
-            <label className="checkboxLabel" htmlFor="showId">
-              Show my informations to my customers
-            </label>
+          <div className="regInput passForm ">
+            <span className="userEmail">Store Name (required)</span>
+            <div className="passwordContainer editCusInputField">
+              <input
+                placeholder=""
+                required
+                name="storeName"
+                value={storeName}
+                onChange={(e) => setStoreName(e.target.value)}
+                className="passwordInput regInputField"
+              />
+            </div>
           </div>
         </form>
-      </div>
+        <div className="registerInputContainer customerEditInput">
+          <div className="regInput passForm ">
+            <span className="userEmail">Store Address (Required)</span>
+            <div className="passwordContainer editCusInputField">
+              <input
+                required
+                placeholder=""
+                name="storeAddress"
+                value={storeAddress || ""}
+                onChange={(e) => setStoreAddress(e.target.value)}
+                className="passwordInput regInputField"
+              />
+            </div>
+          </div>
+          <div className="regInput passForm ">
+            <span className="userEmail">Store Phone Number (Required)</span>
+            <div className="passwordContainer editCusInputField">
+              <input
+                type="text"
+                required
+                placeholder=""
+                name="storePhone"
+                value={storePhone}
+                onChange={(e) => setstorePhone(e.target.value)}
+                className="passwordInput regInputField"
+              />
+            </div>
+          </div>
+        </div>
+        <div className="registerInputContainer customerEditInput">
+          <div className="regInput passForm ">
+            <span className="userEmail">Country</span>
+            <div className="countrySelectContainer">
+              <Select
+                className="countrySelect"
+                options={options}
+                value={value}
+                onChange={changeHandler}
+              />
+            </div>
+          </div>
+          <div className="regInput passForm ">
+            <span className="userEmail">Date of birth (Optional)</span>
+            <div className="passwordContainer editCusInputField">
+              <input
+                type="date"
+                name="dob"
+                value={dob}
+                onChange={(e) => setDob(e.target.value)}
+                className="passwordInput regInputField"
+              />
+            </div>
+          </div>
+        </div>
 
-      <div className="signupBtnContainer">
-        <button>Register</button>
-      </div>
+        <div className="registerInputContainer customerEditInput">
+          <div className="regInput passForm ">
+            <span className="userEmail">City/State (Require)</span>
+            <div className="passwordContainer editCusInputField">
+              <input
+                placeholder=""
+                name="city"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                className="passwordInput regInputField"
+              />
+            </div>
+          </div>
+          <div className="regInput passForm">
+            <span className="userEmail">
+              Images of business location (Required)
+            </span>
+            <div className="passwordContainer">
+              <input
+                type="file"
+                // required
+                className="passwordInput regInputField"
+              />
+            </div>
+          </div>
+        </div>
+        <div className="registerInputContainer customerEditInput">
+          <div className="regInput passForm">
+            <span className="userEmail">
+              Video of business location (Optional)
+            </span>
+            <div className="passwordContainer">
+              <input type="file" className="passwordInput regInputField" />
+            </div>
+          </div>
+          <div className="regInput passForm">
+            <span className="userEmail">
+              Images of product making (Required)
+            </span>
+            <div className="passwordContainer">
+              <input
+                type="file"
+                // required
+                className="passwordInput regInputField"
+              />
+            </div>
+          </div>
+        </div>
+        <div className="registerInputContainer customerEditInput">
+          <div className="regInput passForm">
+            <span className="userEmail">
+              Video of product making (Optional)
+            </span>
+            <div className="passwordContainer">
+              <input type="file" className="passwordInput regInputField" />
+            </div>
+          </div>
+          <div className="regInput passForm">
+            <span className="userEmail">
+              Business registeration certificate
+            </span>
+            <div className="passwordContainer">
+              <input
+                type="file"
+                // required
+                className="passwordInput regInputField"
+              />
+            </div>
+          </div>
+        </div>
 
-      <div className="termsContainer regTermsContainer sellerRegBtn">
-        <p>Terms of use</p>
-        <p>Privacy policy</p>
-        <p>Help</p>
-      </div>
+        <button className="becomeSellerBtn">Save</button>
+
+        <div className="customerProfileImgContainer"></div>
+      </form>
     </div>
   );
 };

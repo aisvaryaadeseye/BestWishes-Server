@@ -111,7 +111,7 @@ const MobileNav = () => {
               >
                 <Link
                   className="accountLinkNav"
-                  to="/loginScreen/customerLoginAccount"
+                  to="/loginScreen"
                   onClick={handleLeftBar}
                 >
                   Sign In

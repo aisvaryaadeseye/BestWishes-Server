@@ -20,8 +20,6 @@ import LoginScreen from "./screen/loginScreen";
 import RegisterScreen from "./screen/registerScreen";
 import CustomerRegisterAccount from "./screen/registerScreen/customerAccount";
 import SellerRegisterAccount from "./screen/registerScreen/sellerAccount";
-import CustomerLoginAccount from "./screen/loginScreen/customerAccount";
-import SellerLoginAccount from "./screen/loginScreen/sellerAccount";
 import ForgotPasswordScreen from "./screen/forgotPassword";
 import ResetPasswordScreen from "./screen/resetPassword";
 import SellerProfileScreen from "./screen/sellerProfileScreen";
@@ -44,25 +42,12 @@ import CustomerPayment from "./screen/customerProfileScreen/payment";
 import PayWithCard from "./component/customerPayment/payWithCard";
 import PayWithPayPal from "./component/customerPayment/payWithPayPal";
 import BecomeSeller from "./screen/customerProfileScreen/becomeSeller";
-import BecomeAseller from "./screen/customerProfileScreen/becomeAselller";
 function App() {
   const { state, USER } = useContext(UserContext);
 
-  const [token, setToken] = useState("");
-
   useEffect(() => {
-    if (localStorage.getItem("authToken")) {
-      setToken(localStorage.getItem("authToken"));
-    }
-  });
-
-  const recoverDataFunc = async () => {
-    await USER.recoverData();
-  };
-
-  useEffect(() => {
-    recoverDataFunc();
-  }, [state, USER]);
+    USER.recoverData();
+  }, []);
 
   return (
     <div className="App">
@@ -104,13 +89,7 @@ function App() {
             />
           </Route>
           {/* =========loginScreen====== */}
-          <Route path="/loginScreen" element={<LoginScreen />}>
-            <Route
-              path="customerLoginAccount"
-              element={<CustomerLoginAccount />}
-            />
-            <Route path="sellerLoginAccount" element={<SellerLoginAccount />} />
-          </Route>
+          <Route path="/loginScreen" element={<LoginScreen />}></Route>
           {/* =====sellerProfileScreen==== */}
           <Route
             path="/sellerProfileScreen"
@@ -153,7 +132,6 @@ function App() {
             />
             <Route path="savedItems" element={<SavedItems />} />
             <Route path="becomeSeller" element={<BecomeSeller />} />
-            <Route path="becomeAseller" element={<BecomeAseller />} />
           </Route>
         </Routes>
         <Footer />

@@ -4,7 +4,7 @@ const SellerAcctSchema = new mongoose.Schema({
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-    // required: true,
+    required: true,
   },
   sellerName: {
     type: String,
@@ -27,19 +27,19 @@ const SellerAcctSchema = new mongoose.Schema({
   city: {
     type: String,
   },
-  storeImg: {
+  productIMAGE: {
     type: String,
   },
-  storeVideo: {
+  productVIDEO: {
     type: String,
   },
-  storeProductImg: {
+  businessIMAGE: {
     type: String,
   },
-  storeProductVideo: {
+  businessVIDEO: {
     type: String,
   },
-  bisCertificate: {
+  certificateIMAGE: {
     type: String,
   },
   createdAt: {

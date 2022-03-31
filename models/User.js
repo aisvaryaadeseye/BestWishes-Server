@@ -32,9 +32,10 @@ const UserSchema = new mongoose.Schema({
     default: false,
     require: true,
   },
-  seller: {
+  isseller: {
     type: Boolean,
     default: false,
+    require: true,
   },
 });
 

@@ -167,3 +167,8 @@
   font-weight: 500;
   cursor: pointer;
 }
+@media screen and (max-width: 800px) {
+  .loginScreen {
+    flex-direction: column;
+  }
+}

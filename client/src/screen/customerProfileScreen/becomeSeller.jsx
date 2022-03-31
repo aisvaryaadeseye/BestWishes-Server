@@ -6,57 +6,89 @@ import axios from "axios";
 
 const BecomeSeller = () => {
   const [sellerName, setSellerName] = useState("");
-  const [storeName, setStoreName] = useState("");
-  const [storeAddress, setStoreAddress] = useState();
-  const [storePhone, setstorePhone] = useState();
-  const [country, setCountry] = useState();
+  const [storeName, setStoreName] = useState();
+  const [storeAddress, setStoreAddress] = useState("");
+  const [storePhone, setstorePhone] = useState("");
+  const [country, setCountry] = useState("");
   const [dob, setDob] = useState();
   const [city, setCity] = useState();
   const [error, setError] = useState();
   const [success, setSuccess] = useState();
+  const [productImg, setProductImg] = useState();
+  const [productVideo, setProductVideo] = useState();
+  const [businessImg, setBusinessImg] = useState();
+  const [businesVideo, setBusinesVideo] = useState();
+  const [certificateImg, setCertificateImg] = useState();
 
   const [userID, setUserID] = useState();
 
-  //   const [GenderState, setGenderState] = "Male";
+  const [checkTerms, setCheckTerms] = useState(false);
+  const [checkConfirm, setCheckConfirm] = useState(false);
+  const [showInformation, setShowInformation] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("userID")) {
-      setUserID(localStorage.getItem("userID"));
+      setUserID(JSON.parse(localStorage.getItem("userID")));
     }
-    // return () => {
-    //   console.log("cleaned up");
-    // };
   }, []);
 
-  const [value, setValue] = useState("");
+  // const [value, setValue] = useState("");
   const options = useMemo(() => countryList().getData(), []);
 
-  const changeHandler = (value) => {
-    setValue(value);
+  const countryHandler = (country) => {
+    setCountry(country);
+  };
+
+  const checkTermHandler = () => {
+    setCheckTerms(checkTerms);
+    console.log({ checkTerms: checkTerms });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const formData = new FormData();
+    formData.append("sellerName", sellerName);
+    formData.append("storeName", storeName);
+    formData.append("storeAddress", storeAddress);
+    formData.append("storePhone", storePhone);
+    formData.append("country", country);
+    formData.append("dob", dob);
+    formData.append("city", city);
+    formData.append("productIMAGE", productImg);
+    formData.append("productVIDEO", productVideo);
+    formData.append("businessIMAGE", businessImg);
+    formData.append("businessVIDEO", businesVideo);
+    formData.append("certificateIMAGE", certificateImg);
     try {
-      const { data } = await axios.post(`/api/auth/seller?userID=${userID}`, {
-        sellerName,
-        storeName,
-        storeAddress,
-        storePhone,
-      });
+      const { data } = await axios.post(
+        `/api/auth/seller?userID=${userID}`,
+        formData
+      );
+
       setSuccess("Seller Account Successfull");
+
+      setTimeout(() => {
+        setSuccess("");
+        // navigate("/verifyAccount");
+      }, 1500);
+
       //   localStorage.setItem("userId", data._id);
-      //   setTimeout(() => {
-      //     setSuccess("");
-      //     navigate("/verifyAccount");
-      //   }, 1500);
+      // setTimeout(() => {
+      //   setSuccess("");
+      //   navigate("/verifyAccount");
+      // }, 1500);
 
       //   setSellerName("");
       //   setPassword("");
       //   setEmail("");
       //   setPhone("");
     } catch (error) {
+      if (error.response) {
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      }
       setError(error.response.data.error);
       //   setSellerName("");
       //   setPassword("");
@@ -89,9 +121,8 @@ const BecomeSeller = () => {
             <div className="passwordContainer editCusInputField">
               <input
                 placeholder="your name"
-                // name="sellerName"
                 value={sellerName}
-                // required
+                required
                 onChange={(e) => setSellerName(e.target.value)}
                 className="passwordInput regInputField"
               />
@@ -132,7 +163,7 @@ const BecomeSeller = () => {
                 type="text"
                 required
                 placeholder=""
-                name="storePhone"
+                // name="storePhone"
                 value={storePhone}
                 onChange={(e) => setstorePhone(e.target.value)}
                 className="passwordInput regInputField"
@@ -147,8 +178,8 @@ const BecomeSeller = () => {
               <Select
                 className="countrySelect"
                 options={options}
-                value={value}
-                onChange={changeHandler}
+                value={country}
+                onChange={countryHandler}
               />
             </div>
           </div>
@@ -185,8 +216,10 @@ const BecomeSeller = () => {
             </span>
             <div className="passwordContainer">
               <input
+                filename="productIMAGE"
                 type="file"
                 // required
+                onChange={(e) => setProductImg(e.target.files[0])}
                 className="passwordInput regInputField"
               />
             </div>
@@ -198,7 +231,12 @@ const BecomeSeller = () => {
               Video of business location (Optional)
             </span>
             <div className="passwordContainer">
-              <input type="file" className="passwordInput regInputField" />
+              <input
+                type="file"
+                filename="productVIDEO"
+                className="passwordInput regInputField"
+                onChange={(e) => setProductVideo(e.target.files[0])}
+              />
             </div>
           </div>
           <div className="regInput passForm">
@@ -209,6 +247,8 @@ const BecomeSeller = () => {
               <input
                 type="file"
                 // required
+                filename="businessIMAGE"
+                onChange={(e) => setBusinessImg(e.target.files[0])}
                 className="passwordInput regInputField"
               />
             </div>
@@ -220,7 +260,12 @@ const BecomeSeller = () => {
               Video of product making (Optional)
             </span>
             <div className="passwordContainer">
-              <input type="file" className="passwordInput regInputField" />
+              <input
+                type="file"
+                filename="businessVIDEO"
+                onChange={(e) => setBusinesVideo(e.target.files[0])}
+                className="passwordInput regInputField"
+              />
             </div>
           </div>
           <div className="regInput passForm">
@@ -231,9 +276,40 @@ const BecomeSeller = () => {
               <input
                 type="file"
                 // required
+                filename="certificateIMAGE"
+                onChange={(e) => setCertificateImg(e.target.files[0])}
                 className="passwordInput regInputField"
               />
             </div>
+          </div>
+        </div>
+        <div className="checkBoxContainer">
+          <div className="checkboxRow">
+            <input
+              type="checkbox"
+              id="termsId"
+              value={checkTerms}
+              onChange={checkTermHandler}
+            />{" "}
+            &nbsp; &nbsp;
+            <label className="checkboxLabel" htmlFor="termsId">
+              I agree to the terms and conditions
+            </label>
+          </div>
+          <div className="checkboxRow">
+            <input type="checkbox" id="confirmId" value={checkConfirm} /> &nbsp;
+            &nbsp;
+            <label className="checkboxLabel" htmlFor="confirmId">
+              Confirm i am the one making the product not a third
+              party/intermediary
+            </label>
+          </div>
+          <div className="checkboxRow">
+            <input type="checkbox" id="showId" value={showInformation} /> &nbsp;
+            &nbsp;
+            <label className="checkboxLabel" htmlFor="showId">
+              Show my informations to my customers
+            </label>
           </div>
         </div>
 

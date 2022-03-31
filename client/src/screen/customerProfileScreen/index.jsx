@@ -112,12 +112,7 @@ const CustomerProfileScreen = () => {
               Become a seller
             </div>
           </Link>
-          {/* <Link to="becomeAseller">
-            <div className="sidebarNav">
-              <img src={becomeSeller} alt="" className="iconImg" />
-              Become a seller
-            </div>
-          </Link> */}
+        
 
           <div className="sidebarNav" onClick={handleShow}>
             <img src={logout} alt="" className="iconImg" />

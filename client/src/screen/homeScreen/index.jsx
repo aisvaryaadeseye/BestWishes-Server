@@ -208,22 +208,6 @@ function HomeScreen() {
       </SubscribeToNewLetter>
 
       {/* ============Subscriber newsletter==========XXX==== */}
-      <div className="regInput passForm ">
-        <span className="userEmail">Store Phone Number (Required)</span>
-        <div className="passwordContainer editCusInputField">
-          <input
-            type="text"
-            required
-            placeholder=""
-            name="storePhone"
-            value={storePhone}
-            onChange={(e) => setstorePhone(e.target.value)}
-            className="passwordInput regInputField"
-          />
-        </div>
-      </div>
-
-      <BecomeSeller />
     </Container>
   );
 }

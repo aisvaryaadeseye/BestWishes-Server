@@ -13,13 +13,6 @@ import profileIIMG from "../../assets/images/profileIIMG.png";
 
 const Navbar = () => {
   const { state } = useContext(UserContext);
-  const [token, setToken] = useState("");
-
-  useEffect(() => {
-    if (localStorage.getItem("authToken")) {
-      setToken(localStorage.getItem("authToken"));
-    }
-  });
 
   return (
     <NavbarStyled className="navBar">
@@ -41,7 +34,7 @@ const Navbar = () => {
         <div className="navBarLinkLists">
           <div className="accountContainer">
             <TopRightNav user={state.token} />
-            {state.token ? (
+            {/* {state.token ? (
               <Link to="/customerProfileScreen/editCustomerProfile">
                 <div className="userImgContainer">
                   <img src={customerImg} className="userImg" alt="" />
@@ -51,7 +44,7 @@ const Navbar = () => {
               <div className="userImgContainer">
                 <img src={profileIIMG} className="userImg" alt="" />
               </div>
-            )}
+            )} */}
           </div>
         </div>
       </div>

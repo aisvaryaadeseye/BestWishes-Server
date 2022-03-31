@@ -148,7 +148,7 @@ const CustomerRegisterAccount = () => {
         <div className="alreadyAccountContainer">
           <p>Already have an accoint ? </p>
           <p>
-            <a href="/loginScreen/customerLoginAccount">Login</a>
+            <a href="/loginScreen">Login</a>
           </p>
         </div>
         <div className="orCreateAccount">

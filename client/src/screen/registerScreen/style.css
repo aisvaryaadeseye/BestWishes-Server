@@ -1,6 +1,6 @@
 .registerScreen {
   display: flex;
-  height: 100vh;
+  /* height: 100vh; */
 }
 .registerScreenLeft {
   flex: 0.45;
@@ -54,6 +54,7 @@
   /* background-color: red; */
   display: flex;
   margin-top: 0.5rem;
+  cursor: pointer;
 }
 .regNavbar > p {
   color: var(--orangeColor);
@@ -78,7 +79,7 @@
 }
 .sellerNav {
   font-weight: 500;
-  color: green;
+  /* color: green; */
 }
 /* ========customer====== */
 .createAccountCustomer {
@@ -298,4 +299,13 @@ input {
 }
 .sellerRegBtn {
   margin-top: 1rem;
+}
+
+@media screen and (max-width: 900px) {
+  .registerScreen {
+    flex-direction: column;
+  }
+  .becomeSellerContainer {
+    margin-bottom: 3em;
+  }
 }
