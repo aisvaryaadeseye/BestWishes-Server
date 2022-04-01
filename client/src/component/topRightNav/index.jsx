@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   Container,
   Navbar,
@@ -15,184 +15,369 @@ import sell from "../../assets/icons/sell.svg";
 import orders from "../../assets/icons/order.png";
 import profile from "../../assets/icons/profile.svg";
 import customerImg from "../../assets/images/customerImg.jpg";
+import LogOut from "../logOut";
+import UserContext from "../../provider/userProvider";
 
 const TopRightNav = ({ user }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const { state } = useContext(UserContext);
 
-  const logOut = () => {
-    localStorage.removeItem("authToken");
-    localStorage.removeItem("user");
-    localStorage.removeItem("userID");
-    window.location.reload();
-  };
   return (
-    <div>
-      <Navbar bg="light" expand="lg" id="topRightNavContainer">
-        <Container>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto topRightNav">
-              <Nav.Link className="topRightNavLink">
-                <Link to="/productScreenChange">Product</Link>
-              </Nav.Link>
-              <Nav.Link className="topRightNavLink">
-                <Link to="/blogScreen">Blog</Link>
-              </Nav.Link>
-              <NavDropdown
-                title="Help"
-                id="topRightDropdown"
-                className="topRightDropdown"
-              >
-                <NavDropdown.Item className="topRightLink">
-                  Services
-                </NavDropdown.Item>
-                <NavDropdown.Item className="topRightLink">
-                  About us
-                </NavDropdown.Item>
-                <NavDropdown.Item className="topRightLink">
-                  Support center
-                </NavDropdown.Item>
-                <NavDropdown.Item className="topRightLink">
-                  Term of use
-                </NavDropdown.Item>
-                <NavDropdown.Item className="topRightLink">
-                  Contact
-                </NavDropdown.Item>
-              </NavDropdown>
-              {user ? (
-                <div className="accountDiv">
-                  <img src={customerImg} alt="" className=" accontImgNav" />
+    <>
+      {state.isSeller ? (
+        <div>
+          <Navbar bg="light" expand="lg" id="topRightNavContainer">
+            <Container>
+              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="me-auto topRightNav">
+                  {/* <Nav.Link className="topRightNavLink">
+                    <Link to="/productScreenChange">Product</Link>
+                  </Nav.Link> */}
+                  <Nav.Link className="topRightNavLink helpSellerAcc ">
+                    <Link to="/blogScreen">Blog</Link>
+                  </Nav.Link>
                   <NavDropdown
-                    title="Account"
+                    title="Help"
                     id="topRightDropdown"
                     className="topRightDropdown"
                   >
                     <NavDropdown.Item className="topRightLink">
-                      {" "}
-                      <Link
-                        className="navLinks"
-                        to="customerProfileScreen/editCustomerProfile"
-                      >
-                        <img
-                          src={profile}
-                          alt=""
-                          className="navIcons profileIcon"
-                        />
-                        View Profile
-                      </Link>{" "}
+                      Services
                     </NavDropdown.Item>
                     <NavDropdown.Item className="topRightLink">
-                      <Link
-                        className="navLinks"
-                        to="customerProfileScreen/messages"
-                      >
-                        {" "}
-                        <img
-                          src={message}
-                          alt=""
-                          className="navIcons messageIcon"
-                        />
-                        Message
-                      </Link>
+                      About us
                     </NavDropdown.Item>
                     <NavDropdown.Item className="topRightLink">
-                      <Link
-                        className="navLinks"
-                        to="customerProfileScreen/customerOrders/orderAll"
-                      >
-                        {" "}
-                        <img
-                          src={orders}
-                          alt=""
-                          className="navIcons orderIcon"
-                        />
-                        Orders
-                      </Link>
+                      Support center
                     </NavDropdown.Item>
                     <NavDropdown.Item className="topRightLink">
-                      <Link
-                        className="navLinks"
-                        to="/registerScreen/sellerRegisterAccount"
-                      >
-                        <img src={sell} alt="" className="navIcons sellIcon" />
-                        Sell on Best Wishes
-                      </Link>
+                      Term of use
                     </NavDropdown.Item>
-                    <NavDropdown.Item
-                      className="topRightLink"
-                      onClick={handleShow}
-                    >
-                      {" "}
+                    <NavDropdown.Item className="topRightLink">
+                      Contact
+                    </NavDropdown.Item>
+                  </NavDropdown>
+                  {user ? (
+                    <div className="accountDiv accountDivSeller">
+                      <img src={customerImg} alt="" className=" accontImgNav" />
+                      <NavDropdown
+                        title="Account"
+                        id="topRightDropdown"
+                        className="topRightDropdown"
+                      >
+                        <NavDropdown.Item className="topRightLink">
+                          {" "}
+                          <Link
+                            className="navLinks"
+                            to={
+                              state.isSeller
+                                ? "sellerprofilescreen/overview"
+                                : "customerProfileScreen/editCustomerProfile"
+                            }
+                          >
+                            <img
+                              src={profile}
+                              alt=""
+                              className="navIcons profileIcon"
+                            />
+                            View Profile
+                          </Link>{" "}
+                        </NavDropdown.Item>
+                        <NavDropdown.Item className="topRightLink">
+                          <Link
+                            className="navLinks"
+                            to="customerProfileScreen/messages"
+                          >
+                            {" "}
+                            <img
+                              src={message}
+                              alt=""
+                              className="navIcons messageIcon"
+                            />
+                            Message
+                          </Link>
+                        </NavDropdown.Item>
+                        <NavDropdown.Item className="topRightLink">
+                          <Link
+                            className="navLinks"
+                            to="customerProfileScreen/customerOrders/orderAll"
+                          >
+                            {" "}
+                            <img
+                              src={orders}
+                              alt=""
+                              className="navIcons orderIcon"
+                            />
+                            Orders
+                          </Link>
+                        </NavDropdown.Item>
+                        {!state.isSeller && (
+                          <NavDropdown.Item className="topRightLink">
+                            <Link
+                              className="navLinks"
+                              to="/registerScreen/sellerRegisterAccount"
+                            >
+                              <img
+                                src={sell}
+                                alt=""
+                                className="navIcons sellIcon"
+                              />
+                              Sell on Best Wishes
+                            </Link>
+                          </NavDropdown.Item>
+                        )}
+                        <NavDropdown.Item
+                          className="topRightLink"
+                          onClick={handleShow}
+                        >
+                          {" "}
+                          <img
+                            src={logout}
+                            alt=""
+                            className="navIcons logoutIcon"
+                          />
+                          Log-out
+                        </NavDropdown.Item>
+                      </NavDropdown>
+                    </div>
+                  ) : (
+                    <div className="accountDiv">
                       <img
-                        src={logout}
+                        src={profile}
                         alt=""
-                        className="navIcons logoutIcon"
+                        className="navIcons profileIcon acctIconNav"
                       />
-                      Log-out
-                    </NavDropdown.Item>
-                  </NavDropdown>
-                </div>
-              ) : (
-                <div className="accountDiv">
-                  <img
-                    src={profile}
-                    alt=""
-                    className="navIcons profileIcon acctIconNav"
-                  />
+                      <NavDropdown
+                        title="Account"
+                        id="topRightDropdown"
+                        className="topRightDropdown"
+                      >
+                        <NavDropdown.Item className="topRightLink">
+                          {" "}
+                          <Link to="/loginScreen">Sign In</Link>{" "}
+                        </NavDropdown.Item>
+                        <NavDropdown.Item className="topRightLink">
+                          <Link to="/registerScreen/customerRegisterAccount">
+                            Sign Up
+                          </Link>
+                        </NavDropdown.Item>
+                      </NavDropdown>
+                    </div>
+                  )}
+
+                  {/* <Nav.Link className="topRightNavLink">
+                    <p>
+                      Cart&nbsp;
+                      <i className="fa fa-cartfa fa-shopping-cart"></i>
+                    </p>
+                  </Nav.Link> */}
+                </Nav>
+              </Navbar.Collapse>
+            </Container>
+          </Navbar>
+          <Modal
+            show={show}
+            onHide={handleClose}
+            backdrop="static"
+            keyboard={false}
+          >
+            <Modal.Header closeButton>
+              <Modal.Title></Modal.Title>
+            </Modal.Header>
+            <Modal.Body>Are you sure you want to log out ?</Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Cancel
+              </Button>
+              <Button
+                variant="primary"
+                style={{ backgroundColor: "#f69014", border: "none" }}
+                onClick={LogOut}
+              >
+                Yes
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        </div>
+      ) : (
+        // =================
+        <div>
+          <Navbar bg="light" expand="lg" id="topRightNavContainer">
+            <Container>
+              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="me-auto topRightNav">
+                  <Nav.Link className="topRightNavLink">
+                    <Link to="/productScreenChange">Product</Link>
+                  </Nav.Link>
+                  <Nav.Link className="topRightNavLink ">
+                    <Link to="/blogScreen">Blog</Link>
+                  </Nav.Link>
                   <NavDropdown
-                    title="Account"
+                    title="Help"
                     id="topRightDropdown"
-                    className="topRightDropdown"
+                    className="topRightDropdown "
                   >
                     <NavDropdown.Item className="topRightLink">
-                      {" "}
-                      <Link to="/loginScreen">Sign In</Link>{" "}
+                      Services
                     </NavDropdown.Item>
                     <NavDropdown.Item className="topRightLink">
-                      <Link to="/registerScreen/customerRegisterAccount">
-                        Sign Up
-                      </Link>
+                      About us
+                    </NavDropdown.Item>
+                    <NavDropdown.Item className="topRightLink">
+                      Support center
+                    </NavDropdown.Item>
+                    <NavDropdown.Item className="topRightLink">
+                      Term of use
+                    </NavDropdown.Item>
+                    <NavDropdown.Item className="topRightLink">
+                      Contact
                     </NavDropdown.Item>
                   </NavDropdown>
-                </div>
-              )}
+                  {user ? (
+                    <div className="accountDiv">
+                      <img src={customerImg} alt="" className=" accontImgNav" />
+                      <NavDropdown
+                        title="Account"
+                        id="topRightDropdown"
+                        className="topRightDropdown"
+                      >
+                        <NavDropdown.Item className="topRightLink">
+                          {" "}
+                          <Link
+                            className="navLinks"
+                            to="customerProfileScreen/editCustomerProfile"
+                          >
+                            <img
+                              src={profile}
+                              alt=""
+                              className="navIcons profileIcon"
+                            />
+                            View Profile
+                          </Link>{" "}
+                        </NavDropdown.Item>
+                        <NavDropdown.Item className="topRightLink">
+                          <Link
+                            className="navLinks"
+                            to="customerProfileScreen/messages"
+                          >
+                            {" "}
+                            <img
+                              src={message}
+                              alt=""
+                              className="navIcons messageIcon"
+                            />
+                            Message
+                          </Link>
+                        </NavDropdown.Item>
+                        <NavDropdown.Item className="topRightLink">
+                          <Link
+                            className="navLinks"
+                            to="customerProfileScreen/customerOrders/orderAll"
+                          >
+                            {" "}
+                            <img
+                              src={orders}
+                              alt=""
+                              className="navIcons orderIcon"
+                            />
+                            Orders
+                          </Link>
+                        </NavDropdown.Item>
+                        {!state.isSeller && (
+                          <NavDropdown.Item className="topRightLink">
+                            <Link
+                              className="navLinks"
+                              to="/registerScreen/sellerRegisterAccount"
+                            >
+                              <img
+                                src={sell}
+                                alt=""
+                                className="navIcons sellIcon"
+                              />
+                              Sell on Best Wishes
+                            </Link>
+                          </NavDropdown.Item>
+                        )}
+                        <NavDropdown.Item
+                          className="topRightLink"
+                          onClick={handleShow}
+                        >
+                          {" "}
+                          <img
+                            src={logout}
+                            alt=""
+                            className="navIcons logoutIcon"
+                          />
+                          Log-out
+                        </NavDropdown.Item>
+                      </NavDropdown>
+                    </div>
+                  ) : (
+                    <div className="accountDiv">
+                      <img
+                        src={profile}
+                        alt=""
+                        className="navIcons profileIcon acctIconNav"
+                      />
+                      <NavDropdown
+                        title="Account"
+                        id="topRightDropdown"
+                        className="topRightDropdown"
+                      >
+                        <NavDropdown.Item className="topRightLink">
+                          {" "}
+                          <Link to="/loginScreen">Sign In</Link>{" "}
+                        </NavDropdown.Item>
+                        <NavDropdown.Item className="topRightLink">
+                          <Link to="/registerScreen/customerRegisterAccount">
+                            Sign Up
+                          </Link>
+                        </NavDropdown.Item>
+                      </NavDropdown>
+                    </div>
+                  )}
 
-              <Nav.Link className="topRightNavLink">
-                <p>
-                  Cart&nbsp;<i className="fa fa-cartfa fa-shopping-cart"></i>
-                </p>
-              </Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-      <Modal
-        show={show}
-        onHide={handleClose}
-        backdrop="static"
-        keyboard={false}
-      >
-        <Modal.Header closeButton>
-          <Modal.Title></Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Are you sure you want to log out ?</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Cancel
-          </Button>
-          <Button
-            variant="primary"
-            style={{ backgroundColor: "#f69014", border: "none" }}
-            onClick={logOut}
+                  <Nav.Link className="topRightNavLink">
+                    <p>
+                      Cart&nbsp;
+                      <i className="fa fa-cartfa fa-shopping-cart"></i>
+                    </p>
+                  </Nav.Link>
+                </Nav>
+              </Navbar.Collapse>
+            </Container>
+          </Navbar>
+          <Modal
+            show={show}
+            onHide={handleClose}
+            backdrop="static"
+            keyboard={false}
           >
-            Yes
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </div>
+            <Modal.Header closeButton>
+              <Modal.Title></Modal.Title>
+            </Modal.Header>
+            <Modal.Body>Are you sure you want to log out ?</Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Cancel
+              </Button>
+              <Button
+                variant="primary"
+                style={{ backgroundColor: "#f69014", border: "none" }}
+                onClick={LogOut}
+              >
+                Yes
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        </div>
+      )}
+    </>
   );
 };
 

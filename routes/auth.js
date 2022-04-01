@@ -3,19 +3,19 @@ const router = express.Router();
 const crypto = require("crypto");
 require("dotenv").config();
 const path = require("path");
-const uuid = require("uuid");
+// const uuid = require("uuid");
 
-const AWS = require("aws-sdk");
+// const AWS = require("aws-sdk");
 const multer = require("multer");
-const multerS3 = require("multer-s3");
-const fs = require("fs");
-const bucket = process.env.BUCKET;
+// const multerS3 = require("multer-s3");
+// const fs = require("fs");
+// const bucket = process.env.BUCKET;
 
-const s3 = new AWS.S3({
-  accessKeyId: process.env.KEY_ID,
-  secretAccessKey: process.env.SECRET,
-  // region: 'us-east-2'
-});
+// const s3 = new AWS.S3({
+//   accessKeyId: process.env.KEY_ID,
+//   secretAccessKey: process.env.SECRET,
+//   // region: 'us-east-2'
+// });
 
 const { validate } = require("../middleware/validator");
 
@@ -248,10 +248,7 @@ var storage = multer.diskStorage({
     cb(null, "./client/public/uploads");
   },
   filename: function (req, file, cb) {
-    cb(
-      null,
-      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
-    );
+    cb(null, file.fieldname + path.extname(file.originalname));
   },
 });
 
@@ -267,27 +264,27 @@ var uploadMultiple = upload.fields([
   { name: "certificateIMAGE", maxCount: 10 },
 ]);
 
-const uploadS3 = multer({
-  storage: multerS3({
-    s3: s3,
-    bucket: process.env.BUCKET,
-    contentType: multerS3.AUTO_CONTENT_TYPE,
+// const uploadS3 = multer({
+//   storage: multerS3({
+//     s3: s3,
+//     bucket: process.env.BUCKET,
+//     contentType: multerS3.AUTO_CONTENT_TYPE,
 
-    key: function (req, file, cb) {
-      const ext = path.extname(file.originalname);
-      cb(null, `${uuid()}${ext}`);
-    },
+//     key: function (req, file, cb) {
+//       const ext = path.extname(file.originalname);
+//       cb(null, `${uuid()}${ext}`);
+//     },
 
-    metadata: function (req, file, cd) {
-      cd(null, { fieldName: file.fieldname });
-    },
-    acl: "public-read",
-    // limits: {
-    //   fileSize: 1024 * 1024 * 20, //20mb max
-    // },
-    // fileFilter,
-  }),
-});
+//     metadata: function (req, file, cd) {
+//       cd(null, { fieldName: file.fieldname });
+//     },
+//     acl: "public-read",
+//     // limits: {
+//     //   fileSize: 1024 * 1024 * 20, //20mb max
+//     // },
+//     // fileFilter,
+//   }),
+// });
 // const uploadS3 = multer({
 //   storage: multerS3({
 //     s3: s3,
@@ -307,25 +304,32 @@ const uploadS3 = multer({
 //   }),
 // });
 
-var storage = multer.memoryStorage({
-  destination: function (req, file, callback) {
-    callback(null, "");
-  },
-});
-var multipleUpload = multer({ storage: storage }).array("file");
-// var upload = multer({ storage: storage }).single('file');
+// var storage = multer.memoryStorage({
+//   destination: function (req, file, callback) {
+//     callback(null, "");
+//   },
+// });
+// var multipleUpload = multer({ storage: storage }).array("file");
+// // var upload = multer({ storage: storage }).single('file');
 
 // become a seller ======================================
-router.post("/seller", async (req, res) => {
-  const file = [
-    { name: "productIMAGE", maxCount: 10 },
-    { name: "productVIDEO", maxCount: 10 },
-    { name: "businessIMAGE", maxCount: 10 },
-    { name: "businessVIDEO", maxCount: 10 },
-    { name: "certificateIMAGE", maxCount: 10 },
-  ];
+router.post("/seller", uploadMultiple, async (req, res) => {
   try {
     const { userID } = req.query;
+
+    const sellerName = req.body.sellerName;
+    const storeName = req.body.storeName;
+    const storeAddress = req.body.storeAddress;
+    const storePhone = req.body.storePhone;
+    const country = req.body.country;
+    const dob = req.body.dob;
+    const city = req.body.city;
+
+    // const productIMAGE = req.file.originalname;
+    // const productVIDEO = req.file.filename;
+    // const businessIMAGE = req.file.filename;
+    // const businessVIDEO = req.file.filename;
+    // const certificateIMAGE = req.file.filename;
 
     if (!isValidObjectId(userID)) return sendError(res, " invalid user ID");
 
@@ -333,62 +337,24 @@ router.post("/seller", async (req, res) => {
 
     if (!user) return sendError(res, "user not found");
 
-    if (user.isseller) return sendError(res, "Already a selller");
+    // if (user.isSeller) return sendError(res, "Already a selller");
 
-    user.isseller = true;
-
-    // const s3bucket = new AWS.S3({
-    //   accessKeyId: process.env.KEY_ID,
-    //   secretAccessKey: process.env.SECRET,
-    //   Bucket: process.env.BUCKET,
-    //   // region: 'us-east-2'
-    // });
-
-    // s3bucket.createBucket(function () {
-    //   // let Bucket_Path = "BUCKET_PATH";
-    //   //Where you want to store your file
-    //   var ResponseData = [];
-
-    //   file.map((item) => {
-    //     var params = {
-    //       Bucket: process.env.BUCKET,
-    //       Key: item.originalname,
-    //       Body: item.buffer,
-    //       ACL: "public-read",
-    //     };
-    //     s3bucket.upload(params, function (err, data) {
-    //       if (err) {
-    //         res.json({ error: true, Message: err });
-    //       } else {
-    //         ResponseData.push(data);
-    //         if (ResponseData.length == file.length) {
-    //           res.json({
-    //             error: false,
-    //             Message: "File Uploaded    SuceesFully",
-    //             Data: ResponseData,
-    //           });
-    //         }
-    //       }
-    //     });
-    //   });
-    // });
+    user.isSeller = true;
 
     const newSeller = await new SellerAcct({
       owner: userID,
-      sellerName: req.body.sellerName,
-      storeName: req.body.storeName,
-      storeAddress: req.body.storeAddress,
-      storePhone: req.body.storePhone,
-      country: req.body.country,
-      dob: req.body.dob,
-      city: req.body.city,
-      // productIMAGE: req.file.originalname,
-
-      // storeImg,
-      // storeVideo,
-      // storeProductImg,
-      // storeProductVideo,
-      // bisCertificate,
+      sellerName,
+      storeName,
+      storeAddress,
+      storePhone,
+      country,
+      dob,
+      city,
+      // productIMAGE,
+      // productVIDEO,
+      // businessIMAGE,
+      // businessVIDEO,
+      // certificateIMAGE,
     });
 
     await user.save();
@@ -398,9 +364,7 @@ router.post("/seller", async (req, res) => {
     res.json({
       success: true,
       message: "Seller Account Created Successful.",
-      seller: {
-        sellerName: seller.sellerName,
-      },
+      isSeller: user.isSeller,
     });
   } catch (error) {
     res.status(500).json(error + "error saving data");

@@ -37,12 +37,6 @@ const LoginScreen = () => {
     setShowSeller(false);
   };
 
-  useEffect(() => {
-    if (state.token) {
-      navigate("/");
-    }
-  }, [state]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const config = {
@@ -72,13 +66,19 @@ const LoginScreen = () => {
         // Check always mounted component
         // continue treatment of AJAX response... ;
         await USER.updateUserData(data);
+        await USER.updateisSeller(data.user.isSeller);
+        await USER.saveSeller(data.user.isSeller);
 
         localStorage.setItem("userID", JSON.stringify(data.user._id));
         localStorage.setItem("authToken", data.token);
         setSuccess("Success!");
         setTimeout(() => {
           setSuccess("");
-          navigate("/");
+          if (data.user.isSeller) {
+            navigate("/sellerprofilescreen/overview");
+          } else {
+            navigate("/");
+          }
         }, 1500);
       }
     } catch (error) {

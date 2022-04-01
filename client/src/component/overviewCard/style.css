@@ -7,6 +7,7 @@
   width: 350px;
   padding: 1em;
   margin-right: 2em;
+  height: 230px;
 }
 .totalSalesCardTop {
   display: flex;
@@ -47,6 +48,7 @@
   width: 350px;
   padding: 1em;
   margin-right: 2em;
+  height: 230px;
 }
 .totalOrdersCardTop {
   display: flex;
@@ -87,6 +89,7 @@
   width: 350px;
   padding: 1em;
   margin-right: 2em;
+  height: 230px;
 }
 .totalIcomeCardTop {
   display: flex;
@@ -125,6 +128,7 @@
   border: 2px solid var(--skyPurpleColor);
   border-radius: 0.5em;
   width: 350px;
+  height: 230px;
   padding: 1em;
   margin-right: 2em;
 }
@@ -162,8 +166,10 @@
   border: 2px solid var(--skyBlueColor);
   border-radius: 0.5em;
   width: 350px;
+  height: 230px;
   padding: 1em;
-  margin-right: 6em;
+  margin-right: 1.5em;
+  margin-left: 0;
 }
 .allProductsCardTop {
   display: flex;
@@ -199,8 +205,9 @@
   border: 2px solid var(--orangeColor);
   border-radius: 0.5em;
   width: 350px;
+  height: 230px;
   padding: 1em;
-  margin-right: 6em;
+  margin-right: 2em;
 }
 .shopLikesTop {
   display: flex;
@@ -237,8 +244,9 @@
   border: 2px solid var(--purpleColor);
   border-radius: 0.5em;
   width: 350px;
+  height: 230px;
   padding: 1em;
-  margin-right: 6em;
+  margin-right: 2em;
 }
 .shopViewTop {
   display: flex;
@@ -266,3 +274,63 @@
 }
 
 /* ======shop View======xx===== */
+
+/* ==============orders status=============== */
+.orderStatus {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--lightGreyColor);
+  border-radius: 0.5em;
+  width: 320px;
+  padding: 1em;
+}
+.orderStatusTop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2em 0;
+
+  width: 100%;
+}
+.orderStatusTop > h1 {
+  font-size: 1.5em;
+}
+.orderStatusBottom {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.orderStatusImgContainer {
+  width: 10em;
+  margin-bottom: 2em;
+}
+.orderstatusImg {
+  width: 100%;
+}
+.statusDetailContainer {
+  margin-left: 2em;
+}
+.statusDetails {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+}
+.statusBox {
+  width: 2em;
+  height: 2em;
+  background-color: var(--greenColor);
+}
+.statusDetails > h3 {
+  color: var(--greyColor);
+  font-size: 1em;
+  font-weight: 600;
+  margin-left: 0.5em;
+}
+.statusDetails > h4 {
+  color: var(--greenColor);
+  font-size: 1em;
+  font-weight: 600;
+  margin-left: 0.5em;
+}

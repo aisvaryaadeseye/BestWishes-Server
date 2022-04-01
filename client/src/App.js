@@ -47,6 +47,7 @@ function App() {
 
   useEffect(() => {
     USER.recoverData();
+    USER.recoverisSeller();
   }, []);
 
   return (
@@ -92,7 +93,7 @@ function App() {
           <Route path="/loginScreen" element={<LoginScreen />}></Route>
           {/* =====sellerProfileScreen==== */}
           <Route
-            path="/sellerProfileScreen"
+            path="/sellerprofilescreen"
             element={
               state.token ? <SellerProfileScreen /> : <Navigate to="/" />
             }

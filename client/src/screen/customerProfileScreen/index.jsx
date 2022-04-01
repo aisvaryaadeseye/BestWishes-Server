@@ -1,7 +1,7 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./style.css";
 import customerImg from "../../assets/images/customerImg.jpg";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { Button, Modal } from "react-bootstrap";
 import edit from "../../assets/icons/edit.svg";
 import logout from "../../assets/icons/logout.svg";
@@ -12,20 +12,33 @@ import need from "../../assets/icons/need.svg";
 import setting from "../../assets/icons/setting.svg";
 import card from "../../assets/icons/card.svg";
 import savedItem from "../../assets/icons/savedItem.svg";
-// import UserContext from "../../provider/userProvider";
+import LogOut from "../../component/logOut";
+import UserContext from "../../provider/userProvider";
 
 const CustomerProfileScreen = () => {
-  // const { state, USER } = useContext(UserContext);
+  const { state, USER } = useContext(UserContext);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [saveSeller, setSaveSeller] = useState(false);
 
-  const logOut = () => {
-    localStorage.removeItem("authToken");
-    localStorage.removeItem("user");
-    localStorage.removeItem("userID");
-    window.location.reload();
+  useEffect(() => {
+    if (localStorage.getItem("saveSeller")) {
+      setSaveSeller(localStorage.getItem("saveSeller"));
+    }
+  }, []);
+
+  const navigate = useNavigate();
+
+  const handleBuyer = () => {
+    USER.updateisSeller(true);
+    // console.log(state.isSeller);
+    // console.log("click");
+    if (!state.isSeller) {
+      navigate("/sellerprofilescreen/overview");
+    }
   };
+
   return (
     <div className="customerProfileScreen">
       <div className="customerProfileSideBar">
@@ -53,7 +66,7 @@ const CustomerProfileScreen = () => {
             <Button
               variant="primary"
               style={{ backgroundColor: "#f69014", border: "none" }}
-              onClick={logOut}
+              onClick={LogOut}
             >
               Yes
             </Button>
@@ -62,7 +75,6 @@ const CustomerProfileScreen = () => {
 
         <nav className="customerProfileSideBarBottom">
           <h1>Account Detail</h1>
-
           <Link to="editCustomerProfile">
             <div className="sidebarNav">
               <img src={edit} alt="" className="iconImg" />
@@ -87,7 +99,6 @@ const CustomerProfileScreen = () => {
               Saved items
             </div>
           </Link>
-
           <Link to="customerPayment/payWithCard">
             <div className="sidebarNav">
               <img src={card} alt="" className="iconImg" />
@@ -106,14 +117,20 @@ const CustomerProfileScreen = () => {
               Account Settings
             </div>
           </Link>
-          <Link to="becomeSeller">
-            <div className="sidebarNav">
-              <img src={becomeSeller} alt="" className="iconImg" />
-              Become a seller
-            </div>
-          </Link>
-        
 
+          {saveSeller ? (
+            <div className="sidebarNav" onClick={handleBuyer}>
+              <img src={becomeSeller} alt="" className="iconImg" />
+              Switch to seller
+            </div>
+          ) : (
+            <Link to="becomeSeller">
+              <div className="sidebarNav">
+                <img src={becomeSeller} alt="" className="iconImg" />
+                Become a seller
+              </div>
+            </Link>
+          )}
           <div className="sidebarNav" onClick={handleShow}>
             <img src={logout} alt="" className="iconImg" />
             Log-out

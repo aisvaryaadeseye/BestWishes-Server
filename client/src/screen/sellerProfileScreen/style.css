@@ -124,19 +124,52 @@
 .productOverviewSec3One > h1 {
   font-size: 1.5em;
 }
+.orderTitle {
+  display: flex;
+  align-items: center;
+  height: 4em;
+  width: 100%;
+  /* padding: 0 2em; */
+}
+.orderTitleLeft {
+  width: 25%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.orderTitleLeft > h1 {
+  font-size: 1.2em;
+  font-weight: 500;
+}
+.orderTitleList {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.orderTitleList > span:hover {
+  cursor: pointer;
+}
+.orderTitleList > span:first-child {
+  color: var(--orangeColor);
+  padding: 0.5em 0.7em;
+  border-radius: 50%;
+  background-color: var(--lightOrangeColor);
+}
 .productOverviewSec3Two {
   height: 4em;
   display: grid;
-  grid-template-columns: 20% auto auto auto auto auto;
-  background-color: var(--lightGreyColor);
+  grid-template-columns: auto 20% 20% auto auto auto;
+  background-color: var(--adminBlueColor);
+
   width: 100%;
   align-items: center;
   padding-left: 2em;
 }
-.productOverviewSec3Two > p {
+.productOverviewSec3Two > span {
   font-size: 1em;
   font-weight: 600;
-  color: var(--blackColor);
+  color: var(--skyBlueColor);
 }
 
 .profileOverviewSection4 {

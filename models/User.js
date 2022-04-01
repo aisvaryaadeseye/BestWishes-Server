@@ -32,7 +32,7 @@ const UserSchema = new mongoose.Schema({
     default: false,
     require: true,
   },
-  isseller: {
+  isSeller: {
     type: Boolean,
     default: false,
     require: true,

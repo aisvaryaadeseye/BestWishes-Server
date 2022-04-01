@@ -4,6 +4,7 @@ import bestWishLogo from "../../assets/images/bestWishesLogo.svg";
 import { Link } from "react-router-dom";
 import UserContext from "../../provider/userProvider";
 import { Button, Modal } from "react-bootstrap";
+import LogOut from "../logOut";
 
 const MobileNav = () => {
   const [showLeftBar, setShowLeftBar] = useState(false);
@@ -13,13 +14,6 @@ const MobileNav = () => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  const logOut = () => {
-    localStorage.removeItem("authToken");
-    localStorage.removeItem("user");
-    localStorage.removeItem("userID");
-    window.location.reload();
-  };
 
   const handleLeftBar = () => {
     setShowLeftBar(!showLeftBar);
@@ -94,6 +88,29 @@ const MobileNav = () => {
                 </Link>
                 <div onClick={handleShow}>Log Out</div>
               </div>
+              <Modal
+                show={show}
+                onHide={handleClose}
+                backdrop="static"
+                keyboard={false}
+              >
+                <Modal.Header closeButton>
+                  <Modal.Title></Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Are you sure you want to log out ?</Modal.Body>
+                <Modal.Footer>
+                  <Button variant="secondary" onClick={handleClose}>
+                    Cancel
+                  </Button>
+                  <Button
+                    variant="primary"
+                    style={{ backgroundColor: "#f69014", border: "none" }}
+                    onClick={LogOut}
+                  >
+                    Yes
+                  </Button>
+                </Modal.Footer>
+              </Modal>
             </div>
           ) : (
             <div
@@ -186,7 +203,7 @@ const MobileNav = () => {
           <Button
             variant="primary"
             style={{ backgroundColor: "#f69014", border: "none" }}
-            onClick={logOut}
+            onClick={LogOut}
           >
             Yes
           </Button>

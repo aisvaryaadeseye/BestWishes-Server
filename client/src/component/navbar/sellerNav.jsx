@@ -8,14 +8,11 @@ import UserContext from "../../provider/userProvider";
 import { Link } from "react-router-dom";
 import TopRightNav from "../topRightNav";
 
-const Navbar = () => {
+const SellerNavbar = () => {
   const { state } = useContext(UserContext);
 
   return (
-    <NavbarStyled
-      className="navBar"
-      style={{ height: state.isSeller && "80px" }}
-    >
+    <div className="navBar sellerNavBar">
       <div className="navbarTop">
         <Link to="/">
           <img src={bestWishLogo} className="bestWishLogo" />
@@ -37,35 +34,8 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      {state.isSeller ? (
-        <></>
-      ) : (
-        <div className="navbarBottom">
-          <div className="navbarBottomnavBarLinks">
-            <Link to="/productScreenChange" className="navbarBottomLink">
-              Clothings & Accessories
-            </Link>
-
-            <Link to="/productScreenHealth" className="navbarBottomLink">
-              Health & Beauty
-            </Link>
-
-            <Link to="/productScreenHealth" className="navbarBottomLink">
-              Art & Craft
-            </Link>
-
-            <Link to="/productScreenHealth" className="navbarBottomLink">
-              Pottery
-            </Link>
-
-            <Link to="/productScreenHealth" className="navbarBottomLink">
-              Other Categories
-            </Link>
-          </div>
-        </div>
-      )}
-    </NavbarStyled>
+    </div>
   );
 };
 
-export default Navbar;
+export default SellerNavbar;

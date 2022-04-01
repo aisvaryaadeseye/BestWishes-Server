@@ -1,8 +1,10 @@
 import customerImg from "../../assets/images/customerImg.jpg";
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo, useEffect, useContext } from "react";
 import Select from "react-select";
 import countryList from "react-select-country-list";
 import axios from "axios";
+import UserContext from "../../provider/userProvider";
+import LogOut from "../../component/logOut";
 
 const BecomeSeller = () => {
   const [sellerName, setSellerName] = useState("");
@@ -19,12 +21,11 @@ const BecomeSeller = () => {
   const [businessImg, setBusinessImg] = useState();
   const [businesVideo, setBusinesVideo] = useState();
   const [certificateImg, setCertificateImg] = useState();
-
   const [userID, setUserID] = useState();
-
   const [checkTerms, setCheckTerms] = useState(false);
   const [checkConfirm, setCheckConfirm] = useState(false);
   const [showInformation, setShowInformation] = useState(false);
+  const { state, USER } = useContext(UserContext);
 
   useEffect(() => {
     if (localStorage.getItem("userID")) {
@@ -60,29 +61,39 @@ const BecomeSeller = () => {
     formData.append("businessIMAGE", businessImg);
     formData.append("businessVIDEO", businesVideo);
     formData.append("certificateIMAGE", certificateImg);
+
+    console.log({ sellerName: sellerName });
+    console.log({ productIMAGE: productImg });
     try {
       const { data } = await axios.post(
         `/api/auth/seller?userID=${userID}`,
         formData
       );
 
-      setSuccess("Seller Account Successfull");
+      // console.log(formData.sellerName);
+
+      setSuccess("Seller Account Successfull, You can now login as a Seller.");
 
       setTimeout(() => {
         setSuccess("");
         // navigate("/verifyAccount");
-      }, 1500);
+      }, 1700);
+      console.log(country);
+      await USER.saveSeller(data.isSeller);
 
-      //   localStorage.setItem("userId", data._id);
-      // setTimeout(() => {
-      //   setSuccess("");
-      //   navigate("/verifyAccount");
-      // }, 1500);
+      LogOut();
 
-      //   setSellerName("");
-      //   setPassword("");
-      //   setEmail("");
-      //   setPhone("");
+      setSellerName("");
+      setStoreName("");
+      setStoreAddress("");
+      setstorePhone("");
+      setCountry("");
+      setDob("");
+      setCity("");
+      setProductImg("");
+      setProductVideo("");
+      setBusinesVideo("");
+      setCertificateImg("");
     } catch (error) {
       if (error.response) {
         console.log(error.response.data);
@@ -90,10 +101,17 @@ const BecomeSeller = () => {
         console.log(error.response.headers);
       }
       setError(error.response.data.error);
-      //   setSellerName("");
-      //   setPassword("");
-      //   setEmail("");
-      //   setPhone("");
+      setSellerName("");
+      setStoreName("");
+      setStoreAddress("");
+      setstorePhone("");
+      setCountry("");
+      setDob("");
+      setCity("");
+      setProductImg(null);
+      setProductVideo(null);
+      setBusinesVideo(null);
+      setCertificateImg(null);
       setTimeout(() => {
         setError("");
       }, 5000);
@@ -163,7 +181,7 @@ const BecomeSeller = () => {
                 type="text"
                 required
                 placeholder=""
-                // name="storePhone"
+                name="storePhone"
                 value={storePhone}
                 onChange={(e) => setstorePhone(e.target.value)}
                 className="passwordInput regInputField"

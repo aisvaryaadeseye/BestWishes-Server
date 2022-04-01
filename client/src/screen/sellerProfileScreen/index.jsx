@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import "./style.css";
 import customerImg from "../../assets/images/customerImg.jpg";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import sales from "../../assets/icons/sales.svg";
 import review from "../../assets/icons/review.svg";
 import overviewIcon from "../../assets/icons/overviewIcon.svg";
@@ -16,16 +16,19 @@ import setting from "../../assets/icons/setting.svg";
 import card from "../../assets/icons/card.svg";
 import income from "../../assets/icons/income.svg";
 import UserContext from "../../provider/userProvider";
+import LogOut from "../../component/logOut";
 
 const SellerProfileScreen = () => {
   const { state, USER } = useContext(UserContext);
+  const navigate = useNavigate();
 
-  const logOut = () => {
-    localStorage.removeItem("authToken");
-    localStorage.removeItem("user");
-    localStorage.removeItem("userID");
-    window.location.reload();
+  const handleSeller = () => {
+    USER.updateisSeller(false);
+    if (state.isSeller) {
+      navigate("/customerProfileScreen/editCustomerProfile");
+    }
   };
+
   return (
     <div className="profileScreen">
       <div className="profileSideBar">
@@ -113,8 +116,12 @@ const SellerProfileScreen = () => {
               Account Settings
             </div>
           </Link>
+          <div className="sidebarNav" onClick={handleSeller}>
+            <img src={setting} alt="" className="iconImg" />
+            Switch to Buyer
+          </div>
 
-          <div className="sidebarNav" onClick={logOut}>
+          <div className="sidebarNav" onClick={LogOut}>
             <img src={logout} alt="" className="iconImg" />
             Log-out
           </div>

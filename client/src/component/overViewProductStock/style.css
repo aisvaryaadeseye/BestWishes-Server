@@ -1,12 +1,21 @@
 .overViewProductStock {
   height: 4em;
   display: grid;
-  grid-template-columns: 20% auto auto auto auto auto;
+  grid-template-columns: auto 20% 20% auto auto auto;
   padding-left: 2em;
   width: 100%;
   align-items: center;
+  margin: 0.5em 0;
 }
-.overViewProductStock > p {
+.stockImgContainer {
+  width: 60px;
+}
+.stockImg {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 0.2em;
+}
+.overViewProductStock > span {
   font-size: 1em;
 }
 .overViewProductStock:hover {
@@ -15,7 +24,8 @@
 .stockContainer {
   display: flex;
   align-items: center;
-  background-color: #0192671f;
+  background-color: var(--adminBlueColor);
+  /* background-color: #0192671f; */
   width: 6em;
   height: 2em;
   /* padding: 0.2em 0; */
