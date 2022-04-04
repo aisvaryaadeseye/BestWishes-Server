@@ -16,12 +16,8 @@ const SellerRegisterAccount = () => {
   const [success, setSuccess] = useState();
 
   const [userID, setUserID] = useState();
+  const [showPass, setShowPass] = useState(false);
 
-  //   const [GenderState, setGenderState] = "Male";
-
-  // function handleName(e) {
-  //   setSellerName(e.target.value);
-  // }
 
   useEffect(() => {
     if (localStorage.getItem("userID")) {

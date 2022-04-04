@@ -28,20 +28,21 @@ const SellerAcctSchema = new mongoose.Schema({
     type: String,
   },
   productIMAGE: {
-    type: String,
+    type: [],
   },
   productVIDEO: {
-    type: String,
+    type: [],
   },
   businessIMAGE: {
-    type: String,
+    type: [],
   },
   businessVIDEO: {
-    type: String,
+    type: [],
   },
   certificateIMAGE: {
-    type: String,
+    type: [],
   },
+
   createdAt: {
     type: Date,
 

@@ -44,14 +44,14 @@ const MobileNav = () => {
       >
         <div className="mobileNavLeftList">
           <Link
-            to="/productScreenChange"
+            to="/productScreenClothing"
             className="mobileNavLink"
             onClick={handleLeftBar}
           >
             Product
           </Link>
           <Link
-            to="/productScreenChange"
+            to="/productScreenClothing"
             className="mobileNavLink"
             onClick={handleLeftBar}
           >
@@ -157,7 +157,7 @@ const MobileNav = () => {
             Clothing & Accessories
           </Link>
           <Link
-            to="/productScreenChange"
+            to="/productScreenClothing"
             className="mobileNavLink"
             onClick={handleLeftBar}
           >

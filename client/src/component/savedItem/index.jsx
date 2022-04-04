@@ -28,7 +28,7 @@ const SavedItem = () => {
           </div>
           <div className="orderstatusRight">
             <span>
-              Remove <i class="fa fa-trash" aria-hidden="true"></i>
+              Remove <i className="fa fa-trash" aria-hidden="true"></i>
             </span>
           </div>
         </div>

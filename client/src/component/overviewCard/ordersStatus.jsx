@@ -35,7 +35,7 @@ const OrdersStatus = ({ title, percentage, color }) => {
           {ShowOrderStatus(
             (title = "Preparing"),
             (percentage = "15"),
-            (color = "#FFD32D")
+            (color = "#f69014")
           )}
           {ShowOrderStatus(
             (title = "Cancel"),

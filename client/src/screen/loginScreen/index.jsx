@@ -15,6 +15,7 @@ const LoginScreen = () => {
   const [sellerPassword, setSellerPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [showPass, setShowPass] = useState(false);
 
   const _isMounted = useRef(true);
 
@@ -107,8 +108,8 @@ const LoginScreen = () => {
         <div className="loginScreenRightFormContainer">
           <h1>Login in to your account</h1>
           <div className="loginScreenRole">
-            <div className="regNavbar">
-              <div className="customerNav" onClick={handleShowSller}>
+            {/* <div className="regNavbar">
+              <div className="customerNav">
                 <div className="customerNav">Customer Account</div>
                 <div
                   className="customerNavUnderline"
@@ -116,14 +117,14 @@ const LoginScreen = () => {
                 ></div>
               </div>
               &nbsp; &nbsp;
-              <div className="sellerNav" onClick={handleShowCustomer}>
+              <div className="sellerNav" >
                 <div className="sellerNav">Seller Account</div>
                 <div
                   className="sellerNavUnderline"
                   style={{ display: showSeller ? "flex" : "none" }}
                 ></div>
               </div>
-            </div>
+            </div> */}
 
             {/* ===customer==== */}
             <form
@@ -158,7 +159,7 @@ const LoginScreen = () => {
                 <span className="userEmail">Password</span>
                 <div className="passwordContainer">
                   <input
-                    type="password"
+                    type={showPass ? "text" : "password"}
                     placeholder="********"
                     name="Password"
                     value={password}
@@ -166,7 +167,7 @@ const LoginScreen = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     className="passwordInput"
                   />
-                  <i className="fa fa-eye" aria-hidden="true"></i>
+                  <i className="fa fa-eye" aria-hidden="true" onClick={() => setShowPass(!showPass)} ></i>
                 </div>
               </div>
               <div className="forgotPassContainer">
@@ -178,7 +179,7 @@ const LoginScreen = () => {
             </form>
 
             {/*  ======seller============*/}
-            <form
+            {/* <form
               className="customerLoginAccount"
               style={{ display: showSeller ? "flex" : "none" }}
               onSubmit={handleSubmitSeller}
@@ -227,7 +228,7 @@ const LoginScreen = () => {
               </div>
 
               <button className="loginBtnContainer">Login</button>
-            </form>
+            </form> */}
           </div>
           <div className="dontHaveAccContainer">
             <p>Don't have an account ? </p>

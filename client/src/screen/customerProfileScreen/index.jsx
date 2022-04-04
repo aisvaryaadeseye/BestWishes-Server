@@ -111,17 +111,23 @@ const CustomerProfileScreen = () => {
               Need Assisstance ?
             </div>
           </Link>
-          <Link to="editcustomerProfile">
+          <Link to="account-settings">
             <div className="sidebarNav">
               <img src={setting} alt="" className="iconImg" />
               Account Settings
             </div>
           </Link>
+          {/* <Link to="becomeSeller">
+            <div className="sidebarNav">
+              <img src={becomeSeller} alt="" className="iconImg" />
+              Become a seller
+            </div>
+          </Link> */}
 
           {saveSeller ? (
             <div className="sidebarNav" onClick={handleBuyer}>
               <img src={becomeSeller} alt="" className="iconImg" />
-              Switch to seller
+              Switch to Seller
             </div>
           ) : (
             <Link to="becomeSeller">

@@ -4,7 +4,8 @@ import Select from "react-select";
 import countryList from "react-select-country-list";
 import axios from "axios";
 import UserContext from "../../provider/userProvider";
-import LogOut from "../../component/logOut";
+// import LogOut from "../../component/logOut";
+import { Link, useNavigate } from "react-router-dom";
 
 const BecomeSeller = () => {
   const [sellerName, setSellerName] = useState("");
@@ -23,11 +24,13 @@ const BecomeSeller = () => {
   const [certificateImg, setCertificateImg] = useState();
   const [userID, setUserID] = useState();
   const [checkTerms, setCheckTerms] = useState(false);
-  const [checkConfirm, setCheckConfirm] = useState(false);
+  const [checkconfirm, setCheckconfirm] = useState(false);
   const [showInformation, setShowInformation] = useState(false);
+  const [sellerDetails, setSellerDetails] = useState([]);
   const { state, USER } = useContext(UserContext);
+  const navigate = useNavigate();
 
-  useEffect(() => {
+  useEffect(async () => {
     if (localStorage.getItem("userID")) {
       setUserID(JSON.parse(localStorage.getItem("userID")));
     }
@@ -40,20 +43,35 @@ const BecomeSeller = () => {
     setCountry(country);
   };
 
-  const checkTermHandler = () => {
-    setCheckTerms(checkTerms);
-    console.log({ checkTerms: checkTerms });
-  };
+  // const checkTermHandler = (e) => {
+  //   setCheckTerms(e.target.checked);
+  //   console.log({ checkTerms: checkTerms });
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!checkTerms) {
+      setTimeout(() => {
+        setError("");
+      }, 4000);
+      return setError("Please agree the terms and conditions");
+    }
+    if (!checkconfirm) {
+      setTimeout(() => {
+        setError("");
+      }, 4000);
+
+      return setError("Please confirm that you are maker of the product");
+    }
+    // if(!showInformation) return setError("Please agree the terms and conditions")
 
     const formData = new FormData();
     formData.append("sellerName", sellerName);
     formData.append("storeName", storeName);
     formData.append("storeAddress", storeAddress);
     formData.append("storePhone", storePhone);
-    formData.append("country", country);
+    formData.append("country", country.label);
     formData.append("dob", dob);
     formData.append("city", city);
     formData.append("productIMAGE", productImg);
@@ -62,26 +80,23 @@ const BecomeSeller = () => {
     formData.append("businessVIDEO", businesVideo);
     formData.append("certificateIMAGE", certificateImg);
 
-    console.log({ sellerName: sellerName });
-    console.log({ productIMAGE: productImg });
     try {
       const { data } = await axios.post(
         `/api/auth/seller?userID=${userID}`,
         formData
       );
 
-      // console.log(formData.sellerName);
-
-      setSuccess("Seller Account Successfull, You can now login as a Seller.");
+      setSuccess("Seller Account Successfull Created");
 
       setTimeout(() => {
         setSuccess("");
-        // navigate("/verifyAccount");
       }, 1700);
-      console.log(country);
+      console.log({ country: country.label });
       await USER.saveSeller(data.isSeller);
+      await USER.updateSellerData(data.sellerData);
+      // localStorage.setItem("sellerData", JSON.stringify(data.sellerData ));
 
-      LogOut();
+      navigate("/sellerprofilescreen/overview");
 
       setSellerName("");
       setStoreName("");
@@ -306,8 +321,10 @@ const BecomeSeller = () => {
             <input
               type="checkbox"
               id="termsId"
-              value={checkTerms}
-              onChange={checkTermHandler}
+              checked={checkTerms}
+              // onChange={checkTermHandler}
+              onChange={(e) => setCheckTerms(e.target.checked)}
+              // value={checkTerms}
             />{" "}
             &nbsp; &nbsp;
             <label className="checkboxLabel" htmlFor="termsId">
@@ -315,16 +332,26 @@ const BecomeSeller = () => {
             </label>
           </div>
           <div className="checkboxRow">
-            <input type="checkbox" id="confirmId" value={checkConfirm} /> &nbsp;
-            &nbsp;
+            <input
+              type="checkbox"
+              id="confirmId"
+              checked={checkconfirm}
+              onChange={(e) => setCheckconfirm(e.target.checked)}
+            />{" "}
+            &nbsp; &nbsp;
             <label className="checkboxLabel" htmlFor="confirmId">
               Confirm i am the one making the product not a third
               party/intermediary
             </label>
           </div>
           <div className="checkboxRow">
-            <input type="checkbox" id="showId" value={showInformation} /> &nbsp;
-            &nbsp;
+            <input
+              type="checkbox"
+              id="showId"
+              checked={showInformation}
+              onChange={(e) => setShowInformation(e.target.checked)}
+            />{" "}
+            &nbsp; &nbsp;
             <label className="checkboxLabel" htmlFor="showId">
               Show my informations to my customers
             </label>

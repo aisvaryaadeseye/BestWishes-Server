@@ -12,7 +12,7 @@ const PayWithCard = () => {
       </div>
       <div className="payWithCardRight">
         <span>
-          <i class="fa fa-plus" aria-hidden="true"></i> Add new card
+          <i className="fa fa-plus" aria-hidden="true"></i> Add new card
         </span>
       </div>
     </div>

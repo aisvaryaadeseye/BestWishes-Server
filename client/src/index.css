@@ -14,6 +14,9 @@
   --skyBlueColor: #0392e2;
   --lightGreyColor: #f4f4f4;
   --adminBlueColor: #cbe6ee;
+  --graphSkyPurpleColor: #fb7afc;
+  --graphPurpleColor: #b983ff;
+  --graphOrangeColor: #dd970e;
 }
 * {
   margin: 0;

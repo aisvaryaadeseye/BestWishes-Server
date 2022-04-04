@@ -42,7 +42,7 @@ const Navbar = () => {
       ) : (
         <div className="navbarBottom">
           <div className="navbarBottomnavBarLinks">
-            <Link to="/productScreenChange" className="navbarBottomLink">
+            <Link to="/productScreenClothing" className="navbarBottomLink">
               Clothings & Accessories
             </Link>
 

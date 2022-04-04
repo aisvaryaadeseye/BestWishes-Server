@@ -6,7 +6,7 @@ const PayWithPayPal = () => {
       <div className="payWithPayPalLeft"></div>
       <div className="payWithPayPalRight">
         <span>
-          <i class="fa fa-plus" aria-hidden="true"></i> Add new paypal
+          <i className="fa fa-plus" aria-hidden="true"></i> Add new paypal
         </span>
       </div>
     </div>

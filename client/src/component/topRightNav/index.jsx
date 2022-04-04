@@ -35,7 +35,7 @@ const TopRightNav = ({ user }) => {
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto topRightNav">
                   {/* <Nav.Link className="topRightNavLink">
-                    <Link to="/productScreenChange">Product</Link>
+                    <Link to="/productScreenClothing">Product</Link>
                   </Nav.Link> */}
                   <Nav.Link className="topRightNavLink helpSellerAcc ">
                     <Link to="/blogScreen">Blog</Link>
@@ -212,7 +212,7 @@ const TopRightNav = ({ user }) => {
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto topRightNav">
                   <Nav.Link className="topRightNavLink">
-                    <Link to="/productScreenChange">Product</Link>
+                    <Link to="/productScreenClothing">Product</Link>
                   </Nav.Link>
                   <Nav.Link className="topRightNavLink ">
                     <Link to="/blogScreen">Blog</Link>

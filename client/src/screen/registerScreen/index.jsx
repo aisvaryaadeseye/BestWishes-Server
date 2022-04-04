@@ -61,7 +61,7 @@ const RegisterScreen = () => {
       <div className="registerScreenRight">
         <div className="registerScreenRightFormContainer">
           <h1>Create an account</h1>
-          <nav className="regNavbar">
+          {/* <nav className="regNavbar">
             <div className="customerNav" onClick={handleShowSller}>
               <Link to="customerRegisterAccount" className="customerNav">
                 Customer Account
@@ -81,7 +81,7 @@ const RegisterScreen = () => {
                 style={{ display: showSeller ? "flex" : "none" }}
               ></div>
             </div>
-          </nav>
+          </nav> */}
 
           <Outlet />
           <div className="registerRole"></div>

@@ -10,6 +10,11 @@ const userReducer = (state, action) => {
         user: action.payload,
         token: action.payload.token,
       };
+    case "save-seller-data":
+      return {
+        ...state,
+        sellerData: action.payload,
+      };
     case "update-isSeller":
       return {
         ...state,
@@ -26,6 +31,7 @@ const userReducer = (state, action) => {
 export const UserProvider = (props) => {
   const [state, dispatch] = useReducer(userReducer, {
     user: {},
+    sellerData: {},
     token: "",
     isSeller: false,
     saveSeller: false,
@@ -35,6 +41,10 @@ export const UserProvider = (props) => {
     localStorage.setItem("authToken", val.token);
     localStorage.setItem("user", JSON.stringify(val));
     dispatch({ type: "save-user", payload: val });
+  }
+  async function updateSellerData(val) {
+    localStorage.setItem("sellerData", JSON.stringify(val));
+    dispatch({ type: "save-seller-data", payload: val });
   }
 
   async function updateisSeller(val) {
@@ -52,6 +62,12 @@ export const UserProvider = (props) => {
       dispatch({ type: "save-user", payload: user });
     }
   }
+  async function recoverSellerData() {
+    if (localStorage.getItem("sellerData")) {
+      const selller = await JSON.parse(localStorage.getItem("sellerData"));
+      dispatch({ type: "save-seller-data", payload: selller });
+    }
+  }
 
   async function recoverisSeller() {
     if (localStorage.getItem("isSeller")) {
@@ -66,6 +82,8 @@ export const UserProvider = (props) => {
     updateisSeller,
     recoverisSeller,
     saveSeller,
+    updateSellerData,
+    recoverSellerData
   };
 
   return (

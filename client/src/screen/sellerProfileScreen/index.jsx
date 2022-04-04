@@ -50,67 +50,67 @@ const SellerProfileScreen = () => {
               Overview
             </div>
           </Link>
-          <Link to="stockReports">
+          <Link to="stockreports">
             <div className="sidebarNav">
               <img src={stock} alt="" className="iconImg" />
               Stock Reports
             </div>
           </Link>
-          <Link to="profileProduct">
+          <Link to="sellerproduct/all-collections">
             <div className="sidebarNav">
               <img src={products} alt="" className="iconImg" />
               Products
             </div>
           </Link>
-          <Link to="editProfile">
+          <Link to="editprofile">
             <div className="sidebarNav">
               <img src={edit} alt="" className="iconImg" />
               Edit Profile
             </div>
           </Link>
-          <Link to="editProfile">
+          <Link to="editprofile">
             <div className="sidebarNav">
               <img src={message} alt="" className="iconImg" />
-              Messages
+              Messages <div className="messageCount">3</div>
             </div>
           </Link>
-          <Link to="editProfile">
+          <Link to="editprofile">
             <div className="sidebarNav">
               <img src={orders} alt="" className="iconImg" />
-              Orders
+              Orders<div className="messageCount">10</div>
             </div>
           </Link>
-          <Link to="editProfile">
+          <Link to="editprofile">
             <div className="sidebarNav">
               <img src={sales} alt="" className="iconImg" />
               Sales
             </div>
           </Link>
-          <Link to="editProfile">
+          <Link to="editprofile">
             <div className="sidebarNav">
               <img src={income} alt="" className="iconImg" />
               Income
             </div>
           </Link>
-          <Link to="editProfile">
+          <Link to="editprofile">
             <div className="sidebarNav">
               <img src={review} alt="" className="iconImg" />
               Review
             </div>
           </Link>
-          <Link to="editProfile">
+          <Link to="editprofile">
             <div className="sidebarNav">
               <img src={card} alt="" className="iconImg" />
               Payment
             </div>
           </Link>
-          <Link to="editProfile">
+          <Link to="editprofile">
             <div className="sidebarNav">
               <img src={need} alt="" className="iconImg" />
               Need Assisstance ?
             </div>
           </Link>
-          <Link to="editProfile">
+          <Link to="editprofile">
             <div className="sidebarNav">
               <img src={setting} alt="" className="iconImg" />
               Account Settings

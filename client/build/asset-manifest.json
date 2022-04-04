@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.7fe3ad9d.css",
-    "main.js": "/static/js/main.4f326ea3.js",
+    "main.css": "/static/css/main.7cd02768.css",
+    "main.js": "/static/js/main.8c0d47de.js",
     "static/js/787.375bfa4a.chunk.js": "/static/js/787.375bfa4a.chunk.js",
     "static/media/blogImg1.jpg": "/static/media/blogImg1.9180253d51bd91808348.jpg",
     "static/media/homeImg4.jpg": "/static/media/homeImg4.806866fe94cfba0ff626.jpg",
@@ -16,13 +16,17 @@
     "static/media/homeBg3.jpg": "/static/media/homeBg3.71b84a9676beb5702e94.jpg",
     "static/media/whoAreWeBg.jpg": "/static/media/whoAreWeBg.b1dbe5beb4a9ddc36fb3.jpg",
     "static/media/ourBlogImg1.jpg": "/static/media/ourBlogImg1.e29202308ad0f6d52186.jpg",
+    "static/media/orangeGraph.jpg": "/static/media/orangeGraph.0d2f4b47e67ccf8a85c3.jpg",
     "static/media/fontawesome-webfont.eot": "/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
     "static/media/fontawesome-webfont.ttf?v=4.7.0": "/static/media/fontawesome-webfont.1e59d2330b4c6deb84b3.ttf",
+    "static/media/skypurpleGrap.jpg": "/static/media/skypurpleGrap.8e8c53c7b52a58243bcd.jpg",
+    "static/media/purpleGrapg.jpg": "/static/media/purpleGrapg.4a392ccac49d34fd9602.jpg",
     "static/media/fontawesome-webfont.woff?v=4.7.0": "/static/media/fontawesome-webfont.f691f37e57f04c152e23.woff",
     "static/media/todayproduct4.jpg": "/static/media/todayproduct4.23ae8aac81ebaefe99b5.jpg",
     "static/media/ourBlog4.jpg": "/static/media/ourBlog4.c9545ede223bc0242767.jpg",
     "static/media/fontawesome-webfont.woff2?v=4.7.0": "/static/media/fontawesome-webfont.20fd1704ea223900efa9.woff2",
     "static/media/bestWishesLogo.svg": "/static/media/bestWishesLogo.f69b236086a0a845aa795eff81879f7f.svg",
+    "static/media/greenGraph.png": "/static/media/greenGraph.11b397e9ed8e8730ead0.png",
     "static/media/ourBlog3.jpg": "/static/media/ourBlog3.49be79330d5da771a041.jpg",
     "static/media/ourBlog2.jpg": "/static/media/ourBlog2.81ee31f03c8a5d9940c6.jpg",
     "static/media/orderProductImg.jpg": "/static/media/orderProductImg.b0667ec136710de2d725.jpg",
@@ -48,12 +52,12 @@
     "static/media/savedItem.svg": "/static/media/savedItem.4d55088b775ad7cb87b223d16ac277ce.svg",
     "static/media/logout.svg": "/static/media/logout.81dabe4622365f98c81e91a1b764b51f.svg",
     "static/media/need.svg": "/static/media/need.7b754e8b078e2d1168ba2003aa94b22c.svg",
-    "main.7fe3ad9d.css.map": "/static/css/main.7fe3ad9d.css.map",
-    "main.4f326ea3.js.map": "/static/js/main.4f326ea3.js.map",
+    "main.7cd02768.css.map": "/static/css/main.7cd02768.css.map",
+    "main.8c0d47de.js.map": "/static/js/main.8c0d47de.js.map",
     "787.375bfa4a.chunk.js.map": "/static/js/787.375bfa4a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7fe3ad9d.css",
-    "static/js/main.4f326ea3.js"
+    "static/css/main.7cd02768.css",
+    "static/js/main.8c0d47de.js"
   ]
 }

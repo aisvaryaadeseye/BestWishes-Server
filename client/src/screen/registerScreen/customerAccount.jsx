@@ -11,6 +11,8 @@ const CustomerRegisterAccount = () => {
   const [password, setPassword] = useState();
   const [error, setError] = useState();
   const [success, setSuccess] = useState();
+  const [showPass, setShowPass] = useState(false);
+
 
   useEffect(() => {
     if (localStorage.getItem("authToken")) {
@@ -131,7 +133,7 @@ const CustomerRegisterAccount = () => {
             <span className="userEmail">Password</span>
             <div className="passwordContainer">
               <input
-                type="password"
+                type={showPass? "text" : "password"}
                 placeholder="********"
                 name="password"
                 value={password}
@@ -139,7 +141,7 @@ const CustomerRegisterAccount = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 className="passwordInput regInputField"
               />
-              <i className="fa fa-eye" aria-hidden="true"></i>
+              <i className="fa fa-eye" aria-hidden="true" onClick={()=>setShowPass(!showPass)} ></i>
             </div>
           </div>
         </div>

@@ -97,7 +97,8 @@
 .profileOverviewSection2 {
   display: flex;
   width: 100%;
-  flex-direction: column;
+  flex-direction: row;
+  padding-right: 2em;
 }
 .profileOverviewSection2Top {
   display: flex;
@@ -106,7 +107,98 @@
   display: flex;
   margin-top: 2em;
 }
+.profileOverviewSec2Left {
+  width: 75%;
+  /* background-color: green; */
+}
+.profileOverviewSec2Right {
+  display: flex;
+  flex-direction: column;
+  /* background-color: red; */
+  width: 25%;
+}
+
+/*  */
+.overviewGraphContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1em;
+  position: relative;
+}
+.overviewGraphContainerTop {
+  width: 97%;
+  /* height: 50v; */
+  /* background: white; */
+  position: absolute;
+  top: 1%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+}
+.overviewGraphContainerTopLeft > span {
+  color: var(--graphSkyPurpleColor);
+  font-weight: 600;
+}
+.overviewGraphContainerTopMiddle {
+  display: flex;
+  flex-direction: row;
+}
+.graphOrders,
+.graphSales,
+.graphIncome,
+.grapRatings {
+  margin-right: 0.5em;
+  padding: 0.5em;
+  /* background-color: var(--lightOrangeColor); */
+  border-radius: 0.3em;
+  cursor: pointer;
+}
+.graphOrders > span {
+  color: black;
+  /* color: var(--blackColor); */
+}
+.graphOrders > i {
+  color: var(--graphSkyPurpleColor);
+  font-size: 0.8em;
+}
+.graphSales > i {
+  color: var(--graphPurpleColor);
+  font-size: 0.8em;
+}
+.graphIncome > i {
+  color: var(--greenColor);
+  font-size: 0.8em;
+}
+.grapRatings > i {
+  color: var(--orangeColor);
+  font-size: 0.8em;
+}
+.graphSelect {
+  outline: none;
+  background: none;
+  border: 1px solid white;
+}
+
+.overviewGraphContainerBottom {
+  width: 100%;
+  height: 55vh;
+  position: relative;
+}
+.overviewGraphImg {
+  width: 97%;
+  height: 100%;
+  border-radius: 1em;
+}
+
 .profileOverviewSection3 {
+  display: flex;
+  flex-direction: column;
+  margin: 2em 2em 2em 0;
+  border: 2px solid var(--lightGreyColor);
+  border-radius: 0.5em;
+}
+.listOfOrderContainer {
   display: flex;
   flex-direction: column;
   margin-top: 2em;
@@ -147,6 +239,9 @@
   align-items: center;
   justify-content: space-between;
 }
+.orderTitleList > span {
+  font-weight: 600;
+}
 .orderTitleList > span:hover {
   cursor: pointer;
 }
@@ -159,7 +254,7 @@
 .productOverviewSec3Two {
   height: 4em;
   display: grid;
-  grid-template-columns: auto 20% 20% auto auto auto;
+  grid-template-columns: 16.6% 16.6% 18.6% 10.6% 20.6% 16.6%;
   background-color: var(--adminBlueColor);
 
   width: 100%;
@@ -167,6 +262,21 @@
   padding-left: 2em;
 }
 .productOverviewSec3Two > span {
+  font-size: 1em;
+  font-weight: 600;
+  color: var(--skyBlueColor);
+}
+.productOverviewSec3Three {
+  height: 4em;
+  display: grid;
+  grid-template-columns: 14.6% 20.6% 20.6% 12.6% 15.6% 16.6%;
+  background-color: var(--adminBlueColor);
+
+  width: 100%;
+  align-items: center;
+  padding-left: 2em;
+}
+.productOverviewSec3Three > span {
   font-size: 1em;
   font-weight: 600;
   color: var(--skyBlueColor);
@@ -234,6 +344,163 @@
   display: flex;
   width: 50%;
 }
+/* ======profileOverview=====XXXXX====== */
+
+/* ===========stock report=============== */
+
+.stockReport {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1em;
+  padding-right: 2em;
+}
+.stockReportTop {
+  display: flex;
+  flex-direction: column;
+}
+.stockReportTopA {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.stockReportTopA > span {
+  font-size: 1.2em;
+  color: var(--orangeColor);
+  align-self: flex-start;
+}
+.stockReportTopB {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* padding-right: 2em; */
+}
+.stockReportTopB > span {
+  cursor: pointer;
+}
+.stockReportText > span {
+  color: var(--orangeColor);
+  cursor: pointer;
+}
+.stockReportText {
+  background-color: var(--lightOrangeColor);
+  padding: 0.5em 0.7em;
+  border-radius: 1em;
+}
+.stockReportTextB {
+  padding: 0.5em 0.7em;
+  border-radius: 1em;
+  cursor: pointer;
+}
+.stockReportTextB:hover {
+  background-color: var(--lightGreyColor);
+  padding: 0.5em 0.7em;
+  border-radius: 1em;
+}
+.stockReportTopC {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2em;
+}
+.stockReportTopCLeft {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+.stockReportLeftText {
+  margin-right: 2em;
+  cursor: pointer;
+  padding: 0.5em 0.7em;
+  border-radius: 1em;
+}
+.stockReportLeftTextA {
+  background-color: var(--lightGreyColor);
+}
+.stockSearchContainer {
+  display: flex;
+  align-items: center;
+  border: 1px solid grey;
+  border-radius: 0.5em;
+  padding: 0.2em 0.4em;
+}
+.stockSearchContainer > input {
+  outline: none;
+  background-color: transparent !important;
+  border: none;
+  width: 200px;
+}
+.fa-search {
+  cursor: pointer;
+}
+.stockReportBottom {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--lightGreyColor);
+  border-radius: 0.5em;
+  margin-top: 2em;
+  margin-right: 2em;
+}
+/* ===========stock report=======XXX======== */
+/* ================product=============== */
+.sellerProducts {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+}
+.sellerProductsTop {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.sellerProductsTopLeft {
+  display: flex;
+  flex-direction: column;
+}
+.sellerProductsTopLeftA {
+  margin-bottom: 2em;
+}
+.sellerProductsTopLeftA > span {
+  font-size: 1.2em;
+  color: var(--orangeColor);
+}
+.sellerProductsTopLeftB,
+.sellerProductsTopLeftC {
+  display: flex;
+  margin-bottom: 2em;
+}
+.productLeftTextContainer {
+  margin-right: 2em;
+}
+.productDivider {
+  margin-top: 1em;
+}
+.sellerProductsBottomTop {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.productTagContainer {
+  display: flex;
+  /* align-items: center;  */
+  /* justify-content: center;
+  padding: 0.5em 0.7em;
+  /* background-color: red; */
+  border-radius: 1em;
+}
+.productTagContainer > span {
+  margin-right: 0.8em;
+}
+.productTagText {
+  margin-right: 1em;
+  cursor: pointer;
+}
+.sellerProductsBottomDown {
+  margin-top: 2em;
+}
+/* ================product=========XXX===== */
 
 @media screen and (max-width: 1200px) {
   .profileSideBar {

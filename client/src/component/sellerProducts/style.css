@@ -1,0 +1,9 @@
+.allCollections {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.allCollectionsTop {
+  display: flex;
+  flex-wrap: wrap;
+}

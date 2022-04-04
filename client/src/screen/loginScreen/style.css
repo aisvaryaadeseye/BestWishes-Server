@@ -126,7 +126,7 @@
   align-items: center;
   justify-content: center;
   background-color: var(--orangeColor);
-  width: 80%;
+  width: 100%;
   border-radius: 0.2rem;
   cursor: pointer;
   padding: 0.3rem 0;

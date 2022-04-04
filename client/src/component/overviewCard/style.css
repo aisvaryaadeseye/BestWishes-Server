@@ -81,7 +81,7 @@
 /* ===total order=======xx===== */
 
 /* ===total incom======= */
-.totalIcomeCard {
+.TotalIncomeCard {
   display: flex;
   flex-direction: column;
   border: 2px solid var(--greenColor);
@@ -91,31 +91,31 @@
   margin-right: 2em;
   height: 230px;
 }
-.totalIcomeCardTop {
+.TotalIncomeCardTop {
   display: flex;
   justify-content: space-between;
   margin-bottom: 1em;
 }
-.totalIcomeCardTop > h1 {
+.TotalIncomeCardTop > h1 {
   font-size: 1em;
 }
 .dropdownContainer {
   border: 1px solid white;
   outline: 0px;
 }
-.totalIcomeCardMiddle {
+.TotalIncomeCardMiddle {
   display: flex;
   justify-content: space-between;
   margin-bottom: 1em;
 }
-.totalIcomeCardMiddle > h1 {
+.TotalIncomeCardMiddle > h1 {
   font-size: 2rem;
   color: var(--greenColor);
 }
-.totalIcomeCardBottom {
+.TotalIncomeCardBottom {
   display: flex;
 }
-.totalIcomeCardBottom > p {
+.TotalIncomeCardBottom > p {
   font-size: 0.9em;
   color: var(--blackColor);
 }
@@ -128,9 +128,10 @@
   border: 2px solid var(--skyPurpleColor);
   border-radius: 0.5em;
   width: 350px;
-  height: 230px;
+  height: 160px;
   padding: 1em;
-  margin-right: 2em;
+  /* margin-right: 2em; */
+  margin-bottom: 2em;
 }
 .totalProductsCardTop {
   display: flex;
@@ -281,7 +282,7 @@
   flex-direction: column;
   border: 2px solid var(--lightGreyColor);
   border-radius: 0.5em;
-  width: 320px;
+  width: 350px;
   padding: 1em;
 }
 .orderStatusTop {
@@ -320,6 +321,7 @@
 .statusBox {
   width: 2em;
   height: 2em;
+  border-radius: 0.2em;
   background-color: var(--greenColor);
 }
 .statusDetails > h3 {

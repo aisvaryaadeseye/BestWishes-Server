@@ -12,8 +12,8 @@ import {
 } from "react-router-dom";
 import UserContext from "./provider/userProvider";
 import ProductScreenArt from "./screen/productScreen/artAndCraft";
-import ProductScreenChange from "./screen/productScreen/changeAndAccessories";
 import ProductScreenHealth from "./screen/productScreen/healthAndBeauty";
+import ProductScreenClothing from "./screen/productScreen/clothingsAndAccessories";
 import ProductScreenPottery from "./screen/productScreen/pottery";
 import ProductScreenOthers from "./screen/productScreen/otherCategories";
 import LoginScreen from "./screen/loginScreen";
@@ -27,7 +27,6 @@ import CustomerProfileScreen from "./screen/customerProfileScreen";
 import ProfileOverView from "./screen/sellerProfileScreen/overview";
 import EditProfile from "./screen/sellerProfileScreen/editProfile";
 import StockReports from "./screen/sellerProfileScreen/stockReports";
-import ProfileProduct from "./screen/sellerProfileScreen/profileProduct";
 import AccountVerifcationScreen from "./screen/accountVerifation";
 import MobileNav from "./component/mobileNav";
 import EditCustomerProfile from "./screen/customerProfileScreen/editCustomerProfile";
@@ -42,12 +41,21 @@ import CustomerPayment from "./screen/customerProfileScreen/payment";
 import PayWithCard from "./component/customerPayment/payWithCard";
 import PayWithPayPal from "./component/customerPayment/payWithPayPal";
 import BecomeSeller from "./screen/customerProfileScreen/becomeSeller";
+import AccountSettings from "./screen/customerProfileScreen/accountSettings";
+import SellerProducts from "./screen/sellerProfileScreen/products";
+import ClothingsAndAccessories from "./component/sellerProducts/clothingsAndAccessories";
+import HealthAndBeauty from "./component/sellerProducts/healthAndBeauty";
+import OtherCategories from "./component/sellerProducts/otherCategories";
+import AllCollections from "./component/sellerProducts/allCollections";
+import Pottery from "./component/sellerProducts/pottery";
+import ArtAndCraft from "./component/sellerProducts/artAndCraft";
 function App() {
   const { state, USER } = useContext(UserContext);
 
   useEffect(() => {
     USER.recoverData();
     USER.recoverisSeller();
+    USER.recoverSellerData();
   }, []);
 
   return (
@@ -58,8 +66,8 @@ function App() {
         <Routes>
           <Route path="/" element={<HomeScreen />} />
           <Route
-            path="/productScreenChange"
-            element={<ProductScreenChange />}
+            path="/productScreenClothing"
+            element={<ProductScreenClothing />}
           />
           <Route
             path="/productScreenHealth"
@@ -99,9 +107,21 @@ function App() {
             }
           >
             <Route path="overview" element={<ProfileOverView />} />
-            <Route path="stockReports" element={<StockReports />} />
-            <Route path="profileProduct" element={<ProfileProduct />} />
-            <Route path="editProfile" element={<EditProfile />} />
+            <Route path="stockreports" element={<StockReports />} />
+            {/* === */}
+            <Route path="sellerproduct" element={<SellerProducts />}>
+              <Route path="all-collections" element={<AllCollections />} />
+              <Route path="health-beauty" element={<HealthAndBeauty />} />
+              <Route path="other-categories" element={<OtherCategories />} />
+              <Route
+                path="clothings-accessories"
+                element={<ClothingsAndAccessories />}
+              />
+              <Route path="pottery" element={<Pottery />} />
+              <Route path="art-craft" element={<ArtAndCraft />} />
+            </Route>
+
+            <Route path="editprofile" element={<EditProfile />} />
           </Route>
           {/* =====CustomerProfileScreen==== */}
           <Route
@@ -126,13 +146,13 @@ function App() {
               <Route path="payWithPayPal" element={<PayWithPayPal />} />
             </Route>
             {/* ========= XX===============*/}
-            <Route path="profileProduct" element={<ProfileProduct />} />
             <Route
               path="editCustomerProfile"
               element={<EditCustomerProfile />}
             />
             <Route path="savedItems" element={<SavedItems />} />
             <Route path="becomeSeller" element={<BecomeSeller />} />
+            <Route path="account-settings" element={<AccountSettings />} />
           </Route>
         </Routes>
         <Footer />
