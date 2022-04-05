@@ -118,3 +118,10 @@
 .faCart {
   margin-right: 0.3rem;
 }
+
+@media screen and (max-width: 500px) {
+  .ProductDetail {
+    width: 230px;
+    margin-left: 3em;
+  }
+}

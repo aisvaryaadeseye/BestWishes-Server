@@ -7,7 +7,7 @@ const HomeSlider = () => {
   return (
     <div className="carouselTextContainer">
       <Carousel fade>
-        <Carousel.Item interval={1000}>
+        <Carousel.Item interval={1500}>
           <div className="homeSliderImg1Container">
             <div className="homeBgOneText">
               <h1>Sell Your Product</h1>
@@ -15,6 +15,11 @@ const HomeSlider = () => {
                 Best Wishes is a platform where authentic <br />
                 handmade products are sold by the creater.
               </p>
+              <span className="showText">
+                Best Wishes is a platform <br />
+                where authentic handmade products
+                <br /> are sold by the creater.
+              </span>
 
               <div className="startSelingBtn">
                 <button>Start Selling Now</button>
@@ -22,7 +27,7 @@ const HomeSlider = () => {
             </div>
           </div>
         </Carousel.Item>
-        <Carousel.Item interval={1000}>
+        <Carousel.Item interval={1500}>
           <div className="homeSliderImg2Container">
             <div className="homeBgOneText">
               <h2>Discover Unique Pottery</h2>
@@ -30,6 +35,11 @@ const HomeSlider = () => {
                 Authentic handmade pottery from the most <br /> exclusive
                 potters in the world.
               </h3>
+              <span>
+                Authentic handmade pottery from
+                <br /> the most exclusive potters in
+                <br /> the world.
+              </span>
 
               <div className="startSelingBtn buyNowBtn">
                 <button>Buy Now</button>
@@ -37,14 +47,21 @@ const HomeSlider = () => {
             </div>
           </div>
         </Carousel.Item>
-        <Carousel.Item interval={1000}>
-          <div className="homeSliderImg3Container">
+        <Carousel.Item interval={1500}>
+          <div className="homeSliderImg2Container">
             <div className="homeBgOneText">
-              <h4>Get the best hand made leather works</h4>
+              <h4>
+                Get the best hand made <br /> leather works
+              </h4>
               <h5>
                 Authentic handmade pottery from the most <br /> exclusive
                 potters in the world.
               </h5>
+              <span>
+                Authentic handmade pottery <br />
+                from the most exclusive potters <br />
+                in the world.
+              </span>
 
               <div className=" buyNowBtnPink">
                 <button>Buy Now</button>
@@ -52,7 +69,8 @@ const HomeSlider = () => {
             </div>
           </div>
         </Carousel.Item>
-        <Carousel.Item interval={1000}>
+
+        <Carousel.Item interval={1500}>
           <div className="homeSlideImgeCon">
             <div className=" homeBgTwoText ">
               <h4>Only the best Artisan </h4>
@@ -65,7 +83,6 @@ const HomeSlider = () => {
         </Carousel.Item>
       </Carousel>
     </div>
-
   );
 };
 

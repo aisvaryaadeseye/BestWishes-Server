@@ -32,8 +32,7 @@ const CustomerProfileScreen = () => {
 
   const handleBuyer = () => {
     USER.updateisSeller(true);
-    // console.log(state.isSeller);
-    // console.log("click");
+
     if (!state.isSeller) {
       navigate("/sellerprofilescreen/overview");
     }
@@ -117,12 +116,6 @@ const CustomerProfileScreen = () => {
               Account Settings
             </div>
           </Link>
-          {/* <Link to="becomeSeller">
-            <div className="sidebarNav">
-              <img src={becomeSeller} alt="" className="iconImg" />
-              Become a seller
-            </div>
-          </Link> */}
 
           {saveSeller ? (
             <div className="sidebarNav" onClick={handleBuyer}>

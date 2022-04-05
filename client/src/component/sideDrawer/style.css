@@ -1,0 +1,99 @@
+.sidedrawer {
+  width: 100%;
+  height: 70vh;
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  transform: translateY(-100%);
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* position: relative; */
+}
+
+.sidedrawer.show {
+  transform: translateY(0);
+}
+.navIconImg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.sideDrawerMenu {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.mobileNavBottomLeft {
+  position: absolute;
+  top: 10%;
+  left: 2%;
+}
+.fa-times {
+  font-size: 2em;
+  font-weight: 400;
+}
+
+.mobileNavBottomLeft {
+  display: none;
+  margin-left: 0.4em;
+  /* position: absolute; */
+}
+.mobileNavBottomRight {
+  display: none;
+}
+.mobileNavLeftList {
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  padding: 0 0.3em;
+  margin-bottom: 2em;
+  border-bottom: 2px solid var(--lightGreyColor);
+  border-radius: 0.3em;
+}
+.mobileAcct {
+  display: flex;
+  width: 20em !important;
+  text-align: start;
+  justify-content: start;
+}
+.accountItems {
+  display: none;
+  margin-left: 1em;
+}
+.fafaRight {
+  font-size: 0.7em !important;
+  margin-left: 0.3em;
+}
+.accountLinkNav {
+  margin-right: 1em;
+}
+
+.leftBar {
+  font-size: 1.5em;
+}
+
+.mobileNavLink {
+  display: flex;
+  color: black;
+  margin-top: 0.3em;
+  cursor: pointer;
+  width: 12em;
+  margin-bottom: 1em;
+}
+.mobileNavLink:hover {
+  background-color: var(--lightOrangeColor);
+}
+
+li {
+  list-style: none;
+}
+
+@media (min-width: 960px) {
+  .sidedrawer {
+    display: none;
+  }
+}

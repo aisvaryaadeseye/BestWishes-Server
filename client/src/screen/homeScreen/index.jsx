@@ -13,14 +13,14 @@ import {
 } from "./style";
 import WhoAreWe from "../../component/whoAreWe";
 import OurBlog from "../../component/ourBlog";
-import { whorereWeData } from "../../component/data/WhoAreWe";
+import { whoAreData } from "../../component/data/WhoAreWe";
 import ProductSlider from "../../component/productSilde";
 import HomeSlider from "../../component/homeSlider";
 import BecomeSeller from "../customerProfileScreen/becomeSeller";
 // import { useNavigate } from "react-router-dom";
 
 function HomeScreen() {
-  const [storePhone, setstorePhone] = useState();
+  // const [storePhone, setstorePhone] = useState();
 
   return (
     <Container>
@@ -38,20 +38,17 @@ function HomeScreen() {
             <div className="underline"></div>
           </div>
           <div className="seeAllContainer">
-            <p>SEE ALL</p>{" "}
-            <i className="fa fa-chevron-right" aria-hidden="true"></i>
+            <p>
+              SEE ALL{" "}
+              <i
+                className="fa fa-chevron-right seeAllIcon"
+                aria-hidden="true"
+              ></i>
+            </p>
           </div>
         </div>
         <div className="homeTodayDetailBottom">
           <ProductSlider />
-
-          {/* <ProductDetail showDiscount={showDiscount}/>
-          <ProductDetail showDiscount={showDiscount}/>
-          <ProductDetail showDiscount={showDiscount}/>
-          <ProductDetail showDiscount={showDiscount}/>
-          <ProductDetail showDiscount={showDiscount}/>
-          <ProductDetail showDiscount={showDiscount}/>
-          <ProductDetail showDiscount={showDiscount}/> */}
         </div>
       </div>
 
@@ -83,8 +80,13 @@ function HomeScreen() {
             <div className="underline"></div>
           </div>
           <div className="seeAllContainer">
-            <p>SEE ALL</p>{" "}
-            <i className="fa fa-chevron-right" aria-hidden="true"></i>
+            <p>
+              SEE ALL{" "}
+              <i
+                className="fa fa-chevron-right seeAllIcon"
+                aria-hidden="true"
+              ></i>
+            </p>
           </div>
         </div>
         <div className="homeTodayDetailBottom">
@@ -109,7 +111,7 @@ function HomeScreen() {
         </div>
 
         <div className="whoAreWeBottom">
-          {whorereWeData.map((who, i) => {
+          {whoAreData.map((who, i) => {
             return <WhoAreWe key={i} who={who} />;
           })}
         </div>
@@ -125,17 +127,17 @@ function HomeScreen() {
             <div className="underline"></div>
           </div>
           <div className="seeAllContainer">
-            <p>SEE ALL</p>{" "}
-            <i className="fa fa-chevron-right" aria-hidden="true"></i>
+            <p>
+              SEE ALL{" "}
+              <i
+                className="fa fa-chevron-right seeAllIcon"
+                aria-hidden="true"
+              ></i>
+            </p>
           </div>
         </div>
         <div className="homeTodayDetailBottom">
           <ProductSlider />
-          {/* <ProductDetail />
-          <ProductDetail />
-          <ProductDetail />
-          <ProductDetail />
-          <ProductDetail /> */}
         </div>
       </div>
       {/* ============feature product============xx=== */}
@@ -153,16 +155,16 @@ function HomeScreen() {
             <div className="underline"></div>
           </div>
           <div className="seeAllContainer">
-            <p>SEE ALL</p>{" "}
-            <i className="fa fa-chevron-right" aria-hidden="true"></i>
+            <p>
+              SEE ALL{" "}
+              <i
+                className="fa fa-chevron-right seeAllIcon"
+                aria-hidden="true"
+              ></i>
+            </p>
           </div>
         </div>
         <div className="homeTodayDetailBottom">
-          {/* <ProductDetail />
-          <ProductDetail />
-          <ProductDetail />
-          <ProductDetail />
-          <ProductDetail /> */}
           <ProductSlider />
         </div>
       </div>
@@ -200,8 +202,8 @@ function HomeScreen() {
               <p>upload your product and start selling</p>
             </div>
 
-            <div className="becomeSellerBtn">
-              <button>Become a Seller Today</button>
+            <div className="becomeSellerContainer">
+              <span>Become a Seller Today</span>
             </div>
           </div>
         </SubscribeToNewLetterRight>

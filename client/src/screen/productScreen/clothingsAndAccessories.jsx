@@ -10,16 +10,13 @@ import Navbar from "../../component/navbar";
 const productScreenClothing = () => {
   return (
     <productScreen>
-      {/* <Navbar /> */}
       <div className="productScreenContainer">
         <div className="productScreenLeft">
-          {/* ===== */}
           <ProductScreenSidebar />
         </div>
 
         <div className="productScreenRight">
           <div className="productScreenRightTop">
-            {/* <Link></Link> */}
             <p>
               Home <i className="fa-solid fa-caret-right faRightP"></i>
             </p>

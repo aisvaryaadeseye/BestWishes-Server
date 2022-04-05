@@ -49,8 +49,12 @@ import OtherCategories from "./component/sellerProducts/otherCategories";
 import AllCollections from "./component/sellerProducts/allCollections";
 import Pottery from "./component/sellerProducts/pottery";
 import ArtAndCraft from "./component/sellerProducts/artAndCraft";
+import ProductDetailScreen from "./screen/productDetailScreen";
+import Backdrop from "./component/backDrop";
+import SideDrawer from "./component/sideDrawer";
 function App() {
   const { state, USER } = useContext(UserContext);
+  const [sideToggle, setSideToggle] = useState(false);
 
   useEffect(() => {
     USER.recoverData();
@@ -62,27 +66,34 @@ function App() {
     <div className="App">
       <Router>
         <Navbar />
-        <MobileNav />
+        <MobileNav click={() => setSideToggle(true)} />
+        <Backdrop show={sideToggle} click={() => setSideToggle(false)} />
+        <SideDrawer show={sideToggle} click={() => setSideToggle(false)} />
         <Routes>
           <Route path="/" element={<HomeScreen />} />
           <Route
-            path="/productScreenClothing"
+            path="/product-screen-clothing"
             element={<ProductScreenClothing />}
           />
+
           <Route
-            path="/productScreenHealth"
+            path="/product-screen-health"
             element={<ProductScreenHealth />}
           />
-          <Route path="/productScreenArt" element={<ProductScreenArt />} />
+          <Route path="/product-screen-art" element={<ProductScreenArt />} />
           <Route
-            path="/productScreenPottery"
+            path="/product-screen-pottery"
             element={<ProductScreenPottery />}
           />
           <Route
-            path="/productScreenOthers"
+            path="/product-screen-others"
             element={<ProductScreenOthers />}
           />
-          <Route path="/blogScreen" element={<BlogScreen />} />
+          <Route
+            path="/product-details-screen"
+            element={<ProductDetailScreen />}
+          />
+          <Route path="/blog-screen" element={<BlogScreen />} />
           <Route path="/forgotPassword" element={<ForgotPasswordScreen />} />
           <Route path="/resetPassword" element={<ResetPasswordScreen />} />
           <Route path="/verifyAccount" element={<AccountVerifcationScreen />} />

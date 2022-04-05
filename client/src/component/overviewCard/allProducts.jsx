@@ -6,7 +6,7 @@ import allProductSaved from "../../assets/icons/allProductSaved.jpg";
 
 const AllProductsCard = () => {
   const options = ["Daily", "Weekly", "Monthly"];
-  const defaultOption = options[0];
+  // const defaultOption = options[0];
 
   const handleDropdown = () => {};
   return (

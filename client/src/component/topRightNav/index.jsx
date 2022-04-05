@@ -38,7 +38,7 @@ const TopRightNav = ({ user }) => {
                     <Link to="/productScreenClothing">Product</Link>
                   </Nav.Link> */}
                   <Nav.Link className="topRightNavLink helpSellerAcc ">
-                    <Link to="/blogScreen">Blog</Link>
+                    <Link to="/blog-screen">Blog</Link>
                   </Nav.Link>
                   <NavDropdown
                     title="Help"
@@ -215,7 +215,7 @@ const TopRightNav = ({ user }) => {
                     <Link to="/productScreenClothing">Product</Link>
                   </Nav.Link>
                   <Nav.Link className="topRightNavLink ">
-                    <Link to="/blogScreen">Blog</Link>
+                    <Link to="/blog-screen">Blog</Link>
                   </Nav.Link>
                   <NavDropdown
                     title="Help"

@@ -3,10 +3,8 @@ import "./style.css";
 import bestWishLogo from "../../assets/images/bestWishesLogo.svg";
 import { Link } from "react-router-dom";
 import UserContext from "../../provider/userProvider";
-import { Button, Modal } from "react-bootstrap";
-import LogOut from "../logOut";
 
-const MobileNav = () => {
+const MobileNav = ({ click }) => {
   const [showLeftBar, setShowLeftBar] = useState(false);
   const [showAccountList, setShowAccountList] = useState(false);
   const { state } = useContext(UserContext);
@@ -29,17 +27,19 @@ const MobileNav = () => {
   return (
     <div className="mobileNav">
       <div className="mobileNavTop">
-        <Link to="/">
+        <Link to={state.isSeller ? "/sellerprofilescreen/overview" : "/"}>
           <img src={bestWishLogo} className="bestWishLogo" />
         </Link>
-        <div className="hamburgerContainer">
-          <div className="" onClick={handleLeftBar}>
+        <div className="hamburgerContainer" onClick={click}>
+          <div className="">
+            {/* <div className="" onClick={handleLeftBar}> */}
             <i className="fa fa-bars leftBar" aria-hidden="true"></i>
           </div>
         </div>
       </div>
-      <div
+      {/* <div
         className="mobileNavBottomLeft"
+        // style={{ display: "flex" }}
         style={{ display: showLeftBar ? "flex" : "none" }}
       >
         <div className="mobileNavLeftList">
@@ -208,7 +208,7 @@ const MobileNav = () => {
             Yes
           </Button>
         </Modal.Footer>
-      </Modal>
+      </Modal> */}
     </div>
   );
 };

@@ -49,8 +49,8 @@ const EditCustomerProfile = () => {
             />
           </label>
         </div>
-        <div className="registerInputContainer customerEditInput">
-          <div className="regInput passForm ">
+        <div className="editCustomerContainer ">
+          <div className="regInput passForm  ">
             <span className="userEmail">Full name</span>
             <div className="passwordContainer editCusInputField">
               <input
@@ -75,7 +75,7 @@ const EditCustomerProfile = () => {
             </div>
           </div>
         </div>
-        <div className="registerInputContainer customerEditInput">
+        <div className="editCustomerContainer ">
           <div className="regInput passForm ">
             <span className="userEmail">Phone number</span>
             <div className="passwordContainer editCusInputField">
@@ -104,7 +104,7 @@ const EditCustomerProfile = () => {
             </div>
           </div>
         </div>
-        <div className="registerInputContainer customerEditInput">
+        <div className="editCustomerContainer ">
           <div className="regInput passForm ">
             <span className="userEmail">Gender</span>
             <div>
@@ -129,7 +129,7 @@ const EditCustomerProfile = () => {
             </div>
           </div>
         </div>
-        <div className="registerInputContainer customerEditInput">
+        <div className="editCustomerContainer ">
           <div className="regInput passForm ">
             <span className="userEmail">State</span>
             <div className="passwordContainer editCusInputField">
@@ -149,7 +149,7 @@ const EditCustomerProfile = () => {
             </div>
           </div>
         </div>
-        <div className="registerInputContainer customerEditInput">
+        <div className="editCustomerContainer ">
           <div className="regInput passForm ">
             <span className="userEmail">Postal Code (Optional)</span>
             <div className="passwordContainer editCusInputField">
@@ -164,8 +164,6 @@ const EditCustomerProfile = () => {
           </div>
         </div>
         <button className="editCustomerBtn">Save</button>
-
-        <div className="customerProfileImgContainer"></div>
       </div>
     </div>
   );

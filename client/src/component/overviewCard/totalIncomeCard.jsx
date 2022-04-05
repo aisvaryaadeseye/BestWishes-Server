@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.css";
-import Dropdown from "react-dropdown";
+// import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import totalIcome from "../../assets/icons/totalIcome.jpg";
 
@@ -12,7 +12,7 @@ const TotalIncomeCard = () => {
   return (
     <div className="TotalIncomeCard">
       <div className="TotalIncomeCardTop">
-        <h1>Total orders</h1>
+        <h1>Total Income</h1>
 
         <select
           name=""

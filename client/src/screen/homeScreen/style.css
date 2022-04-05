@@ -102,9 +102,13 @@
 .seeAllContainer {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 .seeAllContainer > p {
   margin-right: 1rem;
+}
+.seeAllIcon {
+  margin-left: 0.5em;
 }
 .homeTodayDetailBottom {
   display: flex;
@@ -203,16 +207,17 @@
   font-size: 0.5rem;
   margin-right: 0.8rem;
 }
-.becomeSellerBtn {
+.becomeSellerContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: var(--orangeColor);
-  padding: 0.5rem 0.5rem;
+  padding: 0.3rem 0.5rem;
   cursor: pointer;
   border-radius: 0.3rem;
+  /* width: 200px; */
 }
-.becomeSellerBtn > button {
+.becomeSellerContainer > button {
   color: var(--whiteColor);
   background-color: transparent;
   border: none;
@@ -226,13 +231,11 @@
   .subsscribeToNewLetter {
     flex-direction: column !important;
   }
-  .homeTodayDetailBottom{
+  .homeTodayDetailBottom {
     display: flex;
     width: 100%;
     align-items: center;
     justify-content: center;
-  
-    
   }
 }
 

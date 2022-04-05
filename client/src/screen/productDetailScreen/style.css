@@ -1,0 +1,20 @@
+.productDetailScreen {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  padding: 2em;
+}
+
+.productFaIcon {
+  font-size: 0.8em;
+  margin: 0 0.3em;
+}
+.productDetailScreenBottom {
+  display: flex;
+  flex-direction: column;
+}
+.productDetailBottomA {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

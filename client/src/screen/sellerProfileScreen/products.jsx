@@ -2,26 +2,42 @@ import React, { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 
 import AllProductsCard from "../../component/overviewCard/allProducts";
+import allProductSaved from "../../assets/icons/allProductSaved.jpg";
 
-const productTag = [
-  "Beads",
-  "Belt",
-  "Cap",
-  "Hand bags",
-  "Jeans",
-  "Jewelries",
-  "Pants",
-  "Shoes",
-  "Trousers",
-  "T-shirts",
+var productTag = [
+  { id: "Beads" },
+  { id: "Belt" },
+  { id: "Caps" },
+  { id: "Hand bags" },
+  { id: "Jeans" },
+  { id: "Jewelries" },
+  { id: "Shoes" },
+  { id: "Trousers" },
+  { id: "T-shirt" },
+  // ,
+  // "Belt",
+  // "Cap",
+  // "Hand bags",
+  // "Jeans",
+  // "Jewelries",
+  // "Pants",
+  // "Shoes",
+  // "Trousers",
+  // "T-shirts",
 ];
 var productTagColor = [];
 
 var linkTags = [
   { link: "all-collections", span: "All Collections" },
-  { link: "clothings-accessories", span: "Clothings & Accessories" },
+  {
+    link: "clothings-accessories",
+    span: "Clothings & Accessories",
+  },
   { link: "health-beauty", span: "Health & Beauty" },
   { link: "pottery", span: "Pottery" },
+  { link: "art-craft", span: "Art & Craft" },
+  { link: "other-categories", span: "Other Categories" },
+  // { link: "other-categories", span: "Add Product to collection" },
 ];
 var linkTag = [
   { link: "art-craft", span: "Art & Craft" },
@@ -29,11 +45,19 @@ var linkTag = [
 ];
 
 const SellerProducts = () => {
+  const [linkBgColor, setLinkBgColor] = useState(null);
+  const [productCat, setProductCat] = useState("All Collections");
+
+  const handleProductLink = (x) => {
+    setLinkBgColor(x);
+    setProductCat(x.span);
+  };
+
   const handleTagColor = (x) => {
     if (productTagColor.includes(x)) {
-      productTagColor = productTagColor.filter((rem) => rem !== x);
+      productTagColor = productTagColor.filter((rem) => rem.id !== x.id);
     } else {
-      productTagColor.push(x);
+      productTagColor.push(x.id);
       console.log(productTagColor);
     }
   };
@@ -48,27 +72,33 @@ const SellerProducts = () => {
           <div className="sellerProductsTopLeftB">
             {linkTags.map((x, i) => {
               return (
-                <Link to={x.link} className="productLeftTextContainer">
-                  <span>{x.span}</span>
+                <Link
+                  to={x.link}
+                  key={i}
+                  style={{
+                    backgroundColor: linkBgColor?.link === x.link && "#fef5ed",
+                  }}
+                  className="productLeftTextContainer"
+                  onClick={() => handleProductLink(x)}
+                >
+                  <span
+                    style={{ color: linkBgColor?.link === x.link && "#f69014" }}
+                  >
+                    {x.span}
+                  </span>
                 </Link>
               );
             })}
-          </div>
-          <div className="sellerProductsTopLeftC">
-            {linkTag.map((x, i) => {
-              return (
-                <Link to={x.link} className="productLeftTextContainer">
-                  <span>{x.span}</span>
-                </Link>
-              );
-            })}
-            <Link to="other-categories" className="productLeftTextContainer">
-              <span>Add Product to collection</span>
+            <Link to="other-categories" className="productLeftAddNew">
+              <span>
+                <i className="fa fa-plus faAddProduct" aria-hidden="true"></i>{" "}
+                Add Product to collection
+              </span>
             </Link>
           </div>
         </nav>
         <div className="sellerProductsTopRight">
-          <AllProductsCard />
+          <ProductsCard productCat={productCat} />
         </div>
       </div>
       <hr className="productDivider" />
@@ -78,15 +108,14 @@ const SellerProducts = () => {
             {productTag.map((x, i) => {
               return (
                 <div
+                  key={i}
                   className="productTagText"
                   style={{
-                    backgroundColor: productTagColor.includes(x)
-                      ? "red"
-                      : "white",
+                    backgroundColor: productTagColor?.x === x && "red",
                   }}
-                  onClick={() => handleTagColor(x, i)}
+                  onClick={() => handleTagColor(x)}
                 >
-                  <span>{x}</span>
+                  <span>{x.id}</span>
                 </div>
               );
             })}
@@ -95,6 +124,40 @@ const SellerProducts = () => {
         <div className="sellerProductsBottomDown">
           <Outlet />
         </div>
+      </div>
+    </div>
+  );
+};
+
+const ProductsCard = ({ productCat }) => {
+  const handleDropdown = () => {};
+  return (
+    <div className="allProductsCard">
+      <div className="allProductsCardTop">
+        <h1>All Products saved</h1>
+
+        <select
+          name=""
+          id=""
+          className="dropdownContainer"
+          onClick={handleDropdown}
+        >
+          <option value="Daily">Daily</option>
+          <option value="Weekly">Weekly</option>
+          <option value="Monthly">Monthly</option>
+        </select>
+      </div>
+      <div className="allProductsCardMiddle">
+        <div className="productCardCate">
+          <span>({productCat})</span>
+          <h4>57, 020</h4>
+        </div>
+        <img src={allProductSaved} alt="" className="cardImg" />
+      </div>
+      <div className="allProductsCardBottom">
+        <p>
+          These are the total amount of times users have saved your products
+        </p>
       </div>
     </div>
   );

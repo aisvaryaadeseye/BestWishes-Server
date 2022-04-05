@@ -1,11 +1,11 @@
 .customerProfileScreen {
   display: flex;
   width: 100%;
+  /* background-color: red; */
 }
 .customerProfileSideBar {
-  width: 20%;
-  /* flex: 0.2; */
   display: flex;
+  width: 20%;
   flex-direction: column;
   padding: 1rem;
 }
@@ -97,6 +97,8 @@
 /* ======eiditCustomerProfile=========== */
 .editCustomerProfile {
   padding: 1em;
+  /* background-color: green; */
+  /* width: 100%; */
 }
 .editCustomerProfile > h1 {
   font-size: 1.2em;
@@ -155,6 +157,22 @@
 }
 .editCusInputField {
   height: 2.3em;
+}
+
+.editCustomerContainer {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1rem;
+  /* width: 100%; */
+}
+@media screen and (max-width: 500px) {
+  .editCustomerBtn {
+    width: 95%;
+  }
+  .editCustomerFormContainer,
+  .editCustomerContainer {
+    width: 100%;
+  }
 }
 
 /* ============message============================= */
@@ -271,5 +289,8 @@
     } */
   .sidebarNav {
     padding: 0;
+  }
+  .customerProfileScreen {
+    flex-direction: column;
   }
 }
