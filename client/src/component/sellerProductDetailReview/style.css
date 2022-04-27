@@ -1,0 +1,22 @@
+.sellerProductDetailReview {
+  display: flex;
+  flex-direction: column;
+}
+.sellerProductDetailReviewTop {
+  display: flex;
+}
+.sellerProductDetailReviewTop > span:first-child {
+  font-weight: 500;
+  margin-right: 1em;
+}
+.sellerProductReviewIconContainer {
+  display: flex;
+  margin: 0.5em 0;
+}
+.selllerStartIcon {
+  color: var(--orangeColor);
+  margin-right: 0.5em;
+}
+.sellerProductDivider {
+  border-top: 2px solid grey;
+}

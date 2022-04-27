@@ -49,17 +49,50 @@ import OtherCategories from "./component/sellerProducts/otherCategories";
 import AllCollections from "./component/sellerProducts/allCollections";
 import Pottery from "./component/sellerProducts/pottery";
 import ArtAndCraft from "./component/sellerProducts/artAndCraft";
-import ProductDetailScreen from "./screen/productDetailScreen";
 import Backdrop from "./component/backDrop";
-import SideDrawer from "./component/sideDrawer";
+import SideDrawer from "./component/navDrawer";
+import SellerProductDetailScreen from "./screen/sellerProductDetailScreen";
+import SellerMessages from "./screen/sellerProfileScreen/messages";
+import SellerMessageInbox from "./component/sellerMessageInbox";
+import SellerMessageChat from "./component/sellerMessageChat";
+import SellerOrders from "./screen/sellerProfileScreen/orders";
+import SellerSales from "./screen/sellerProfileScreen/sales";
+import SellerIncome from "./screen/sellerProfileScreen/income";
+import SellerAllIncome from "./component/sellerIcomeNav/sellerAllIncome";
+import SellerPottery from "./component/sellerIcomeNav/sellerPottery";
+import SellerClothingAndAccessories from "./component/sellerIcomeNav/clothingAndAccessories";
+import SellerHealthAndBeauty from "./component/sellerIcomeNav/healthAndBeauty";
+import SellerArtAndCraft from "./component/sellerIcomeNav/artAndCraft";
+import SellerOtherCategories from "./component/sellerIcomeNav/otherCategories";
+import SellerReviews from "./screen/sellerProfileScreen/reviews";
+import BlogLifestyle from "./component/blogScreenNav/lifestyle";
+import BlogNews from "./component/blogScreenNav/news";
+import BlogEvents from "./component/blogScreenNav/events";
+import BlogUpdate from "./component/blogScreenNav/update";
+import BlogTipsAndTricks from "./component/blogScreenNav/titpsAndtricks";
+import CartScreen from "./screen/cartScreen/cartScreen";
+import CartBuyerAddress from "./screen/cartScreen/cartBuyerAddress";
+import CartBuyerPayment from "./screen/cartScreen/cartBuyerPayment";
+import CartBuyerSummary from "./screen/cartScreen/cartBuyerSummary";
+import SellerProductCollection from "./screen/sellerProductCollection";
+import SellerAllCollectionNav from "./component/sellerProductCollectionNav/sellerAllCollectionNav";
+import SellerClothingAccessoriesNav from "./component/sellerProductCollectionNav/sellerClothingAccessoriesNav";
+import SellerArtCraftNav from "./component/sellerProductCollectionNav/sellerArtCraftNav";
+import SellerHealthBeautyNav from "./component/sellerProductCollectionNav/sellerHealthBeautyNav";
+import SellerOtherCategoriesNav from "./component/sellerProductCollectionNav/sellerOtherCategoriesNav";
+import SellerPotteryNav from "./component/sellerProductCollectionNav/sellerPotteryNav";
+import ProductDetailScreen from "./screen/productDetailScreen";
+import AddProductScreen from "./screen/addProductScreen";
 function App() {
   const { state, USER } = useContext(UserContext);
   const [sideToggle, setSideToggle] = useState(false);
 
-  useEffect(() => {
-    USER.recoverData();
-    USER.recoverisSeller();
-    USER.recoverSellerData();
+  useEffect(async () => {
+    await USER.recoverSwitchUser();
+    await USER.recoverData();
+    await USER.recoverisSeller();
+    await USER.recoverSellerData();
+    await USER.recoverSaveSeller();
   }, []);
 
   return (
@@ -71,6 +104,12 @@ function App() {
         <SideDrawer show={sideToggle} click={() => setSideToggle(false)} />
         <Routes>
           <Route path="/" element={<HomeScreen />} />
+          <Route
+            path="/product-detail-screen/:id"
+            element={<ProductDetailScreen />}
+          />
+          <Route path="/add-product-screen" element={<AddProductScreen />} />
+
           <Route
             path="/product-screen-clothing"
             element={<ProductScreenClothing />}
@@ -89,11 +128,46 @@ function App() {
             path="/product-screen-others"
             element={<ProductScreenOthers />}
           />
+          <Route path="/cart-screen" element={<CartScreen />} />
+          <Route path="/cart-buyer-address" element={<CartBuyerAddress />} />
+          <Route path="/cart-buyer-payment" element={<CartBuyerPayment />} />
+          <Route path="/cart-buyer-summary" element={<CartBuyerSummary />} />
           <Route
-            path="/product-details-screen"
-            element={<ProductDetailScreen />}
+            path="/seller-product-details-screen"
+            element={<SellerProductDetailScreen />}
           />
-          <Route path="/blog-screen" element={<BlogScreen />} />
+          {/* ==============seller product collection ======== */}
+          <Route
+            path="/seller-product-collection"
+            element={<SellerProductCollection />}
+          >
+            <Route
+              path="all-collections"
+              element={<SellerAllCollectionNav />}
+            />
+            <Route
+              path="clothings-accessories"
+              element={<SellerClothingAccessoriesNav />}
+            />
+            <Route path="art-craft" element={<SellerArtCraftNav />} />
+            <Route path="health-beauty" element={<SellerHealthBeautyNav />} />
+            <Route
+              path="other-categories"
+              element={<SellerOtherCategoriesNav />}
+            />
+            <Route path="pottery" element={<SellerPotteryNav />} />
+          </Route>
+          {/* ==============seller product collection ===XXX===== */}
+
+          {/* ====blogScreen==== */}
+          <Route path="/blog-screen" element={<BlogScreen />}>
+            <Route path="lifestyle" element={<BlogLifestyle />} />
+            <Route path="tips-tricks" element={<BlogTipsAndTricks />} />
+            <Route path="news" element={<BlogNews />} />
+            <Route path="events" element={<BlogEvents />} />
+            <Route path="update" element={<BlogUpdate />} />
+          </Route>
+          {/* ====blogScreen==XXX== */}
           <Route path="/forgotPassword" element={<ForgotPasswordScreen />} />
           <Route path="/resetPassword" element={<ResetPasswordScreen />} />
           <Route path="/verifyAccount" element={<AccountVerifcationScreen />} />
@@ -131,8 +205,37 @@ function App() {
               <Route path="pottery" element={<Pottery />} />
               <Route path="art-craft" element={<ArtAndCraft />} />
             </Route>
+            {/* ===   seller message */}
+            <Route path="seller-message" element={<SellerMessages />}>
+              <Route
+                path="seller-message-inbox"
+                element={<SellerMessageInbox />}
+              />
+              <Route
+                path="seller-message-chat"
+                element={<SellerMessageChat />}
+              />
+            </Route>
 
             <Route path="editprofile" element={<EditProfile />} />
+            <Route path="seller-review" element={<SellerReviews />} />
+            <Route path="seller-orders" element={<SellerOrders />} />
+            <Route path="seller-sales" element={<SellerSales />} />
+            {/* ===selller income===== */}
+            <Route path="seller-income" element={<SellerIncome />}>
+              <Route path="all-income" element={<SellerAllIncome />} />
+              <Route
+                path="clothing-accessories"
+                element={<SellerClothingAndAccessories />}
+              />
+              <Route path="health-beauty" element={<SellerHealthAndBeauty />} />
+              <Route path="pottery" element={<SellerPottery />} />
+              <Route path="art-craft" element={<SellerArtAndCraft />} />
+              <Route
+                path="other-categories"
+                element={<SellerOtherCategories />}
+              />
+            </Route>
           </Route>
           {/* =====CustomerProfileScreen==== */}
           <Route
@@ -159,11 +262,15 @@ function App() {
             {/* ========= XX===============*/}
             <Route
               path="editCustomerProfile"
-              element={<EditCustomerProfile />}
+              element={<EditCustomerProfile showDescription={true} />}
             />
             <Route path="savedItems" element={<SavedItems />} />
             <Route path="becomeSeller" element={<BecomeSeller />} />
             <Route path="account-settings" element={<AccountSettings />} />
+            {/* <Route
+              path="/product-detail-screen"
+              element={<ProductDetailScreen />}
+            /> */}
           </Route>
         </Routes>
         <Footer />

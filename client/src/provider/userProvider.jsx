@@ -25,6 +25,11 @@ const userReducer = (state, action) => {
         ...state,
         saveSeller: action.payload,
       };
+    case "switch-user":
+      return {
+        ...state,
+        switchUser: action.payload,
+      };
   }
 };
 
@@ -35,6 +40,7 @@ export const UserProvider = (props) => {
     token: "",
     isSeller: false,
     saveSeller: false,
+    switchUser: true,
   });
 
   async function updateUserData(val) {
@@ -55,7 +61,23 @@ export const UserProvider = (props) => {
     localStorage.setItem("saveSeller", val);
     dispatch({ type: "save-seller", payload: val });
   }
+  async function updateSwitchUser(val) {
+    localStorage.setItem("switchUser", val);
+    dispatch({ type: "switch-user", payload: val });
+  }
 
+  async function recoverSwitchUser() {
+    if (localStorage.getItem("switchUser")) {
+      const switchUser = await localStorage.getItem("switchUser");
+      dispatch({ type: "switch-user", payload: switchUser });
+    }
+  }
+  async function recoverSaveSeller() {
+    if (localStorage.getItem("saveSeller")) {
+      const saveSeller = await localStorage.getItem("saveSeller");
+      dispatch({ type: "save-seller", payload: saveSeller });
+    }
+  }
   async function recoverData() {
     if (localStorage.getItem("user")) {
       const user = await JSON.parse(localStorage.getItem("user"));
@@ -83,7 +105,10 @@ export const UserProvider = (props) => {
     recoverisSeller,
     saveSeller,
     updateSellerData,
-    recoverSellerData
+    recoverSellerData,
+    recoverSaveSeller,
+    recoverSwitchUser,
+    updateSwitchUser,
   };
 
   return (

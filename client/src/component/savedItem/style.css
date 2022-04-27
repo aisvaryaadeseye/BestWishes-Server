@@ -1,6 +1,6 @@
 .savedItem {
   display: flex;
-  width: 25em;
+  width: 24em;
   padding: 0.5em;
   border-radius: 0.5em;
   border: 2px solid var(--lightGreyColor);
@@ -69,4 +69,21 @@
   color: var(--greyColor);
   margin-right: 0.3em;
   cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+  .savedItem {
+    width: 21em;
+  }
+  .savedItemRight > h1 {
+    font-size: 0.8em;
+  }
+}
+@media screen and (max-width: 380px) {
+  .savedItem {
+    width: 20em;
+  }
+  .savedItemRight > h1 {
+    font-size: 0.8em;
+  }
 }

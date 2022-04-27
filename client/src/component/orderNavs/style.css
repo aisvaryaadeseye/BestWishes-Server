@@ -5,4 +5,18 @@
   margin-top: 2em;
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
+}
+
+@media screen and (max-width: 800px) {
+  .orderAll,
+  .orderCancelled,
+  .orderPending,
+  .orderCompleted {
+    margin-top: 2em;
+    display: flex;
+    /* flex-wrap: wrap; */
+    flex-direction: column;
+    width: 21em;
+  }
 }

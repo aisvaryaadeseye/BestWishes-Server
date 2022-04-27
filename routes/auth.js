@@ -21,6 +21,7 @@ const { validate } = require("../middleware/validator");
 
 const User = require("../models/User");
 const SellerAcct = require("../models/SellerAcct");
+const AddProduct = require("../models/AddProduct");
 const VerificationToken = require("../models/VerificationToken");
 const ResetToken = require("../models/ResetToken");
 const { sendError, createrandomBytes } = require("../utils/helper");
@@ -282,7 +283,6 @@ router.post(
   async (req, res) => {
     try {
       const { userID } = req.query;
-      // let mediaLinks
 
       if (!isValidObjectId(userID)) return sendError(res, " invalid user ID");
 
@@ -290,13 +290,8 @@ router.post(
 
       if (!user) return sendError(res, "user not found");
 
-      // req.files.forEach(async (file) =>{
-      //   let mediaLink = `https://${process.env.BUCKET}.s3.amazonaws.com/${file.filename}`;
+      if (user.isSeller) return sendError(res, "Already a selller");
 
-      //   mediaLinks.push(mediaLink);
-
-      // })
-      // console.log({ images: req.files});
       let assets = [];
       for (const property in req.files) {
         for (let i = 0; i < req.files[property].length; i++) {
@@ -307,8 +302,6 @@ router.post(
           assets.push(asset);
         }
       }
-      console.log({ assets: assets });
-
       const sellerName = req.body.sellerName;
       const storeName = req.body.storeName;
       const storeAddress = req.body.storeAddress;
@@ -316,8 +309,6 @@ router.post(
       const country = req.body.country;
       const dob = req.body.dob;
       const city = req.body.city;
-
-      // if (user.isSeller) return sendError(res, "Already a selller");
 
       user.isSeller = true;
 
@@ -371,6 +362,77 @@ router.get("/get-seller", async (req, res) => {
     return sendError(res, "User not authorized");
   }
 });
+
+// Add new product ======================================
+router.post(
+  "/add-product",
+  uploadS3.fields([
+    { name: "proFrontIMAGE", maxCount: 1 },
+    { name: "proBackIMAGE", maxCount: 1 },
+    { name: "proUpwardIMAGE", maxCount: 1 },
+    { name: "businessVIDEO", maxCount: 1 },
+    { name: "proDownWardIMAGE", maxCount: 1 },
+  ]),
+  async (req, res) => {
+    try {
+      const { userID } = req.query;
+
+      if (!isValidObjectId(userID)) return sendError(res, " invalid user ID");
+
+      const user = await User.findById(userID);
+
+      if (!user) return sendError(res, "user not found");
+
+      // if (user.isSeller) return sendError(res, "Already a selller");
+
+      let assets = [];
+      for (const property in req.files) {
+        for (let i = 0; i < req.files[property].length; i++) {
+          let asset = {
+            URL: req.files[property][i].location,
+          };
+
+          assets.push(asset);
+        }
+      }
+      const productName = req.body.productName;
+      const productPrice = req.body.productPrice;
+      const productQuality = req.body.productQuality;
+      const productDetail = req.body.productDetail;
+      const productOrigin = req.body.productOrigin;
+      const productCategory = req.body.productCategory;
+      const productDeliveryTime = req.body.productDeliveryTime;
+      const productSpecification = req.body.productSpecification;
+
+      const newProduct = await new AddProduct({
+        owner: userID,
+        productName,
+        productPrice,
+        productQuality,
+        productDetail,
+        productOrigin,
+        productCategory,
+        productDeliveryTime,
+        productSpecification,
+        proFrontIMAGE: assets[0],
+        proBackIMAGE: assets[1],
+        proUpwardIMAGE: assets[2],
+        proDownWardIMAGE: assets[3],
+      });
+
+      // await user.save();
+
+      const product = await newProduct.save();
+
+      res.json({
+        success: true,
+        message: "Product Created Successful.",
+      });
+    } catch (error) {
+      res.status(500).json(error + "error saving data");
+    }
+  }
+);
 
 //reuseable function to generate token ===================================
 const sendToken = (user, statusCode, res) => {

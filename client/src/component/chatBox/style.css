@@ -1,0 +1,43 @@
+/* ==============userChatBox========= */
+.userChatTextContainer {
+  display: flex;
+  margin-bottom: 2em;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+.userChatTextContainer > span {
+  align-self: flex-end;
+  margin-right: 2em;
+}
+.userChatMessageBox {
+  background-color: var(--orangeColor);
+  padding: 1em;
+  width: 400px;
+  border-bottom-left-radius: 1em;
+  border-bottom-right-radius: 1em;
+  border-top-left-radius: 1em;
+}
+.userChatMessageBox > span {
+  color: #fff;
+}
+
+/* ==============friendChatBox========= */
+.friendChatTextContainer {
+  display: flex;
+  margin-bottom: 2em;
+}
+.friendChatTextContainer > span {
+  align-self: flex-end;
+  margin-left: 2em;
+}
+.friendChatMessageBox {
+  background-color: var(--lightOrangeColor);
+  padding: 1em;
+  width: 400px;
+  border-bottom-left-radius: 1em;
+  border-bottom-right-radius: 1em;
+  border-top-right-radius: 1em;
+}
+.friendChatMessageBox > span {
+  color: var(--orangeColor);
+}

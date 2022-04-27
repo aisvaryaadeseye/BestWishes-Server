@@ -1,0 +1,26 @@
+.reviewsMobileDiv {
+  display: none;
+}
+
+@media screen and (max-width: 800px) {
+  .reviewsMobileDiv {
+    display: flex;
+    flex-direction: column;
+  }
+  .reviewsMobileMiddleA {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    flex-direction: row;
+    align-items: center;
+    /* justify-content: space-between; */
+    margin-bottom: 1em;
+  }
+  .reviewsMobileMiddleA > span:first-child {
+    color: var(--skyBlueColor);
+  }
+  .reviewsMobileMiddleA > span:last-child {
+    color: var(--blackColor);
+    font-size: 0.9em;
+  }
+}

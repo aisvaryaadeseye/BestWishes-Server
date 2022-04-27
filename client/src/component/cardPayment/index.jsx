@@ -2,7 +2,7 @@ import React from "react";
 import "./style.css";
 import visaCardIcon from "../../assets/icons/visaCardIcon.svg";
 
-const CardPayment = () => {
+const CardPayment = ({ showCheck, checkBg }) => {
   return (
     <div className="cardPayment">
       <div className="cardPaymentLeft">
@@ -15,12 +15,21 @@ const CardPayment = () => {
         <h2>1234 XXXX XXXX 5478</h2>
         <h3>Visa card</h3>
       </div>
-      <div className="cardPaymentRight">
-        <span>
-          {" "}
-          <i className="fa fa-trash cardFaTrash" aria-hidden="true"></i>Remove
-        </span>
-      </div>
+      {showCheck ? (
+        <div className="cardPaymentRightCheck">
+          <div
+            className="card-check-box-container"
+            style={{ backgroundColor: checkBg ? "#f69014 " : "white" }}
+          ></div>
+        </div>
+      ) : (
+        <div className="cardPaymentRight">
+          <span>
+            {" "}
+            <i className="fa fa-trash cardFaTrash" aria-hidden="true"></i>Remove
+          </span>
+        </div>
+      )}
     </div>
   );
 };

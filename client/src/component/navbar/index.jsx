@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { NavbarStyled } from "./style";
 import "./style.css";
 import "font-awesome/css/font-awesome.min.css";
@@ -11,13 +11,16 @@ import TopRightNav from "../topRightNav";
 const Navbar = () => {
   const { state } = useContext(UserContext);
 
+  useEffect(() => {
+    // console.log({ switchUser: state.switchUser });
+  }, [state]);
   return (
     <NavbarStyled
       className="navBar"
-      style={{ height: state.isSeller && "80px" }}
+      style={{ height: !state.switchUser && "80px" }}
     >
       <div className="navbarTop">
-        <Link to="/">
+        <Link to={!state.switchUser ? "/sellerprofilescreen/overview" : "/"}>
           <img src={bestWishLogo} className="bestWishLogo" />
         </Link>
         <div className="sarchbarContainer">
@@ -37,32 +40,32 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      {state.isSeller ? (
-        <></>
-      ) : (
+      {state.switchUser ? (
         <div className="navbarBottom">
           <div className="navbarBottomnavBarLinks">
-            <Link to="/productScreenClothing" className="navbarBottomLink">
+            <Link to="/product-screen-clothing" className="navbarBottomLink">
               Clothings & Accessories
             </Link>
 
-            <Link to="/productScreenHealth" className="navbarBottomLink">
+            <Link to="/product-screen-health" className="navbarBottomLink">
               Health & Beauty
             </Link>
 
-            <Link to="/productScreenHealth" className="navbarBottomLink">
+            <Link to="/product-screen-art" className="navbarBottomLink">
               Art & Craft
             </Link>
 
-            <Link to="/productScreenHealth" className="navbarBottomLink">
+            <Link to="/product-screen-pottery" className="navbarBottomLink">
               Pottery
             </Link>
 
-            <Link to="/productScreenHealth" className="navbarBottomLink">
+            <Link to="/product-screen-others" className="navbarBottomLink">
               Other Categories
             </Link>
           </div>
         </div>
+      ) : (
+        <></>
       )}
     </NavbarStyled>
   );

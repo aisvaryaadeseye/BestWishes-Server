@@ -1,12 +1,13 @@
 .orderProduct {
   display: flex;
   /* background-color: red; */
-  width: 25em;
+  width: 370pxpx;
   padding: 0.5em;
   border-radius: 0.5em;
   border: 2px solid var(--lightGreyColor);
   height: 10em;
   margin-right: 2em;
+
   margin-bottom: 2em;
 }
 .orderProductLeft {
@@ -58,4 +59,15 @@
   color: var(--orangeColor);
   margin-right: 0.3em;
   cursor: pointer;
+}
+@media screen and (max-width: 768px) {
+  .orderProductRight > h1 {
+    font-size: 0.8em;
+  }
+  .orderstatusRight > span {
+    font-size: 0.7em;
+  }
+  .orderProduct {
+    /* width: 200% !; */
+  }
 }

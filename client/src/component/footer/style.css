@@ -1,123 +1,120 @@
-.footerContact{
-    display: flex;
-    flex-direction: column;
-    /* background-color: red; */
-
+.footerContact {
+  display: flex;
+  flex-direction: column;
+  /* background-color: red; */
 }
-.bestWishIcon{
-    height: 3rem;
-    /* margin-right: 24px; */
+.bestWishIcon {
+  height: 3rem;
+  /* margin-right: 24px; */
 }
-.footerImgContainer{
-    background-color: var(--whiteColor);
-    width: 35%;
-    height: 3rem;
-    margin-bottom: 0.5rem;
+.footerImgContainer {
+  background-color: var(--whiteColor);
+  /* width: 35%; */
+  height: 3rem;
+  margin-bottom: 0.5rem;
 }
-.footerContactText{
-    display: flex;
-    margin-bottom: 0.7rem;
-    cursor: pointer;
+.footerContactText {
+  display: flex;
+  margin-bottom: 0.7rem;
+  cursor: pointer;
 }
-.footerContactText> p{
-    color: var(--whiteColor);
-    font-size: 0.6rem;
-    cursor: pointer;
+.footerContactText > p {
+  color: var(--whiteColor);
+  font-size: 0.8em;
+  cursor: pointer;
 }
-.footerContactText> i{
-    color: var(--whiteColor);
-    margin-right: 0.5rem;
-    font-size: 0.7rem;
-    
+.footerContactText > p > i {
+  color: var(--whiteColor);
+  margin-right: 0.5rem;
+  font-size: 0.7rem;
 }
-.footerUsefulLink{
-    display: flex;
-    flex-direction: column;
+.footerUsefulLink {
+  display: flex;
+  flex-direction: column;
 }
-.footerUsefulLink >p{
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: var(--orangeColor);
-    margin-bottom: 0.2rem;
+.footerUsefulLink > p {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--orangeColor);
+  margin-bottom: 0.2rem;
 }
-.usefullink{
-    color: var(--whiteColor);
-    font-size: 0.6rem;
-    list-style: none;
-    margin: 0.4rem 0;
-    cursor: pointer;
+.usefullink {
+  color: var(--whiteColor);
+  font-size: 0.8em;
+  list-style: none;
+  margin: 0.4rem 0;
+  cursor: pointer;
 }
-.footerSocial{
-    display: flex;
-    flex-direction: column;
+.footerSocial {
+  display: flex;
+  flex-direction: column;
 }
 
-.footerSocial >p{
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: var(--orangeColor);
-    margin-bottom: 0.2rem;
+.footerSocial > p {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--orangeColor);
+  margin-bottom: 0.2rem;
 }
-.socialLink{
-    color: var(--whiteColor);
-    font-size: 0.6rem;
-    list-style: none;
-    margin: 0.4rem 0;
-    cursor: pointer;
+.socialLink {
+  color: var(--whiteColor);
+  font-size: 0.8em;
+  list-style: none;
+  margin: 0.4rem 0;
+  cursor: pointer;
 }
-.socialIcon{
-    margin-right: 0.2rem;
-    font-size: 0.9rem;
+.socialIcon {
+  margin-right: 0.2rem;
+  font-size: 0.9rem;
 }
-.footerBestWish{
-    display: flex;
-    flex-direction: column;
+.footerBestWish {
+  display: flex;
+  flex-direction: column;
 }
-.footerBestWish >p{
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: var(--orangeColor);
-    margin-bottom: 0.3rem;
+.footerBestWish > p {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--orangeColor);
+  margin-bottom: 0.3rem;
 }
-.footerBestWish>h2{
-    font-size: 0.7rem;
-    margin-bottom: 0.3rem;
-    color: var(--whiteColor);
-    font-weight: 400;
-
+.footerBestWish > h2 {
+  font-size: 0.8rem;
+  margin-bottom: 0.3rem;
+  color: var(--whiteColor);
+  font-weight: 400;
 }
-.footerEmailContainer{
-    display: flex;
-    margin-bottom: 0.5rem;
+.footerEmailContainer {
+  display: flex;
+  margin-bottom: 0.5rem;
 }
-.footerEmailContainer>input{
-    padding: 0.2rem 0.4rem;
-    border-radius: 0.2rem;
-    border: none;
-    outline: none;
-    margin-right: 0.3rem;
+.footerEmailContainer > input {
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.2rem;
+  border: none;
+  outline: none;
+  margin-right: 0.3rem;
 }
-.footerSubmitBtn{
-    padding:0.2rem 0.5rem;
-    border: 1px solid var(--orangeColor);
-    border-radius: 0.2rem;
-    display: flex;justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    font-size: 0.7rem;
-
+.footerSubmitBtn {
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--orangeColor);
+  border-radius: 0.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 0.7rem;
 }
-.footerSubmitBtn>button{
-    color: var(--orangeColor);
-    background-color: transparent
-    ;
-    border: none;
-    cursor: pointer;
-    justify-content: space-between;
+.footerSubmitBtn > button {
+  color: var(--orangeColor);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  justify-content: space-between;
 }
 
 @media screen and (max-width: 500px) {
-    .footerUsefulLink, .footerSocial{
-        margin-bottom: 1rem;
-    }
+  .footerUsefulLink,
+  .footerSocial {
+    margin-bottom: 1rem;
+  }
 }

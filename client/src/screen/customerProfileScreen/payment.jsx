@@ -17,7 +17,7 @@ const CustomerPayment = () => {
   return (
     <div className="customerPayment">
       <div className="customerPaymentTop">
-        <h1>Orders</h1>
+        <h1>Payment</h1>
         <p>Check the status of your order here</p>
         <nav className="orderNavbarContainer">
           <div className="orderNav" onClick={handleshowCard}>

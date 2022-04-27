@@ -1,0 +1,26 @@
+.recent-customer {
+  display: flex;
+  align-items: center;
+  width: 300px;
+  margin-bottom: 2em;
+}
+.recent-customer-left {
+  margin-right: 1em;
+}
+.recent-customer-img-container {
+  width: 50px;
+  height: 50px;
+}
+.recent-customer-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.recent-customer-right {
+  display: flex;
+  flex-direction: column;
+}
+.recent-customer-right > span:last-child {
+  font-size: 0.8em;
+  color: var(--greyColor);
+}

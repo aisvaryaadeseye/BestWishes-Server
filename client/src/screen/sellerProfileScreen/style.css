@@ -1,20 +1,41 @@
 .profileScreen {
   display: flex;
   width: 100%;
+  padding-left: 1em;
 }
 .profileSideBar {
   width: 20%;
-  /* flex: 0.2; */
-  display: flex;
+  display: block;
   flex-direction: column;
   padding: 1rem;
+  z-index: 200;
+  transform: translateX(1%);
+  transition: all 0.3s ease-in-out;
+  position: absolute;
+  top: 15%;
+  background-color: white;
+}
+.profileSideBarMenu {
+  width: 260px;
+  display: block;
+  flex-direction: column;
+  /* padding: 1rem; */
+
+  background-color: white;
+}
+.profileSideBar.show {
+  transform: translateX(-100%);
+}
+.sidebarMenu {
+  padding: 1em;
+  cursor: pointer;
+  display: none;
 }
 .profileSideBarTop {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  /* justify-content: center; */
   border: 2px solid var(--lightGreyColor);
   border-radius: 0.4rem;
   padding: 1em;
@@ -52,15 +73,31 @@
   width: 100%;
   border: 2px solid var(--lightGreyColor);
   border-radius: 0.4rem;
-  padding: 1em 0;
+}
+.profileSideBarBottomSlide {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 2px solid var(--lightGreyColor);
+  border-radius: 0.4rem;
+  padding: 1em;
+}
+.sideBarNavBar {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 3em;
+  align-items: center;
+  padding: 1em;
+  padding-left: 1.5em;
+  cursor: pointer;
 }
 .sidebarNav {
   display: flex;
   flex-direction: row;
   width: 100%;
   height: 3em;
-  align-items: center;
-  padding: 1em 0 1em 3em;
+
   cursor: pointer;
 }
 .sidebarNav:hover {
@@ -69,13 +106,20 @@
 .sidebarNav:hover {
   color: var(--orangeColor);
 }
+.sideBarNavBar:hover {
+  background-color: var(--lightOrangeColor);
+}
+.sideBarNavBar:hover {
+  color: var(--orangeColor);
+}
 .iconImg {
   width: 1.3em;
   margin-right: 1em;
 }
 .profileFeeds {
   /* flex: 0.8; */
-  width: 80%;
+  width: 82%;
+  padding-left: 2em;
 }
 
 /* ======profileOverview=========== */
@@ -90,7 +134,7 @@
   justify-content: start;
   margin-bottom: 2em;
 }
-.profileOverviewSection1 > h1 {
+.profileOverviewSection1 > span {
   font-size: 1.5em;
   color: var(--orangeColor);
 }
@@ -108,14 +152,9 @@
   margin-top: 2em;
 }
 .profileOverviewSec2Left {
-  width: 75%;
-  /* background-color: green; */
-}
-.profileOverviewSec2Right {
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  /* background-color: red; */
-  width: 25%;
+  flex-wrap: wrap;
 }
 
 /*  */
@@ -128,8 +167,7 @@
 }
 .overviewGraphContainerTop {
   width: 97%;
-  /* height: 50v; */
-  /* background: white; */
+
   position: absolute;
   top: 1%;
   display: flex;
@@ -206,6 +244,7 @@
   border-radius: 0.5em;
   margin-bottom: 2em;
 }
+
 .productOverviewSec3One {
   display: flex;
   width: 100%;
@@ -254,7 +293,7 @@
 .productOverviewSec3Two {
   height: 4em;
   display: grid;
-  grid-template-columns: 16.6% 16.6% 18.6% 10.6% 20.6% 16.6%;
+  grid-template-columns: 16.6% 16.6% 16.6% 12.6% 20.6% 16.6%;
   background-color: var(--adminBlueColor);
 
   width: 100%;
@@ -365,13 +404,14 @@
   justify-content: space-between;
 }
 .stockReportTopA > span {
-  font-size: 1.2em;
+  font-size: 1.5em;
   color: var(--orangeColor);
   align-self: flex-start;
 }
 .stockReportTopB {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   justify-content: space-between;
   /* padding-right: 2em; */
 }
@@ -400,6 +440,7 @@
 .stockReportTopC {
   display: flex;
   align-items: center;
+  /* flex-wrap: wrap; */
   justify-content: space-between;
   margin-top: 2em;
 }
@@ -407,12 +448,14 @@
   display: flex;
   align-items: center;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 .stockReportLeftText {
   margin-right: 2em;
   cursor: pointer;
   padding: 0.5em 0.7em;
   border-radius: 1em;
+  /* width: 6em; */
 }
 .stockReportLeftTextA {
   background-color: var(--lightGreyColor);
@@ -425,6 +468,19 @@
   padding: 0.2em 0.4em;
 }
 .stockSearchContainer > input {
+  outline: none;
+  background-color: transparent !important;
+  border: none;
+  width: 200px;
+}
+.stockSearchContainerBottom {
+  display: none;
+  align-items: center;
+  border: 1px solid grey;
+  border-radius: 0.5em;
+  padding: 0.2em 0.4em;
+}
+.stockSearchContainerBottom > input {
   outline: none;
   background-color: transparent !important;
   border: none;
@@ -458,20 +514,21 @@
 .sellerProductsTopLeft {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 27vh;
 }
 .sellerProductsTopLeftA {
   margin-bottom: 2em;
 }
 .sellerProductsTopLeftA > span {
-  font-size: 1.2em;
+  font-size: 1.5em;
   color: var(--orangeColor);
 }
 .sellerProductsTopLeftB {
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 2em;
-  /* padding-bottom: 2em; */
-  /* background-color: red; */
 }
 .sellerProductsTopLeftB,
 .sellerProductsTopLeftC {
@@ -497,10 +554,8 @@
 }
 .productTagContainer {
   display: flex;
-  /* align-items: center;  */
-  /* justify-content: center;
-  padding: 0.5em 0.7em;
-  /* background-color: red; */
+  flex-wrap: wrap;
+
   border-radius: 1em;
 }
 .productTagContainer > span {
@@ -512,6 +567,7 @@
 }
 .sellerProductsBottomDown {
   margin-top: 2em;
+  /* background-color: red; */
 }
 .productCardCate {
   display: flex;
@@ -524,8 +580,602 @@
 .productCardCate > h4 {
   color: var(--blueColor);
 }
+.listOfOrdersMobileContainer {
+  display: none;
+}
+.stockReportMobileContainer {
+  display: none;
+}
+@media screen and (max-width: 700px) {
+}
 /* ================product=========XXX===== */
+/* ===========editSellerProfileProfile============= */
 
+.editSellerProfileProfile {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.editSellerProfileProfileTop {
+  display: flex;
+  position: relative;
+  /* background-color: red; */
+}
+.editPen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9;
+  cursor: pointer;
+  width: 4em;
+}
+.sellerImgDoneContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 999;
+  cursor: pointer;
+  color: var(--orangeColor);
+  font-size: 2em;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5em;
+}
+.sellerImgDoneContainer > i:first-child {
+  margin-bottom: 0.5em;
+}
+
+.editSellerProfileProfileBottom {
+  display: flex;
+}
+/* ===========editSellerProfileProfile=======XXXXXXXX====== */
+
+/* ====================Messages============== */
+.sellerMessages {
+  display: flex;
+  flex-direction: column;
+  padding: 2em;
+}
+.sellerMessagesTop {
+  display: flex;
+  flex-direction: row;
+}
+.sellerMessagesBottom {
+  padding-top: 1em;
+}
+
+/* ====================Messages======XXXXXXXXXx======== */
+
+/* ==============orders================= */
+.sellerOrders {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  /* height: 100vh; */
+}
+.sellerOrdersFirst {
+  margin-bottom: 2em;
+}
+.sellerOrdersFirst > span {
+  font-size: 1.5em;
+  color: var(--orangeColor);
+}
+.sellerOrdersSecond {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 2em;
+}
+.sellerOrdersSecondLeft {
+  width: 70%;
+}
+.sellerOrdersSecondLeftImgContainer {
+  position: relative;
+  width: 100%;
+  /* background-color: red; */
+  /* z-index: 9; */
+}
+.sellerOrdersSecondLeftTextContainer {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  top: 5%;
+  padding: 0 2em;
+  width: 100%;
+}
+.sellerOrdersSecondLeftTextContainer > span {
+  color: var(--graphSkyPurpleColor);
+  font-weight: 500;
+}
+.sellerOrdersSecondLeftTextContainer > select {
+}
+.sellerOrderGraph {
+  border-radius: 1em;
+  width: 100%;
+  height: 100%;
+}
+
+.sellerOrdersSecondRight {
+  padding-right: 2em;
+}
+
+.sellerOrdersThird {
+  display: flex;
+  width: 100%;
+  /* background-color: red; */
+}
+.profileOverviewSection3 {
+  display: flex;
+  width: 100%;
+  /* background-color: red; */
+}
+.alice-carousel__dots {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .sellerOrdersSecond {
+    flex-direction: column;
+    /* width: 160%; */
+  }
+  .sellerOrdersSecondLeft {
+    width: 120%;
+    height: 30vh;
+    margin-bottom: 2em;
+  }
+  .sellerOrdersSecondLeftImgContainer {
+    height: 100%;
+  }
+  .sellerOrdersFouth {
+    display: none;
+  }
+}
+/* ==============orders=========XXXXXXXXXX======== */
+
+/* ==============sales============================ */
+.sales {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+}
+.salesHead {
+  margin-bottom: 2em;
+}
+.salesHead > span {
+  font-size: 1.5em;
+  color: var(--orangeColor);
+}
+.salesOverview {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.salesOverviewLeft {
+  width: 70%;
+}
+.salesImgGraph {
+  width: 100%;
+  height: 100%;
+  border-radius: 1em;
+}
+.salesOverviewImaContainer {
+  position: relative;
+}
+.salesOverviewTextSelect {
+  position: absolute;
+  top: 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2em;
+  width: 100%;
+}
+.salesOverviewTextSelect > span {
+  color: var(--purpleColor);
+  font-weight: 500;
+}
+.salesOverviewRight {
+  width: 30%;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+}
+.recentCustomerContainer {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--lightGreyColor);
+  border-radius: 1em;
+  align-self: flex-end;
+  padding: 1em;
+  overflow-y: scroll;
+  height: 500px;
+}
+.recentCustomerContainer > span {
+  font-size: 1.1em;
+  font-weight: 500;
+  color: var(--blueColor);
+  margin-bottom: 2em;
+}
+.salesTopSelling {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1em;
+  margin-top: 4em;
+  border: 2px solid var(--lightGreyColor);
+  border-radius: 1em;
+}
+.salesTopSelling-top {
+  margin-bottom: 1.5em;
+}
+.salesTopSelling-top > span {
+  color: var(--skyBlueColor);
+  font-weight: 500;
+}
+.salesTopSelling-bottom {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+
+  padding-bottom: 1em;
+}
+.salesRecentSales {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 2px solid var(--lightGreyColor);
+  border-radius: 1em;
+  margin-top: 3em;
+}
+.salesRecentSales-top {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  height: 6vh;
+}
+.salesRecentSales-top > span {
+  font-size: 1.2em;
+  color: var(--skyBlueColor);
+
+  font-weight: 600;
+}
+.salesRecentSales-bottom {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2em;
+}
+.salesRecentSales-bottom-top {
+  display: grid;
+  grid-template-columns: 25% 20% 19% 18% 18%;
+  padding-left: 2em;
+  height: 6vh;
+  background-color: var(--adminBlueColor);
+  align-items: center;
+}
+.salesRecentSales-bottom-top > span {
+  color: var(--skyBlueColor);
+
+  font-weight: 500;
+}
+@media screen and (max-width: 800px) {
+  .salesOverview {
+    flex-direction: column;
+  }
+  .salesOverviewLeft {
+    width: 100%;
+  }
+  .salesOverviewImaContainer {
+    margin-bottom: 2em;
+    height: 30vh;
+    width: 120%;
+  }
+  .salesOverviewRight {
+    width: 100%;
+    padding-left: 1em;
+  }
+  .recentCustomerContainer {
+    align-self: center;
+    padding-right: 0;
+  }
+  .salesRecentSales {
+    display: none;
+  }
+  .recentSalesMobile {
+    display: flex;
+    flex-direction: column;
+    width: 120%;
+    border: 2px solid var(--lightGreyColor);
+    border-radius: 1rem;
+    padding: 0.5em;
+    position: relative;
+    margin-top: 2em;
+  }
+  .recentSalesMobileText {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 1em;
+  }
+  .recentSalesMobileText > span {
+    font-size: 1.2em;
+    font-weight: 500;
+    color: var(--skyBlueColor);
+  }
+}
+
+/* ==============sales=====XXXXXXXXXXXXX============= */
+
+/* ================income=================== */
+.sellerIncome {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+}
+.sellerIncomeTop {
+  margin-bottom: 2em;
+}
+.sellerIncomeTop > span {
+  font-size: 1.5em;
+  color: var(--orangeColor);
+}
+.sellerIncomeMiddle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.sellerIncomeMiddleLeft {
+  width: 70%;
+  height: 47vh;
+}
+.sellerIncomeMiddleRight {
+  height: 47vh;
+}
+.incomeGraphText {
+  position: absolute;
+  top: 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2em;
+  width: 100%;
+}
+.incomeGraphText > span {
+  color: var(--greenColor);
+  /* font-size: 1.2em; */
+  font-weight: 500;
+}
+.sellerIncomeBottom {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-radius: 1em;
+  border: 2px solid var(--lightGreyColor);
+  margin-top: 4em;
+  padding: 1em 0;
+}
+.sellerIncomeBottom-top {
+  display: flex;
+  flex-direction: row;
+  padding: 0 1em;
+  /* height: 6vh; */
+  margin-bottom: 2em;
+}
+.sellerIncomeBottom-top > span {
+  margin-right: 5em;
+  font-size: 1.2em;
+  color: var(--skyBlueColor);
+  font-weight: 500;
+}
+.seller-income-nav-links {
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  align-items: center;
+  justify-content: space-between;
+}
+@media screen and (max-width: 800px) {
+  .sellerIncomeMiddle {
+    flex-direction: column;
+  }
+  .sellerIncomeMiddleLeft {
+    width: 100%;
+    height: 35vh;
+  }
+  .sellerIncomeMiddleRight {
+    width: 100%;
+    height: 23vh;
+  }
+
+  .sellerIncomeBottom-top {
+    flex-direction: column;
+  }
+  .sellerIncomeBottom-top > span {
+    margin-bottom: 1em;
+  }
+  .seller-income-nav-links {
+    flex-wrap: wrap;
+  }
+  .seller-income-nav {
+    font-size: 0.8em;
+    margin-bottom: 0.5em;
+    margin-right: 0.5em;
+  }
+  .sellerIncomeBottom {
+    width: 120%;
+  }
+}
+/* ================income=======XXXXXXXX============ */
+/* =================Review============= */
+.sellerReviews {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+}
+.sellerReviewsTop {
+  margin-bottom: 2em;
+}
+.sellerReviewsTop > span {
+  font-size: 1.5em;
+  color: var(--orangeColor);
+}
+.sellerReviewsMiddle {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+
+  border-radius: 1em;
+  align-items: center;
+  justify-content: space-between;
+}
+.sellerReviewsMiddleLeft {
+  width: 70%;
+  height: 47vh;
+}
+.sellerReviewsMiddleRight {
+  height: 47vh;
+}
+.reviewTextGraph {
+  position: absolute;
+  top: 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2em;
+  width: 100%;
+}
+.reviewTextGraph > span {
+  color: var(--orangeColor);
+  /* font-size: 1.2em; */
+  font-weight: 500;
+}
+.sellerReviewTable {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  border: 2px solid var(--lightGreyColor);
+  border-radius: 1em;
+}
+.sellerReviewTableTop {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+}
+.sellerReviewTableTopA {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-between;
+}
+.sellerReviewTableTopB {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-between;
+}
+.sellerReviewTableTopB > span {
+  font-size: 0.8em;
+  color: var(--greyColor);
+}
+.reviewStarContainer {
+  display: flex;
+  flex-direction: row;
+}
+.faStarr {
+  color: var(--orangeColor);
+  margin-right: 0.5em;
+}
+.faStarGrey {
+  color: var(--greyColor);
+  margin-right: 0.5em;
+}
+.faStarGreyy {
+  color: var(--greyColor);
+}
+.sellerReviewTable > hr {
+  border-top: 2px solid grey;
+}
+.sellerReviewTableBottom {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+}
+.sellerReviewTableBottomA {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+.sellerReviewsBottom {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3em;
+  border-radius: 1em;
+  border: 2px solid var(--lightGreyColor);
+}
+.sellerReviewsBottom-top {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  padding: 1em;
+  /* padding-bottom: 1em; */
+  background-color: var(--lightGreyColor);
+}
+.sellerReviewsBottom-top > span {
+  font-weight: 500;
+}
+.reviewMobile {
+  display: none;
+}
+@media screen and (max-width: 800px) {
+  .sellerReviewsMiddle {
+    flex-direction: column;
+  }
+  .sellerReviewsMiddleLeft {
+    width: 100%;
+    height: 35vh;
+  }
+  .sellerReviewsMiddleRight {
+    display: flex;
+    width: 100%;
+    /* align-items: center; */
+    justify-content: center;
+    height: 35vh;
+  }
+  .sellerReviewTable {
+  }
+  .sellerReviewsBottom {
+    display: none;
+  }
+  .reviewMobile {
+    display: flex;
+    flex-direction: column;
+    width: 120%;
+    border: 2px solid var(--lightGreyColor);
+    border-radius: 1rem;
+    padding: 0.5em;
+    position: relative;
+    margin-top: 2em;
+  }
+  .reviewMobileText {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 1em;
+  }
+  .reviewMobileText > span {
+    font-size: 1.2em;
+    font-weight: 500;
+    color: var(--skyBlueColor);
+  }
+}
+/* =================Rreview=====XXXXXXX======== */
 @media screen and (max-width: 1200px) {
   .profileSideBar {
     width: 300px;
@@ -543,9 +1193,6 @@
   }
 }
 @media screen and (max-width: 900px) {
-  /* .profileSideBar{
-    width:300px;
-  } */
   .sidebarNav {
     padding: 0;
   }
@@ -557,5 +1204,159 @@
   .profileOverviewSection2Top,
   .profileOverviewSection2Bottom {
     flex-direction: column;
+  }
+  .profileOverviewSection2 {
+    margin-bottom: 3em;
+  }
+  .overviewGraphContainerTop {
+    width: 100%;
+  }
+  .overviewGraphContainerBottom {
+    height: 32vh;
+  }
+  .overviewGraphImg {
+    width: 120%;
+    height: 30vh;
+  }
+  .overviewGraphContainerTopMiddle {
+    position: absolute;
+    top: -130%;
+    padding: 0;
+  }
+  .graphOrders,
+  .graphSales,
+  .graphIncome,
+  .grapRatings {
+    width: 5em;
+    height: 3em;
+    margin-right: 0;
+  }
+  .graphOrders > span,
+  .graphSales > span,
+  .graphIncome > span,
+  .grapRatings > span {
+    font-size: 0.7em;
+  }
+  .listOfOrdersMobileContainer {
+    display: flex;
+    flex-direction: column;
+    width: 120%;
+    border: 2px solid var(--lightGreyColor);
+    border-radius: 1rem;
+    padding: 0.5em;
+    position: relative;
+  }
+  .listOfOrdersMobileTopText {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 1em;
+  }
+
+  .stockReportMobileContainer {
+    display: flex;
+    flex-direction: column;
+    width: 120%;
+    border: 2px solid var(--lightGreyColor);
+    border-radius: 1rem;
+    padding: 0.5em;
+    margin-top: 2em;
+  }
+  .stockReportMobileTop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 1em;
+  }
+  .stockReportMobileTop > h2 {
+    cursor: pointer;
+  }
+
+  .profileOverviewSection3 {
+    display: none;
+  }
+
+  .stockReportTopA {
+    flex-direction: column;
+  }
+  .stockReportCard {
+    padding-left: 4em;
+    margin-top: 1em;
+  }
+  .stockReportTopC {
+    flex-direction: column;
+  }
+  .stockReportTopCRight {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-top: 1em;
+  }
+  .stockSearchIcon {
+    margin-right: 1em;
+  }
+
+  .sellerProductsTop {
+    flex-direction: column;
+  }
+  .sellerProductsTopRight {
+    padding-left: 5em;
+  }
+  .sidebarMenu {
+    padding: 1em;
+    cursor: pointer;
+    display: block;
+  }
+  .profileSideBarMenu {
+    display: none;
+  }
+
+  .listOfOrderContainer {
+    display: none;
+  }
+  .listOfOrdersMobileMiddle {
+    display: flex;
+    flex-direction: column;
+  }
+  .orderMobileText {
+    display: flex;
+    align-items: center;
+    background-color: var(--orangeColor);
+    padding: 0.2em 0.4em;
+    border-radius: 0.3em;
+  }
+  .listOfOrdersMobileMiddleA {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin-top: 0.5em;
+  }
+  .listOfOrdersMobileMiddleA > span:first-child {
+    color: var(--blueColor);
+    margin-right: 2em;
+  }
+  .stockReportBottom {
+    display: none;
+  }
+  .stockSearchContainerBottom {
+    display: flex;
+  }
+  .stockReportTopCRight {
+    display: none;
+  }
+  .editPen {
+    width: 3.5em;
+  }
+  .profileFeeds {
+    padding-left: 0;
+  }
+  .sellerProductsTopLeft {
+    height: 53vh;
+  }
+}
+@media screen and (max-width: 370px) {
+  .stockReportCard {
+    margin-left: 1em;
   }
 }

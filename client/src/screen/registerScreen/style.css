@@ -191,7 +191,7 @@ input {
 .signupBtnContainer {
   display: flex;
   background-color: var(--orangeColor);
-  width: 50%;
+  width: 200px;
   align-items: center;
   justify-content: center;
   border-radius: 0.2rem;
@@ -235,7 +235,7 @@ input {
   display: flex;
   /* align-items: center; */
   justify-content: center;
-  width: 40%;
+  width: 200px;
   border: 1px solid var(--greyColor);
   border-radius: 0.2rem;
   height: 25px;
@@ -267,7 +267,7 @@ input {
 .sigupWithFacebookContainer {
   display: flex;
   justify-content: center;
-  width: 40%;
+  width: 200px;
   border: 1px solid var(--greyColor);
   border-radius: 0.2rem;
   height: 25px;
@@ -285,7 +285,7 @@ input {
 }
 .regTermsContainer {
   display: flex;
-  width: 40%;
+  width: 200px;
   justify-content: space-between;
   align-items: center;
 }
@@ -307,5 +307,17 @@ input {
   }
   .becomeSellerContainer {
     margin-bottom: 3em;
+  }
+  .registerInputContainer {
+    flex-direction: column;
+  }
+  .regInput {
+    margin-bottom: 1em;
+  }
+  .registerScreenLeftTextContainer > h3 {
+    font-size: 1em;
+  }
+  .registerScreenLeftTextContainer > h4 {
+    font-size: 1em;
   }
 }

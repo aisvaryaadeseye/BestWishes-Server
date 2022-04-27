@@ -1,0 +1,16 @@
+@media screen and (max-width: 768px) {
+  .listOfOrderBody {
+    margin-bottom: 2em;
+  }
+  .listOfOrdersMobileTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 1em;
+  }
+  .listOfOrdersMobileTop > span {
+    color: var(--orangeColor);
+    font-weight: 600;
+  }
+}

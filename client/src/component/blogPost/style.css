@@ -48,8 +48,13 @@
   margin-bottom: 0.5rem;
   font-weight: 500;
 
-  /* white-space: nowrap;  */
 }
 .blogPostRight > p {
   font-size: 0.9rem;
+}
+
+@media screen and (max-width: 800px) {
+  .blogPost {
+    width: 22em;
+  }
 }

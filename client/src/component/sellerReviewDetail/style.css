@@ -1,0 +1,70 @@
+.sellerReviewDetail {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  padding: 1em;
+}
+.sellerReviewDetail:hover {
+  background-color: var(--lightOrangeColor);
+}
+
+.product-review-img {
+  width: 45px;
+  height: 50px;
+  border-radius: 0.3em;
+  margin-right: 0.4em;
+}
+.customer-review-img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  margin-right: 0.4em;
+}
+.customer-review-container {
+  display: flex;
+  flex-direction: row;
+}
+.sellerReviewDetailText {
+  display: flex;
+  flex-direction: column;
+}
+.sellerReviewDetailText > span:last-child {
+  font-size: 0.8em;
+  color: var(--greyColor);
+}
+.customer-review-srar {
+  color: var(--orangeColor);
+  font-size: 1.5em;
+  margin-right: 0.2em;
+}
+.customer-review-text {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  /* width: 200px; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.modal-container {
+  display: flex;
+  flex-direction: column;
+}
+.modal-container-top {
+  display: flex;
+  flex-direction: row;
+  /* margin-bottom: 1em; */
+}
+.modal-top-text {
+  display: flex;
+  flex-direction: column;
+  margin-left: 0.5em;
+}
+.modal-top-text > h5 {
+  color: var(--orangeColor);
+  font-weight: 0.6em;
+}
+.modal-top-text > span {
+  font-size: 0.9em;
+}
+.modal-container-bottom > span {
+  font-size: 0.8em;
+}

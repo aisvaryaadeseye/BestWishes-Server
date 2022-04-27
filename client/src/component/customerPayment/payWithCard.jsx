@@ -1,5 +1,7 @@
 import React from "react";
 import CardPayment from "../cardPayment";
+import OrderProduct from "../oderProduct";
+import OrdersAll from "../orderNavs/ordersAll";
 import "./style.css";
 
 const PayWithCard = () => {
@@ -9,6 +11,7 @@ const PayWithCard = () => {
         <CardPayment />
         <CardPayment />
         <CardPayment />
+        {/* <OrderProduct /> */}
       </div>
       <div className="payWithCardRight">
         <span>

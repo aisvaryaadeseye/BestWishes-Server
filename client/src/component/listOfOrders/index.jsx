@@ -2,7 +2,7 @@ import React from "react";
 import "./style.css";
 import orderProductImg from "../../assets/images/orderProductImg.jpg";
 
-const ListOfOrders = ({ orderType }) => {
+const ListOfOrders = ({ orderType, showProductImg }) => {
   return (
     <div className="listOfOrders">
       <span>#00533</span>
@@ -15,9 +15,11 @@ const ListOfOrders = ({ orderType }) => {
       </div>
 
       <div className="orderTextContainer">
-        <div className="orderImgContainer">
-          <img src={orderProductImg} alt="" className="orderImage " />
-        </div>
+        {showProductImg && (
+          <div className="orderImgContainer">
+            <img src={orderProductImg} alt="" className="orderImage " />
+          </div>
+        )}
         <span>Tye & dye shirt</span>
       </div>
 

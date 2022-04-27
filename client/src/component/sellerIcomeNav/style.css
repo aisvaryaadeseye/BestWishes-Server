@@ -1,0 +1,58 @@
+.seller-all-income {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.seller-all-income-top {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  height: 6vh;
+  align-items: center;
+  background-color: var(--adminBlueColor);
+  padding: 0 1em;
+}
+.seller-all-income-top > span {
+  color: var(--skyBlueColor);
+  font-weight: 500;
+}
+.seller-all-income-mobile,
+.seller-income-slider {
+  display: none;
+}
+
+@media screen and (max-width: 800px) {
+  .seller-all-income {
+    display: none;
+  }
+  .seller-income-slider {
+    display: block;
+    /* flex-direction: column; */
+  }
+  .seller-all-income-mobile {
+    display: flex;
+    flex-direction: column;
+    padding-left: 1em;
+  }
+  .seller-all-income-mobile-text {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    margin-bottom: 1em;
+  }
+  .seller-all-income-mobile-text > span:first-child {
+    color: var(--skyBlueColor);
+    font-weight: 500;
+  }
+  .seller-all-income-mobile-text > span:last-child {
+    color: var(--greyColor);
+    font-size: 0.9em;
+  }
+  .seller-income-select {
+    width: 80px;
+    color: var(--greyColor);
+    font-size: 0.8em !important;
+    border: 1px solid white;
+  }
+  .seller-income-select > option {
+    font-size: 0.8em !important;
+  }
+}

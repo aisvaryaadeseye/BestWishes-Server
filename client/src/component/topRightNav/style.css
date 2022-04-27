@@ -74,8 +74,25 @@ a {
 }
 .accountDivSeller {
   margin-left: 3em;
+  margin-right: 3em;
 }
 
 .helpSellerAcc {
   margin-right: 6em !important;
+}
+.cartCounter {
+  display: flex;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background-color: var(--orangeColor);
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  right: 12%;
+}
+.cartCounter > span {
+  font-size: 0.8em;
+  color: white;
 }

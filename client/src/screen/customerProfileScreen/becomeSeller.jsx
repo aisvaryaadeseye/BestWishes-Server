@@ -43,10 +43,7 @@ const BecomeSeller = () => {
     setCountry(country);
   };
 
-  // const checkTermHandler = (e) => {
-  //   setCheckTerms(e.target.checked);
-  //   console.log({ checkTerms: checkTerms });
-  // };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -64,7 +61,6 @@ const BecomeSeller = () => {
 
       return setError("Please confirm that you are maker of the product");
     }
-    // if(!showInformation) return setError("Please agree the terms and conditions")
 
     const formData = new FormData();
     formData.append("sellerName", sellerName);
@@ -94,7 +90,6 @@ const BecomeSeller = () => {
       console.log({ country: country.label });
       await USER.saveSeller(data.isSeller);
       await USER.updateSellerData(data.sellerData);
-      // localStorage.setItem("sellerData", JSON.stringify(data.sellerData ));
 
       navigate("/sellerprofilescreen/overview");
 

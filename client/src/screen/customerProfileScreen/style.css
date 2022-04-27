@@ -1,13 +1,28 @@
 .customerProfileScreen {
   display: flex;
   width: 100%;
-  /* background-color: red; */
+  padding-left: 1em;
+}
+.customerSideBar {
+  width: 300px;
+  display: block;
+  flex-direction: column;
+  padding: 1rem;
+  z-index: 200;
+  transform: translateX(1%);
+  transition: all 0.3s ease-in-out;
+  position: absolute;
+  top: 12%;
+  background-color: white;
+}
+.customerSideBar.show {
+  transform: translateX(-100%);
 }
 .customerProfileSideBar {
   display: flex;
-  width: 20%;
+  width: 260px;
   flex-direction: column;
-  padding: 1rem;
+  /* padding: 1rem; */
 }
 .customerProfileSideBarTop {
   display: flex;
@@ -52,7 +67,8 @@
   width: 100%;
   border: 2px solid var(--lightGreyColor);
   border-radius: 0.4rem;
-  padding: 1em 0;
+  padding: 1em;
+  /* background-color: red; */
 }
 .customerProfileSideBarBottom > h1 {
   font-size: 1.2em;
@@ -78,8 +94,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2em;
-  height: 2em;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   background-color: var(--orangeColor);
   color: var(--whiteColor);
@@ -92,13 +108,13 @@
 .customerProfileFeeds {
   /* flex: 0.8; */
   width: 80%;
+  padding-left: 3em;
 }
 
 /* ======eiditCustomerProfile=========== */
 .editCustomerProfile {
   padding: 1em;
-  /* background-color: green; */
-  /* width: 100%; */
+  height: 100vh;
 }
 .editCustomerProfile > h1 {
   font-size: 1.2em;
@@ -209,7 +225,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: 3em;
+  margin-right: 2em;
 }
 .orderNavUnderline {
   width: 3rem;
@@ -284,13 +300,36 @@
   }
 }
 @media screen and (max-width: 900px) {
-  /* .customerProfileSideBar{
-      width:300px;
-    } */
+  .SavedItemsBottom {
+    display: flex;
+    flex-direction: column;
+  }
   .sidebarNav {
     padding: 0;
   }
   .customerProfileScreen {
     flex-direction: column;
+  }
+  .customerProfileSideBar {
+    display: none;
+  }
+  .editCustomerProfile {
+    width: 120%;
+  }
+  .customerProfileFeeds {
+    padding-left: 0;
+  }
+  .customerOrdersTop > span {
+    font-size: 0.9em;
+    margin-bottom: 2em;
+  }
+  .orderNavbarContainer {
+    margin-top: 1em;
+  }
+  .orderNav {
+    font-size: 0.9em;
+  }
+  .orderNavUnderline {
+    height: 0.13rem !important;
   }
 }

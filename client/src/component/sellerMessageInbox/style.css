@@ -1,0 +1,5 @@
+.sellerMessageInbox {
+  display: flex;
+  margin-bottom: 1em;
+  flex-direction: column;
+}

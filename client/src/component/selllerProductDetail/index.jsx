@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./style.css";
-
+import { useNavigate } from "react-router-dom";
 import Likedbutton from "../../assets/images/Likedbutton.svg";
 import LikedBtnDone from "../../assets/icons/LikedButton.svg";
 
@@ -8,7 +8,7 @@ import todayproduct from "../../assets/images/todayproduct4.jpg";
 
 const SellerProductDetail = ({ showDiscount }) => {
   const [likeBtn, setLikeBtn] = useState(false);
-
+  const navigate = useNavigate();
   const handleLike = () => {
     setLikeBtn(!likeBtn);
   };
@@ -43,7 +43,9 @@ const SellerProductDetail = ({ showDiscount }) => {
           </div>
         </div>
         <div className="priceBtnContainer">
-          <button>View product</button>
+          <button onClick={() => navigate("/seller-product-details-screen")}>
+            View product
+          </button>
         </div>
       </div>
     </div>
@@ -51,3 +53,4 @@ const SellerProductDetail = ({ showDiscount }) => {
 };
 
 export default SellerProductDetail;
+

@@ -8,9 +8,9 @@
 
 .productScreenLeft {
   display: flex;
-  flex: 3;
+  flex: 2;
   flex-direction: column;
-  align-items: center;
+  padding-left: 2em;
 }
 
 .productScreenRight {

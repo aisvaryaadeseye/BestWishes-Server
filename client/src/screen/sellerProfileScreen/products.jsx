@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 
-import AllProductsCard from "../../component/overviewCard/allProducts";
 import allProductSaved from "../../assets/icons/allProductSaved.jpg";
 
 var productTag = [
@@ -14,16 +13,6 @@ var productTag = [
   { id: "Shoes" },
   { id: "Trousers" },
   { id: "T-shirt" },
-  // ,
-  // "Belt",
-  // "Cap",
-  // "Hand bags",
-  // "Jeans",
-  // "Jewelries",
-  // "Pants",
-  // "Shoes",
-  // "Trousers",
-  // "T-shirts",
 ];
 var productTagColor = [];
 
@@ -37,15 +26,10 @@ var linkTags = [
   { link: "pottery", span: "Pottery" },
   { link: "art-craft", span: "Art & Craft" },
   { link: "other-categories", span: "Other Categories" },
-  // { link: "other-categories", span: "Add Product to collection" },
-];
-var linkTag = [
-  { link: "art-craft", span: "Art & Craft" },
-  { link: "other-categories", span: "Other Categories" },
 ];
 
 const SellerProducts = () => {
-  const [linkBgColor, setLinkBgColor] = useState(null);
+  const [linkBgColor, setLinkBgColor] = useState([]);
   const [productCat, setProductCat] = useState("All Collections");
 
   const handleProductLink = (x) => {
@@ -55,9 +39,9 @@ const SellerProducts = () => {
 
   const handleTagColor = (x) => {
     if (productTagColor.includes(x)) {
-      productTagColor = productTagColor.filter((rem) => rem.id !== x.id);
+      productTagColor = productTagColor.filter((rem) => rem !== x);
     } else {
-      productTagColor.push(x.id);
+      productTagColor.push(x);
       console.log(productTagColor);
     }
   };
@@ -89,18 +73,18 @@ const SellerProducts = () => {
                 </Link>
               );
             })}
-            <Link to="other-categories" className="productLeftAddNew">
-              <span>
-                <i className="fa fa-plus faAddProduct" aria-hidden="true"></i>{" "}
-                Add Product to collection
-              </span>
-            </Link>
           </div>
         </nav>
+
         <div className="sellerProductsTopRight">
           <ProductsCard productCat={productCat} />
         </div>
       </div>
+
+      <Link to="/add-product-screen">
+        <i className="fa fa-plus faAddProduct" aria-hidden="true"></i> Add
+        Product to collection
+      </Link>
       <hr className="productDivider" />
       <div className="sellerProductsBottom">
         <div className="sellerProductsBottomTop">
@@ -111,7 +95,7 @@ const SellerProducts = () => {
                   key={i}
                   className="productTagText"
                   style={{
-                    backgroundColor: productTagColor?.x === x && "red",
+                    backgroundColor: productTagColor?.x && "red",
                   }}
                   onClick={() => handleTagColor(x)}
                 >

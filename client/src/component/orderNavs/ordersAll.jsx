@@ -1,4 +1,5 @@
 import React from "react";
+import CardPayment from "../cardPayment";
 import OrderProduct from "../oderProduct";
 import "./style.css";
 
@@ -14,6 +15,7 @@ const OrdersAll = () => {
       <OrderProduct status="Pending" />
       <OrderProduct status="Cancelled" />
       <OrderProduct status="Completed" />
+      {/* <CardPayment /> */}
     </div>
   );
 };

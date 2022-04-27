@@ -1,6 +1,6 @@
 .cardPayment {
   display: flex;
-  width: 25em;
+  width: 350px;
   padding: 0.5em;
   border-radius: 0.5em;
   border: 2px solid var(--lightGreyColor);
@@ -19,7 +19,7 @@
 .cardPaymenMiddle {
   display: flex;
   flex-direction: column;
-  width: 50;
+  width: 50%;
   padding: 1em;
   /* background-color: red; */
 }
@@ -28,7 +28,7 @@
   color: var(--blackColor);
 }
 .cardPaymenMiddle > h2 {
-  font-size: 0.9em;
+  font-size: 0.8em;
   color: var(--blackColor);
 }
 .cardPaymenMiddle > h3 {
@@ -41,7 +41,20 @@
   align-items: flex-end;
   justify-content: flex-end;
   width: 30%;
-  padding: 1em;
+  padding: 0 1em 1em 0;
+}
+.cardPaymentRightCheck {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+}
+.card-check-box-container {
+  width: 25px;
+  height: 25px;
+  border: 3px solid var(--orangeColor);
+  border-radius: 50%;
+  /* background-color: var(--orangeColor); */
 }
 .cardPaymentRight > span {
   cursor: pointer;
@@ -50,4 +63,15 @@
 .cardFaTrash {
   margin-right: 0.5em;
   cursor: pointer;
+}
+
+@media screen and (max-width: 430px) {
+  .cardPayment {
+    width: 220%;
+  }
+}
+@media screen and (max-width: 400px) {
+  .cardPayment {
+    width: 100%;
+  }
 }

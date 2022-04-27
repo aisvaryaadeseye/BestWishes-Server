@@ -26,7 +26,7 @@ const TotalIncomeCard = () => {
         </select>
       </div>
       <div className="TotalIncomeCardMiddle">
-        <h1>57, 020</h1>
+        <h1>€57, 020</h1>
         <img src={totalIcome} alt="" className="cardImg" />
       </div>
       <div className="TotalIncomeCardBottom">

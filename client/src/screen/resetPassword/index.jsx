@@ -6,8 +6,6 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import Dialog from "@material-ui/core/Dialog";
 import Button from "@material-ui/core/Button";
-import { Link } from "react-router-dom";
-// import Lottie from 'react-lottie';
 import Lottie from "lottie-react";
 import doneIcon from "../../assets/images/doneIcon.json";
 

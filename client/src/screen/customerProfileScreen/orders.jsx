@@ -35,7 +35,7 @@ const CustomerOrders = () => {
     <div className="customerOrders">
       <div className="customerOrdersTop">
         <h1>Orders</h1>
-        <p>Check the status of your order here</p>
+        <span>Check the status of your order here</span>
         <nav className="orderNavbarContainer">
           <div className="orderNav" onClick={handleshowAll}>
             <Link to="orderAll" className="customerNav">

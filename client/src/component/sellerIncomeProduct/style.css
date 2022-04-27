@@ -1,0 +1,24 @@
+.sellerIncomeProductDetail {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  align-items: center;
+  /* margin-top: 2em; */
+  padding: 0.5em 1em;
+}
+.sellerIncomeProductDetail:hover {
+  background-color: var(--lightOrangeColor);
+}
+.seller-img-product {
+  width: 45px;
+  height: 50px;
+  border-radius: 0.3em;
+  margin-right: 0.5em;
+}
+.sellerIncomeProductDetail > span {
+  font-size: 1.2em;
+  color: var(--orangeColor);
+}
+.sellerIncomeProductDetail > h5 {
+  font-size: 1em;
+  font-weight: 400;
+}

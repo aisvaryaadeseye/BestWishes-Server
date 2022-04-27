@@ -2,9 +2,9 @@ import customerImg from "../../assets/images/customerImg.jpg";
 import React, { useState, useMemo } from "react";
 import Select from "react-select";
 import countryList from "react-select-country-list";
-const EditCustomerProfile = () => {
-  const [fullName, setFullName] = useState();
 
+const EditCustomerProfile = ({ showDescription }) => {
+  const [fullName, setFullName] = useState();
   const [email, setEmail] = useState();
   const [phone, setPhone] = useState();
   const [dob, setDob] = useState();
@@ -29,8 +29,9 @@ const EditCustomerProfile = () => {
     <div className="editCustomerProfile">
       <h1>Edit profile</h1>
       <p>
-        The information will be used as your shipping details when you make a
-        order
+        {showDescription
+          ? " The information will be used as your shipping details when you make aorder"
+          : ""}
       </p>
 
       <div className="editCustomerFormContainer">
@@ -157,7 +158,7 @@ const EditCustomerProfile = () => {
             </div>
           </div>
           <div className="regInput passForm ">
-            <span className="userEmail">State Address</span>
+            <span className="userEmail">Street Address</span>
             <div className="passwordContainer editCusInputField">
               <input className="passwordInput regInputField" />
             </div>

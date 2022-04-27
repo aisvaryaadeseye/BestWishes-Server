@@ -1,0 +1,28 @@
+@media screen and (max-width: 768px) {
+  .stock-reportBody {
+    margin-bottom: 2em;
+  }
+  .stock-reportsMobileTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 1em;
+  }
+  .stock-reportsMobileTop > span {
+    color: var(--orangeColor);
+    font-weight: 600;
+  }
+  .stock-reportsMobileMiddleA {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+  }
+  .stock-reportsMobileMiddleA > span:first-child {
+    color: var(--skyPurpleColor);
+  }
+  .orderMobileText > span {
+    color: white;
+  }
+}

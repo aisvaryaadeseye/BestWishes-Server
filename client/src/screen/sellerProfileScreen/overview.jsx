@@ -10,11 +10,13 @@ import "./style.css";
 import OrdersStatus from "../../component/overviewCard/ordersStatus";
 import ListOfOrders from "../../component/listOfOrders";
 import TotalIncomeCard from "../../component/overviewCard/totalIncomeCard";
-import skypurpleGrap from "../../assets/images/skypurpleGrap.jpg";
-import purpleGrapg from "../../assets/images/purpleGrapg.jpg";
-import greenGraph from "../../assets/images/greenGraph.png";
-import orangeGraph from "../../assets/images/orangeGraph.jpg";
-
+import skypurpleGraph from "../../assets/images/skypurpleGraph.jpg";
+import purpleGraph from "../../assets/images/purpleGraph.jpg";
+import incomeGraph from "../../assets/images/incomeGraph.png";
+import reviewGraph from "../../assets/images/reviewGraph.jpg";
+import ListOfOrderSlider from "../../component/listOfOrderSlide";
+import StockReportSlide from "../../component/stockReportSlide";
+import { Link, useNavigate } from "react-router-dom";
 const ProfileOverView = () => {
   const [orders, setOrders] = useState(true);
   const [sales, setSales] = useState(false);
@@ -47,23 +49,17 @@ const ProfileOverView = () => {
   return (
     <div className="profileOverview">
       <div className="profileOverviewSection1">
-        <h1>Overview</h1>
+        <span>Overview</span>
       </div>
       <div className="profileOverviewSection2">
         <div className="profileOverviewSec2Left">
-          <div className="profileOverviewSection2Top">
-            <TotalSalesCard />
-            <TotalOrdersCard />
-            <TotalIncomeCard />
-          </div>
-          <div className="profileOverviewSection2Bottom">
-            <AllProductsCard />
-            <ShopLikes />
-            <ShopView />
-          </div>
-        </div>
-        <div className="profileOverviewSec2Right">
+          <TotalSalesCard />
+          <TotalOrdersCard />
+          <TotalIncomeCard />
           <TotalProductsCard />
+          <AllProductsCard />
+          <ShopLikes />
+          <ShopView />
           <OrdersStatus />
         </div>
       </div>
@@ -118,12 +114,12 @@ const ProfileOverView = () => {
           <img
             src={
               orders
-                ? skypurpleGrap
+                ? skypurpleGraph
                 : sales
-                ? purpleGrapg
+                ? purpleGraph
                 : income
-                ? greenGraph
-                : orangeGraph
+                ? incomeGraph
+                : reviewGraph
             }
             alt=""
             className="overviewGraphImg"
@@ -131,7 +127,7 @@ const ProfileOverView = () => {
         </div>
       </div>
       <div className="profileOverviewSection3 listOfOrderContainer">
-        <div className="orderTitle ">
+        <Link to="/sellerprofilescreen/seller-orders" className="orderTitle ">
           <div className="orderTitleLeft">
             <h1>List of Orders</h1>
           </div>
@@ -143,12 +139,12 @@ const ProfileOverView = () => {
             <span>Completed</span>
             <span>Cancelled</span>
           </div>
-        </div>
+        </Link>
         <div className="productOverviewSec3Two">
           <span>Order ID</span>
           <span>Customer</span>
           <span>Product</span>
-          <span>Qty</span>
+          <span>Quantity</span>
           <span>
             Delivery <br />
             Location
@@ -158,15 +154,32 @@ const ProfileOverView = () => {
             Status
           </span>
         </div>
-        <ListOfOrders orderType="Preparing" />
-        <ListOfOrders orderType="Completed" />
-        <ListOfOrders orderType="Delivering" />
-        <ListOfOrders orderType="Canceeled" />
+        <ListOfOrders orderType="Preparing" showProductImg={true} />
+        <ListOfOrders orderType="Completed" showProductImg={true} />
+        <ListOfOrders orderType="Delivering" showProductImg={true} />
+        <ListOfOrders orderType="Canceeled" showProductImg={true} />
       </div>
+      {/* ======list of order mobile========== */}
+      <div className="listOfOrdersMobileContainer">
+        <Link
+          to="/sellerprofilescreen/seller-orders"
+          className="listOfOrdersMobileTopText"
+        >
+          <h2>List of Orders</h2>
+        </Link>
+
+        <ListOfOrderSlider />
+      </div>
+      {/* ======list of order mobile=====XXXxx===== */}
+
+      {/* ==========stock report========== */}
       <div className="profileOverviewSection3">
-        <div className="productOverviewSec3One">
+        <Link
+          to="/sellerprofilescreen/stockreports"
+          className="productOverviewSec3One"
+        >
           <h1>Stock Report</h1>
-        </div>
+        </Link>
         <div className="productOverviewSec3Three">
           <span>Image</span>
           <span>Category</span>
@@ -179,6 +192,20 @@ const ProfileOverView = () => {
         <OverViewProductStock stockType="Out Stock" colorType="red" />
         <OverViewProductStock stockType="Low Stock" colorType="grey" />
       </div>
+      {/* ==========stock report=====XXx===== */}
+
+      {/* ============Stock report mobile===== */}
+      <div className="stockReportMobileContainer">
+        <div className="stockReportMobileTop">
+          <Link to="/sellerprofilescreen/stockreports">
+            <h2>Stock Report</h2>
+          </Link>
+        </div>
+        <div className="stockReportMobileBottom">
+          <StockReportSlide />
+        </div>
+      </div>
+      {/* ========XXXXXXX====Stock report mobile===== */}
     </div>
   );
 };

@@ -1,0 +1,63 @@
+.sellerAllCollectionNav {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  padding: 0 1em;
+}
+.sellerAllCollectionNav-top-title-container > span {
+  font-size: 1.2em;
+}
+
+.title-underline {
+  display: flex;
+  width: 120px;
+  height: 3px;
+  background-color: var(--orangeColor);
+}
+.title-underline-clothing {
+  display: flex;
+  width: 195px;
+  height: 3px;
+  background-color: var(--orangeColor);
+}
+.title-underline-pottery {
+  display: flex;
+  width: 57px;
+  height: 3px;
+  background-color: var(--orangeColor);
+}
+.title-underline-art {
+  display: flex;
+  width: 95px;
+  height: 3px;
+  background-color: var(--orangeColor);
+}
+.title-underline-health {
+  display: flex;
+  width: 135px;
+  height: 3px;
+  background-color: var(--orangeColor);
+}
+.title-underline-others {
+  display: flex;
+  width: 145px;
+  height: 3px;
+  background-color: var(--orangeColor);
+}
+.sellerAllCollectionNav-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 2em;
+}
+.seller-product-top-tag {
+  margin-top: 2em;
+  display: flex;
+  flex-wrap: wrap;
+}
+.product-text-tag {
+  margin: 0 2em 2em 0;
+}
+.product-text-tag:hover {
+  color: var(--orangeColor);
+  cursor: pointer;
+}

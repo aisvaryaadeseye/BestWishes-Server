@@ -1,0 +1,17 @@
+export const slideResponsive = {
+  0: { items: 1 },
+  300: { items: 1 },
+  400: { items: 1 },
+  500: { items: 1 },
+  600: { items: 1 },
+  700: { items: 1 },
+  800: { items: 2 },
+  900: { items: 3 },
+  1100: { items: 4 },
+  1224: { items: 5 },
+  1324: { items: 5 },
+  1424: { items: 6 },
+  1524: { items: 6 },
+  1624: { items: 7 },
+  1924: { items: 8 },
+};

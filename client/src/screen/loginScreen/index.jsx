@@ -29,14 +29,15 @@ const LoginScreen = () => {
     };
   }, []);
 
-  const handleShowCustomer = () => {
-    setShowSeller(true);
-    setShowCustomer(false);
-  };
-  const handleShowSller = () => {
-    setShowCustomer(true);
-    setShowSeller(false);
-  };
+  // const handleShowCustomer = () => {
+  //   setShowSeller(true);
+  //   setShowCustomer(false);
+  // };
+
+  // const handleShowSller = () => {
+  //   setShowCustomer(true);
+  //   setShowSeller(false);
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -75,11 +76,7 @@ const LoginScreen = () => {
         setSuccess("Success!");
         setTimeout(() => {
           setSuccess("");
-          if (data.user.isSeller) {
-            navigate("/sellerprofilescreen/overview");
-          } else {
-            navigate("/");
-          }
+          navigate("/");
         }, 1500);
       }
     } catch (error) {
@@ -167,7 +164,11 @@ const LoginScreen = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     className="passwordInput"
                   />
-                  <i className="fa fa-eye" aria-hidden="true" onClick={() => setShowPass(!showPass)} ></i>
+                  <i
+                    className="fa fa-eye"
+                    aria-hidden="true"
+                    onClick={() => setShowPass(!showPass)}
+                  ></i>
                 </div>
               </div>
               <div className="forgotPassContainer">

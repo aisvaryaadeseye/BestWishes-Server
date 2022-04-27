@@ -5,9 +5,6 @@ import "react-dropdown/style.css";
 import shopLikes from "../../assets/icons/shopLikes.jpg";
 
 const ShopLikes = () => {
-  const options = ["Daily", "Weekly", "Monthly"];
-  const defaultOption = options[0];
-
   const handleDropdown = () => {};
   return (
     <div className="shopLikes">

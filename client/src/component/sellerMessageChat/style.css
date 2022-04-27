@@ -1,0 +1,136 @@
+.sellerMessageChat {
+  display: flex;
+  width: 100%;
+}
+.sellerMessageChatLeft {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--lightGreyColor);
+  border-top-left-radius: 1em;
+  border-bottom-left-radius: 1em;
+}
+.sellerMessageChatLeftTop {
+  height: 100px;
+  border-top-left-radius: 1em;
+  padding: 0 1em;
+  display: flex;
+  align-items: center;
+}
+.sellerMessageChatLeft > hr,
+.sellerMessageChatRight > hr {
+  border-top: 2px solid grey;
+}
+.sellerMessageChatSearchContainer {
+  border: 2px solid var(--lightGreyColor);
+  padding: 0.5em 1em;
+  border-radius: 0.5em;
+}
+.sellerMessageChatSearchContainer > i {
+  margin-right: 1em;
+}
+.sellerMessageChatSearchContainer > input {
+  outline: none;
+  background: transparent;
+  border: none;
+  width: 300px;
+}
+.sellerMessageChatLeftBottom {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  position: sticky;
+  height: 80vh;
+}
+.sellerMessageChatRight {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  border: 2px solid var(--lightGreyColor);
+  border-top-right-radius: 1em;
+  border-bottom-right-radius: 1em;
+}
+.sellerMessageChatRightTop {
+  display: flex;
+  height: 100px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1em;
+}
+.sellerMessageChatRightTopLeft {
+  display: flex;
+  flex-direction: row;
+}
+.sellerMessageChatRightTopLeftImgContainer {
+  width: 50px;
+  height: 50px;
+  margin-right: 1em;
+}
+.sellerMessageChatRightTopLeftImg {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.sellerMessageChatRightTopLeftTextContainer {
+  display: flex;
+  flex-direction: column;
+}
+.sellerMessageChatRightTopLeftTextContainer > h3 {
+  font-size: 1.2em;
+  /* color: red; */
+}
+.sellerMessageChatRightTopLeftTextContainer > span:last-child {
+  font-size: 0.8em;
+}
+.sellerMessageChatRightTopRight > i {
+  cursor: pointer;
+  margin-right: 1em;
+}
+.sellerMessageChatRightMiddle {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  overflow-y: scroll;
+  position: sticky;
+  height: 70vh;
+}
+.sellerMessageChatRightBottom {
+  display: flex;
+  height: 10vh;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1em;
+}
+.sellerMessageChatRightBottom > textarea {
+  outline: none;
+  border: none;
+  background: transparent;
+}
+.sendIcon {
+  width: 40px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+  .sellerMessageChat {
+    flex-direction: column;
+    width: 130%;
+  }
+  .sellerMessageChatLeft {
+    width: 100%;
+    border-radius: 1em;
+  }
+  .sellerMessageChatSearchContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .sellerMessageChatSearchContainer > input {
+    width: 100%;
+  }
+  .sellerMessageChatRight {
+    width: 100%;
+    border-radius: 1em;
+    margin-top: 2em;
+  }
+}

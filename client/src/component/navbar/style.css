@@ -31,7 +31,7 @@
   width: 300px;
   height: 38px;
   border-radius: 0.5rem;
-  border: 1px solid black;
+  border: 1px solid var(--greyColor);
   display: flex;
   align-items: center;
   padding: 0 1rem;
@@ -180,6 +180,11 @@ a {
   box-shadow: 2px 2px rgb(228, 215, 215);
 }
 @media screen and (max-width: 800px) {
+  .navBar {
+    display: none !important;
+  }
+}
+@media screen and (max-width: 400px) {
   .navBar {
     display: none !important;
   }

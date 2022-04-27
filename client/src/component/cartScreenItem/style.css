@@ -1,0 +1,97 @@
+.cart-screen-item {
+  display: flex;
+  height: 200px;
+  width: 500px;
+  border-radius: 0.5em;
+  border: 2px solid var(--lightGreyColor);
+  margin-bottom: 2em;
+}
+.cart-screen-item-left {
+  width: 35%;
+}
+.cart-screen-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5em;
+}
+.cart-screen-item-right {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  width: 65%;
+}
+.cart-item-text {
+  display: flex;
+  margin-bottom: 0.5em;
+}
+.cart-item-text > span:first-child {
+  color: var(--blueColor);
+  font-weight: 500;
+  margin-right: 0.5em;
+}
+.cart-item-text > span:last-child {
+  font-weight: 500;
+}
+.cart-item-right-bottom {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.add-remove-div {
+  display: flex;
+  margin-right: 2em;
+}
+.cart-remove {
+  color: grey;
+  cursor: pointer;
+}
+.cart-remove:hover {
+  opacity: 0.8;
+}
+.cart-remove > i {
+  margin-right: 0.5em;
+}
+.add-remove-btn {
+  height: 25px;
+  width: 25px;
+  border-radius: 0.3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--orangeColor);
+  cursor: pointer;
+}
+.add-remove-btn:hover {
+  opacity: 0.7;
+}
+.add-remove-btn > i {
+  color: white;
+}
+.cart-item-counter {
+  margin: 0 0.5em;
+  width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 2px solid black;
+}
+.cart-item-star {
+  color: var(--orangeColor);
+  margin-right: 0.3em;
+  font-size: 1.1em;
+}
+
+@media screen and (max-width: 800px) {
+  .cart-screen-item {
+    width: 22em;
+  }
+  .add-remove-div {
+    margin: 0;
+  }
+  h5,
+  h4 {
+    font-size: 1em;
+  }
+}

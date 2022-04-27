@@ -1,0 +1,123 @@
+.add-product-screen {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 2em;
+}
+.add-product-screen-top {
+  display: flex;
+  width: 100%;
+  margin-bottom: 2em;
+}
+.add-product-screen-top > span {
+  font-size: 0.9em;
+}
+.add-product-screen-top > span > i {
+  font-size: 0.8em;
+  margin: 0 0.5em;
+}
+.add-product-screen-bottom {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.add-product-img-con {
+  display: flex;
+  flex-direction: row;
+}
+.add-img-box {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: 220px;
+  background: var(--lightGreyColor);
+  align-items: center;
+  justify-content: center;
+  border-radius: 1em;
+  margin-right: 3em;
+  cursor: pointer;
+}
+.add-product-bottom-input-con {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-top: 2em;
+}
+.add-product-bottom-input-con-left {
+  display: flex;
+  width: 40%;
+  flex-direction: column;
+}
+.add-product-box-container {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 2em;
+}
+.add-pro-input-box {
+  display: flex;
+  flex-direction: column;
+  margin-right: 4em;
+}
+.add-pro-input-box > span {
+  color: var(--blueColor);
+  font-weight: 500;
+}
+.add-pro-input-box > input {
+  margin-top: 1em;
+  border-radius: 0.3em;
+  border: none;
+  border: 2px solid var(--greyColor);
+  width: 300px;
+  padding: 0.4em 0.4em;
+}
+.product-text-area {
+  width: 670px;
+  height: 80px;
+  border: 2px solid var(--greyColor);
+  border-radius: 0.3em;
+  padding: 0.4em;
+  margin-top: 1em;
+}
+.add-product-bottom-input-con-right {
+  display: flex;
+  flex-direction: column;
+  margin-left: 8em;
+}
+.add-pro-input-long {
+  width: 500px !important;
+}
+.add-pro-input-box > select {
+  height: 40px;
+  margin-top: 1em;
+  border-radius: 0.3em;
+  border: 2px solid var(--greyColor);
+  padding-right: 0.5em !important;
+}
+.add-product-container {
+  display: flex;
+  width: 70%;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2em;
+}
+.add-product-btn-con {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+  height: 40px;
+  background-color: var(--orangeColor);
+  border-radius: 0.3em;
+  color: #fff;
+  cursor: pointer;
+}
+.work-book-modal {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.work-book-modal > img {
+  width: 100%;
+}

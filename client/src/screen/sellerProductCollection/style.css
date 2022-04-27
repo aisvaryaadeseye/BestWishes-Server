@@ -1,0 +1,232 @@
+.sellerProductCollection {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.sellerProductCollection-top {
+  display: flex;
+  flex-direction: column;
+}
+.sellerProductCollection-top-B {
+  display: flex;
+  flex-direction: column;
+  padding: 2em;
+}
+.sellerProductCollecTop-B {
+  display: flex;
+  flex-direction: row;
+}
+.sellerProductCollection-top-left {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+}
+.store-image {
+  width: 130xp;
+  height: 130px;
+  border-radius: 50%;
+  margin-right: 2em;
+}
+.store-top-text {
+  display: flex;
+  flex-direction: column;
+}
+.store-top-text-rating {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.store-top-text > h6 {
+  font-size: 1.3em;
+}
+.store-top-text > h5 {
+  color: grey;
+  font-weight: 400;
+  font-size: 0.9em;
+}
+.store-top-text-rating > h6 {
+  margin-right: 0.5em;
+  color: grey;
+}
+.faCircleIcon {
+  font-size: 0.2em;
+  margin: 0 2em;
+  color: black;
+}
+.store-top-text-rating > h5 {
+  color: grey;
+  font-weight: 400;
+  font-size: 0.9em;
+}
+.sellerProductCollection-top-right-top {
+  display: flex;
+  width: 350px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2em;
+}
+.seller-profile-like-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.store-likeBtn {
+  width: 30px;
+  margin-right: 0.5em;
+}
+.sellerProductCollection-top-right-bottom {
+  display: flex;
+  width: 350px;
+  align-items: center;
+  padding: 0.5em;
+  border: 2px solid var(--lightGreyColor);
+  border-radius: 0.5em;
+}
+.sellerProductCollection-top-right-bottom > i {
+  margin-right: 1em;
+  cursor: pointer;
+}
+.sellerProductCollection-top-right-bottom > input {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  width: 300px;
+}
+.sellerProductCollection-bottom {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding-left: 2em;
+}
+.sellerProductCollection-bottom-left {
+  display: flex;
+  width: 320px;
+  padding: 0 1em;
+}
+.sellerProductCollection-bottom-left-container {
+  display: flex;
+  border: 2px solid var(--lightGreyColor);
+  flex-direction: column;
+  /* padding: 1em; */
+  width: 100%;
+}
+.seller-proct-left-bar {
+  display: flex;
+  flex-direction: column;
+  padding: 1em 0;
+}
+.seller-proct-left-bar-bottom {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+}
+.seller-procduct-nav {
+  /* margin-bottom: 1em; */
+  /* background-color: red; */
+  padding: 1em;
+}
+.seller-procduct-nav:hover {
+  /* margin-bottom: 1em; */
+  background-color: var(--lightOrangeColor);
+}
+.priceInInput > input {
+  border: none;
+  border: 1px solid grey;
+  padding: 0.3em;
+}
+.seller-product-review-text {
+  display: flex;
+  align-items: center;
+}
+.seller-product-review-text > h5 {
+  font-size: 1em;
+  color: var(--greyColor);
+}
+
+.seller-chat-box {
+  display: flex;
+  flex-direction: column;
+}
+.seller-chat-box-top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.seller-chat-box-top-left {
+  display: flex;
+}
+.faCancleO {
+  cursor: pointer;
+  font-size: 1.1em;
+}
+.store-image-chat {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.seller-chat-text-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1em;
+}
+.seller-chat-text-container > span:last-child {
+  font-size: 0.7em;
+}
+.sellerChatCircle {
+  color: var(--greenColor);
+  margin-right: 0.5em;
+}
+.seller-chat-box-bottom {
+  display: flex;
+  flex-direction: column;
+}
+.seller-chat-box-bottom-chat {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  overflow-y: scroll;
+  position: sticky;
+  height: 20vh;
+}
+.seller-chat-input {
+  display: flex;
+  align-items: center;
+}
+.report-page-container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.report-page-container > span {
+  cursor: pointer;
+}
+@media screen and (max-width: 800px) {
+  .sellerProductCollecTop-B {
+    flex-direction: column;
+  }
+  .sellerProductCollection-top-right {
+    margin-top: 2em;
+  }
+  .store-top-text > h6 {
+    font-size: 1em;
+  }
+  .store-image {
+    width: 100xp;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 2em;
+  }
+  .sellerProductCollection-top-right-top,
+  .sellerProductCollection-top-right-bottom {
+    width: 100%;
+  }
+  .sellerProductCollection-bottom {
+    flex-direction: column;
+  }
+  .sellerProductCollection-bottom-left {
+    margin-bottom: 2em;
+  }
+}

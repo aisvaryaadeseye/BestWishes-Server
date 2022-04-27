@@ -2,8 +2,15 @@ import React from "react";
 import "./style.css";
 import BlogPost from "../../component/blogPost";
 import BlogSlider from "../../component/blogSlider/BlogSlider";
-
+import { Link, Outlet } from "react-router-dom";
 const BlogScreen = () => {
+  var navLinks = [
+    { text: "lifestyle", link: "lifestyle" },
+    { text: "Tips & Tricks", link: "tips-tricks" },
+    { text: "News", link: "news" },
+    { text: "Events", link: "events" },
+    { text: "Update", link: "update" },
+  ];
   return (
     <div className="blogScreen">
       <div className="blogScreenTop">
@@ -14,31 +21,19 @@ const BlogScreen = () => {
           <div className="blogScreenLeftbar">
             <p>Categories</p>
             <hr className="solid"></hr>
-            <ul>
-              <li>Lifestyle</li>
-              <li>Tips & Tricks</li>
-              <li>News</li>
-              <li>Events</li>
-              <li>Testimony</li>
-            </ul>
+
+            <nav className="">
+              {navLinks.map((x, i) => {
+                return (
+                  <Link key={i} to={x.link}>
+                    <div className="blogNav">{x.text}</div>
+                  </Link>
+                );
+              })}
+            </nav>
           </div>
         </div>
-        <div className="blogScreenBottomRight">
-          <div className="blogScreenBottomRightTop">
-            <span>
-              Home <i className="fa-solid fa-caret-right faBlogRight"></i>
-              Category
-            </span>
-          </div>
-          <div className="blogScreenBottomRightBottom">
-            <BlogPost />
-            <BlogPost />
-            <BlogPost />
-            <BlogPost />
-            <BlogPost />
-            <BlogPost />
-          </div>
-        </div>
+        <Outlet />
       </div>
     </div>
   );

@@ -1,0 +1,26 @@
+.recentSalesMobileDiv {
+  display: none;
+}
+
+@media screen and (max-width: 800px) {
+  .recentSalesMobileDiv {
+    display: flex;
+    flex-direction: column;
+  }
+  .recentSalessMobileMiddleA {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    flex-direction: row;
+    align-items: center;
+    /* justify-content: space-between; */
+    margin-bottom: 1em;
+  }
+  .recentSalessMobileMiddleA > span:first-child {
+    color: var(--skyBlueColor);
+  }
+  .recentSalessMobileMiddleA > span:last-child {
+    color: var(--blackColor);
+    font-size: 0.9em;
+  }
+}

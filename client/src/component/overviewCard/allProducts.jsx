@@ -1,13 +1,9 @@
 import React from "react";
 import "./style.css";
-import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import allProductSaved from "../../assets/icons/allProductSaved.jpg";
 
 const AllProductsCard = () => {
-  const options = ["Daily", "Weekly", "Monthly"];
-  // const defaultOption = options[0];
-
   const handleDropdown = () => {};
   return (
     <div className="allProductsCard">
