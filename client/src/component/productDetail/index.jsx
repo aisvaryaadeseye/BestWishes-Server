@@ -14,6 +14,9 @@ const ProductDetail = ({ showDiscount, product, sellerTag }) => {
     setLikeBtn(!likeBtn);
   };
 
+  useEffect(() => {
+    // console.log({ product: product.proFrontIMAGE[0].URL });
+  }, []);
   // <Link to={{ pathname: `/product/${product._id}`}}>
 
   return (
@@ -23,10 +26,13 @@ const ProductDetail = ({ showDiscount, product, sellerTag }) => {
           <img src={likeBtn ? LikedBtnDone : Likedbutton} className="likeBtn" />
         </div>
         <Link
-          to={{ pathname: `/product-detail-screen/${product.id}` }}
+          to={{ pathname: `/product-detail-screen/${product._id}` }}
           className="product-img-con"
         >
-          <img src={product && product.imgData} className="todayImage" />
+          <img
+            src={product && product.proFrontIMAGE[0].URL}
+            className="todayImage"
+          />
         </Link>
 
         {showDiscount && (
@@ -54,7 +60,7 @@ const ProductDetail = ({ showDiscount, product, sellerTag }) => {
         )}
 
         <div className="priceContainer">
-          <p>€{product && product.price}</p>
+          <p>€{product && product.productPrice}</p>
           <div className="priceRight">
             <del> €70.99</del>
           </div>
@@ -73,7 +79,7 @@ const ProductDetail = ({ showDiscount, product, sellerTag }) => {
               setAdded(true);
             }}
           >
-            <button onClick={() => CART.addToCart(product.id)}>
+            <button onClick={() => CART.addToCart(product._id)}>
               <i className="fa fa-cartfa fa-shopping-cart faCart"></i> Add to
               Cart
             </button>

@@ -12,7 +12,7 @@ const AddProductSchema = new mongoose.Schema({
   productPrice: {
     type: String,
   },
-  productQuality: {
+  productQuantity: {
     type: String,
   },
   productDetail: {

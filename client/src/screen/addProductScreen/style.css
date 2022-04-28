@@ -25,6 +25,18 @@
   display: flex;
   flex-direction: row;
 }
+.add-prodcut-img-container {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: 220px;
+  margin-right: 3em;
+}
+.add-product-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 1em;
+}
 .add-img-box {
   display: flex;
   flex-direction: column;

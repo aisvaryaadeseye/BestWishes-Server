@@ -397,7 +397,7 @@ router.post(
       }
       const productName = req.body.productName;
       const productPrice = req.body.productPrice;
-      const productQuality = req.body.productQuality;
+      const productQuantity = req.body.productQuantity;
       const productDetail = req.body.productDetail;
       const productOrigin = req.body.productOrigin;
       const productCategory = req.body.productCategory;
@@ -408,7 +408,7 @@ router.post(
         owner: userID,
         productName,
         productPrice,
-        productQuality,
+        productQuantity,
         productDetail,
         productOrigin,
         productCategory,
@@ -433,6 +433,29 @@ router.post(
     }
   }
 );
+
+//get all products
+router.get("/products", async (req, res) => {
+  try {
+    const allProduct = await AddProduct.find({
+      AddProduct: AddProduct.addproducts,
+    });
+    res.status(200).json(allProduct);
+  } catch (error) {
+    res.status(500).json(error + "error fething data");
+  }
+});
+
+//get product by id
+router.get("/product", async (req, res) => {
+  const { productId } = req.query;
+  try {
+    const product = await AddProduct.findById(productId);
+    res.status(200).json(product);
+  } catch (error) {
+    res.status(500).json(error + "error fething data");
+  }
+});
 
 //reuseable function to generate token ===================================
 const sendToken = (user, statusCode, res) => {

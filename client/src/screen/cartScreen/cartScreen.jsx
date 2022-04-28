@@ -1,24 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import CartScreenItem from "../../component/cartScreenItem";
 import "./style.css";
+import CartContext from "../../provider/cartProvider";
 
 const CartScreen = () => {
+  const [qty, setQty] = useState(0);
   const [iscart, setIsCart] = useState(false);
+  const { cartState, CART } = useContext(CartContext);
+
+  const itemsPrice = cartState.cart.reduce(
+    (a, c) => a + c.productPrice * c.qty,
+    0
+  );
+  const totalPrice = itemsPrice;
+
+  let showCartItem =
+    cartState.cart &&
+    cartState.cart.map((item, i) => {
+      return <CartScreenItem item={item} key={i} />;
+    });
+
   return (
     <div className="cart-screen">
       <div className="cart-screen-on">
         <div className="cart-screen-left">
-          <CartScreenItem />
-          <CartScreenItem />
+          {showCartItem}
+          {/* <CartScreenItem />
+          <CartScreenItem /> */}
         </div>
         <div className="cart-screen-right">
           <div className="cart-screen-summary">
             <h5>Cart Summary</h5>
             <hr />
             <div className="cart-screen-summary-text">
-              <span>Items total (2)</span>
-              <span>€49.99</span>
+              <span>Items total ({cartState.cart.length})</span>
+              <span>€{totalPrice}</span>
             </div>
             <hr />
             <div className="cart-screen-summary-text">

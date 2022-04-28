@@ -83,8 +83,10 @@ import SellerOtherCategoriesNav from "./component/sellerProductCollectionNav/sel
 import SellerPotteryNav from "./component/sellerProductCollectionNav/sellerPotteryNav";
 import ProductDetailScreen from "./screen/productDetailScreen";
 import AddProductScreen from "./screen/addProductScreen";
+import CartContext from "./provider/cartProvider";
 function App() {
   const { state, USER } = useContext(UserContext);
+  const { CART } = useContext(CartContext);
   const [sideToggle, setSideToggle] = useState(false);
 
   useEffect(async () => {
@@ -93,6 +95,7 @@ function App() {
     await USER.recoverisSeller();
     await USER.recoverSellerData();
     await USER.recoverSaveSeller();
+    await CART.recoverCart();
   }, []);
 
   return (

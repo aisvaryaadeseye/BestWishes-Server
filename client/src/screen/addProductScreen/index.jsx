@@ -10,14 +10,14 @@ import ScreenSize from "../../component/screenSize/screenSize";
 const AddProductScreen = () => {
   const [productName, setProductName] = useState("");
   const [productPrice, setProductPrice] = useState("");
-  const [productQuality, setProductQuality] = useState("");
+  const [productQuantity, setproductQuantity] = useState("");
   const [productDetail, setProductDetail] = useState("");
   const [productOrigin, setProductOrigin] = useState("");
   const [productCategory, setProductCategory] = useState("");
   const [productType, setProductType] = useState("");
   const [productDeliveryTime, setProductDeliveryTime] = useState("");
   const [productSpecification, setProductSpecification] = useState("");
-  const [productFrontImg, setProductFrontImg] = useState("");
+  const [productFrontImg, setProductFrontImg] = useState(null);
   const [productBackImg, setProductBackImg] = useState("");
   const [productUpwardImg, setProductUpwardImg] = useState("");
   const [productDownWardImg, setProductDownWardImg] = useState("");
@@ -54,7 +54,7 @@ const AddProductScreen = () => {
     const formData = new FormData();
     formData.append("productName", productName);
     formData.append("productPrice", productPrice);
-    formData.append("productQuality", productQuality);
+    formData.append("productQuantity", productQuantity);
     formData.append("productDetail", productDetail);
     formData.append("productOrigin", productOrigin);
     formData.append("productCategory", productCategory);
@@ -97,6 +97,83 @@ const AddProductScreen = () => {
     }
   }, []);
 
+  const imageRef = React.useRef(null);
+
+  function GetFrontImg() {
+    const [frontImgRes, setFrontImgRes] = React.useState("");
+
+    function frontImgUploader(e) {
+      const imageFile = e.target.files[0];
+
+      const reader = new FileReader();
+      reader.addEventListener("load", (e) => {
+        setFrontImgRes(e.target.result);
+      });
+
+      reader.readAsDataURL(imageFile);
+    }
+
+    return { frontImgRes, frontImgUploader };
+  }
+  const { frontImgRes, frontImgUploader } = GetFrontImg();
+
+  //
+  function GetBackImg() {
+    const [backImgRes, setBackImgRes] = React.useState("");
+
+    function backImgUploader(e) {
+      const imageFile = e.target.files[0];
+
+      const reader = new FileReader();
+      reader.addEventListener("load", (e) => {
+        setBackImgRes(e.target.result);
+      });
+
+      reader.readAsDataURL(imageFile);
+    }
+
+    return { backImgRes, backImgUploader };
+  }
+  const { backImgRes, backImgUploader } = GetBackImg();
+
+  //
+  function GetUpwardImg() {
+    const [upWardImgRes, setupWardImgRes] = React.useState("");
+
+    function upwardImgUploader(e) {
+      const imageFile = e.target.files[0];
+
+      const reader = new FileReader();
+      reader.addEventListener("load", (e) => {
+        setupWardImgRes(e.target.result);
+      });
+
+      reader.readAsDataURL(imageFile);
+    }
+
+    return { upWardImgRes, upwardImgUploader };
+  }
+  const { upWardImgRes, upwardImgUploader } = GetUpwardImg();
+  //
+
+  function GetDownWardImg() {
+    const [downwardImgRes, setdownwardImgRes] = React.useState("");
+
+    function downWardImgUploader(e) {
+      const imageFile = e.target.files[0];
+
+      const reader = new FileReader();
+      reader.addEventListener("load", (e) => {
+        setdownwardImgRes(e.target.result);
+      });
+
+      reader.readAsDataURL(imageFile);
+    }
+
+    return { downwardImgRes, downWardImgUploader };
+  }
+  const { downwardImgRes, downWardImgUploader } = GetDownWardImg();
+
   return (
     <div className="add-product-screen">
       <div className="add-product-screen-top">
@@ -108,54 +185,107 @@ const AddProductScreen = () => {
       <h3 style={{ color: "green" }}>{success && success}</h3>
       <form className="add-product-screen-bottom" onSubmit={handleSubmit}>
         <div className="add-product-img-con">
-          <label htmlFor="front-view" className="add-img-box">
-            <input
-              filename="proFrontIMAGE"
-              onChange={(e) => setProductFrontImg(e.target.files[0])}
-              type="file"
-              id="front-view"
-              style={{ display: "none" }}
-            />
-            <img src={Camera} alt="" />
-            <h6>Front view</h6>
-            <span>Upload product image</span>
-          </label>
-          <label htmlFor="back-view" className="add-img-box">
-            <input
-              filename="proBackIMAGE"
-              onChange={(e) => setProductBackImg(e.target.files[0])}
-              type="file"
-              id="back-view"
-              style={{ display: "none" }}
-            />
-            <img src={Camera} alt="" />
-            <h6>Back view</h6>
-            <span>Upload product image</span>
-          </label>
-          <label htmlFor="upward-view" className="add-img-box">
-            <input
-              filename="proUpwardIMAGE"
-              onChange={(e) => setProductUpwardImg(e.target.files[0])}
-              type="file"
-              id="upward-view"
-              style={{ display: "none" }}
-            />
-            <img src={Camera} alt="" />
-            <h6>Upward view</h6>
-            <span>Upload product image</span>
-          </label>
-          <label htmlFor="downward-view" className="add-img-box">
-            <input
-              filename="proDownWardIMAGE"
-              onChange={(e) => setProductDownWardImg(e.target.files[0])}
-              type="file"
-              id="downward-view"
-              style={{ display: "none" }}
-            />
-            <img src={Camera} alt="" />
-            <h6>Downward view</h6>
-            <span>Upload product image</span>
-          </label>
+          {frontImgRes ? (
+            <div className="add-prodcut-img-container">
+              <img
+                src={frontImgRes}
+                // ref={imageRef}
+                className="add-product-img"
+              />
+            </div>
+          ) : (
+            <label htmlFor="front-view" className="add-img-box">
+              <input
+                filename="proFrontIMAGE"
+                onChange={(e) => {
+                  setProductFrontImg(e.target.files[0]);
+                  frontImgUploader(e);
+                }}
+                type="file"
+                id="front-view"
+                style={{ display: "none" }}
+              />
+              <img src={Camera} alt="" />
+              <h6>Front view</h6>
+              <span>Upload product image</span>
+            </label>
+          )}
+
+          {backImgRes ? (
+            <div className="add-prodcut-img-container">
+              <img
+                src={backImgRes}
+                // ref={imageRef}
+                className="add-product-img"
+              />
+            </div>
+          ) : (
+            <label htmlFor="back-view" className="add-img-box">
+              <input
+                filename="proBackIMAGE"
+                onChange={(e) => {
+                  setProductBackImg(e.target.files[0]);
+                  backImgUploader(e);
+                }}
+                type="file"
+                id="back-view"
+                style={{ display: "none" }}
+              />
+              <img src={Camera} alt="" />
+              <h6>Back view</h6>
+              <span>Upload product image</span>
+            </label>
+          )}
+          {upWardImgRes ? (
+            <div className="add-prodcut-img-container">
+              <img
+                src={upWardImgRes}
+                // ref={imageRef}
+                className="add-product-img"
+              />
+            </div>
+          ) : (
+            <label htmlFor="upward-view" className="add-img-box">
+              <input
+                filename="proUpwardIMAGE"
+                onChange={(e) => {
+                  setProductUpwardImg(e.target.files[0]);
+                  upwardImgUploader(e);
+                }}
+                type="file"
+                id="upward-view"
+                style={{ display: "none" }}
+              />
+              <img src={Camera} alt="" />
+              <h6>Upward view</h6>
+              <span>Upload product image</span>
+            </label>
+          )}
+          {downwardImgRes ? (
+            <div className="add-prodcut-img-container">
+              <img
+                src={downwardImgRes}
+                // ref={imageRef}
+                className="add-product-img"
+              />
+            </div>
+          ) : (
+            <label htmlFor="downward-view" className="add-img-box">
+              <input
+                filename="proDownWardIMAGE"
+                onChange={(e) => {
+                  setProductDownWardImg(e.target.files[0]);
+                  downWardImgUploader(e);
+                }}
+                type="file"
+                id="downward-view"
+                style={{ display: "none" }}
+              />
+              <img src={Camera} alt="" />
+              <h6>Downward view</h6>
+              <span>Upload product image</span>
+            </label>
+          )}
         </div>
 
         <div className="add-product-bottom-input-con">
@@ -178,7 +308,7 @@ const AddProductScreen = () => {
                   required
                   onChange={(e) => setProductPrice(e.target.value)}
                   type="text"
-                  placeholder="E.g sauna bucket"
+                  placeholder="E.g 49.99"
                 />
               </div>
             </div>
@@ -186,9 +316,9 @@ const AddProductScreen = () => {
               <div className="add-pro-input-box">
                 <span>Product Quality:</span>
                 <input
-                  value={productQuality}
+                  value={productQuantity}
                   required
-                  onChange={(e) => setProductQuality(e.target.value)}
+                  onChange={(e) => setproductQuantity(e.target.value)}
                   type="text"
                   placeholder="E.g 200pcs"
                 />
@@ -230,11 +360,13 @@ const AddProductScreen = () => {
                   onChange={handleProductCate}
                   className="add-pro-input-long"
                 >
-                  <option value="clothings">Clothings & Accessories</option>
-                  <option value="health">Health & Beauty</option>
+                  <option value="clothingsAndAccessories">
+                    Clothings & Accessories
+                  </option>
+                  <option value="healthAndBeauty">Health & Beauty</option>
                   <option value="pottery">Pottery</option>
-                  <option value="art">Art & Craft</option>
-                  <option value="others">Other Categories</option>
+                  <option value="artAndCraft">Art & Craft</option>
+                  <option value="othersCategories">Other Categories</option>
                 </select>
               </div>
             </div>

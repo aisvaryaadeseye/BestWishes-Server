@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import productImgS from "../../assets/images/productImgS.jpg";
 import productImgS1 from "../../assets/images/productImgS1.jpg";
 import productImgS2 from "../../assets/images/productImgS2.jpg";
@@ -12,8 +12,11 @@ import ReactReadMoreReadLess from "react-read-more-read-less";
 import MoreSellerProduct from "../../component/moreSellerProduct";
 import MoreSellerProductSlide from "../../component/moreSellerProductSlide";
 import ProductDetailImgSlide from "../../component/productDetailSlide";
-import { Link } from "react-router-dom";
-import { productData } from "../../component/data/productData";
+import { Link, useParams } from "react-router-dom";
+// import { productDetail } from "../../component/data/productDetail";
+import axios from "axios";
+import CartContext from "../../provider/cartProvider";
+
 const slideImg = [
   { id: "01", img: productImgS1 },
   { id: "02", img: productImgS2 },
@@ -28,15 +31,29 @@ var sizeList = [
   { id: "04", text: "XL" },
   { id: "05", text: "XXL" },
 ];
-const myLongText =
-  "Lorem ipsum dolor sit amet consectetur adipisicing elit.Mollitia, hic? Deserunt eum obcaecati perspiciatis assumendaprovident sapiente voluptatem impedit at veritatis illo. Labordolores molestiae consequatur exercitationem, laboriosam oditipsa!Lorem ipsum dolor sit amet consectetur adipisicing elit.Mollitia, hic? Deserunt eum obcaecati perspiciatis assumendaprovident sapiente voluptatem impedit at veritatis illo. Labordolores molestiae consequatur exercitationem, laboriosam oditipsa!";
-const ProductDetailScreen = () => {
+
+const ProductDetailScreen = ({ match }) => {
   const [allReview, setAllReview] = useState(true);
   const [productReview, setProductReview] = useState(false);
   const [sellerReview, setSellerReview] = useState(false);
   const [sizeSelect, seySizeSelect] = useState(null);
   const [toggleCart, setToggleCart] = useState(false);
-  const [productDetail, setProductDetail] = useState({});
+  const [productData, setProductData] = useState({});
+  const [imageUrl1, setImageUrl1] = useState([]);
+  const [imageUrl2, setImageUrl2] = useState([]);
+  const [imageUrl3, setImageUrl3] = useState([]);
+  const [imageUrl4, setImageUrl4] = useState([]);
+  const [imgUrl1, setImgUrl1] = useState();
+  const [imgUrl2, setImgUrl2] = useState();
+  const [imgUrl3, setImgUrl3] = useState();
+  const [imgUrl4, setImgUrl4] = useState();
+  const [getSlideImg, setGetSlideImg] = useState([]);
+  const controller = new AbortController();
+  var slideImgContainer = [];
+  let { id } = useParams();
+  const { cartState, CART } = useContext(CartContext);
+
+  // const productDetailText = productData.productDetail;
 
   function handleAllreview() {
     setAllReview(true);
@@ -54,15 +71,65 @@ const ProductDetailScreen = () => {
     setSellerReview(true);
   }
 
-  function getProductDetail(iD) {
-    setProductDetail(productData.find((x) => x === iD));
-    console.log({ productDetail: productDetail });
-    // console.log({ productData: productData });
+  async function getProductDetail() {
+    try {
+      const { data } = await axios.get(`/api/auth/product?productId=${id}`);
+      if (data) {
+        setProductData(data);
+      }
+
+      // console.log({ productDetail: data });
+    } catch (error) {
+      console.log(error);
+    }
   }
-  var iD = "006";
-  useEffect(() => {
-    getProductDetail(iD);
+
+  function showURL(data1, setData1) {
+    data1 &&
+      data1.map((x, i) => {
+        return setData1(x.URL);
+      });
+  }
+  function addSlideImg(data1) {
+    data1 &&
+      data1.map((x, i) => {
+        return slideImgContainer.push(x.URL);
+      });
+  }
+  useEffect(async () => {
+    await getProductDetail();
+    // console.log({
+    //   productImgUrl: productData.proFrontIMAGE,
+    // });
+    setImageUrl1(productData.proFrontIMAGE);
+    setImageUrl2(productData.proBackIMAGE);
+    setImageUrl3(productData.proUpwardIMAGE);
+    setImageUrl4(productData.proDownWardIMAGE);
+
+    showURL(imageUrl1, setImgUrl1);
+    showURL(imageUrl2, setImgUrl2);
+    showURL(imageUrl3, setImgUrl3);
+    showURL(imageUrl4, setImgUrl4);
+
+    addSlideImg(imageUrl1);
+    addSlideImg(imageUrl2);
+    addSlideImg(imageUrl3);
+    addSlideImg(imageUrl4);
+    setGetSlideImg(slideImgContainer);
+    // console.log({
+    //   getSlideImg: getSlideImg,
+    // });
+
+    return () => {
+      controller.abort();
+    };
   }, [productData]);
+
+  function handleAddtoCart() {
+    setToggleCart(true);
+    CART.addToCart(productData._id);
+  }
+
   return (
     <div className="product-detail-screen">
       <div className="product-detail-screen-top">
@@ -73,21 +140,24 @@ const ProductDetailScreen = () => {
               Clothings & Accessories{" "}
               <i className="fa-solid fa-caret-right faRightP"></i> Product Page
             </span>
-            <div className="product-detail-slider-img-con">
-              <ProductDetailImgSlide />
+            <div className="product-detail-img-con">
+              <ProductDetailImgSlide
+                frontImg={imgUrl1}
+                backImg={imgUrl2}
+                upwardImg={imgUrl3}
+                backWardImg={imgUrl4}
+              />
             </div>
 
-            {/* <div className="product-detail-img-con">
-              <img src={productImgS} alt="" className="product-img-s" />
-            </div> */}
             <div className="product-detail-slide-img-con">
-              {slideImg.map((x, i) => {
-                return (
-                  <div className="product-detail-slide-img" key={i}>
-                    <img src={x.img} alt="" />{" "}
-                  </div>
-                );
-              })}
+              {getSlideImg &&
+                getSlideImg.map((x, i) => {
+                  return (
+                    <div className="product-detail-slide-img" key={i}>
+                      <img src={x} alt="" />{" "}
+                    </div>
+                  );
+                })}
             </div>
             <div className="product-detail-review-con">
               <div className="product-detail-review-con-top">
@@ -139,20 +209,20 @@ const ProductDetailScreen = () => {
         <div className="product-detail-screen-top-right">
           <div className="product-detail-screen-top-right-top">
             <span>Chesterfield Store</span>
-            <h2>Tye and dye T-shirt</h2>
+            <h2>{productData.productName}</h2>
             <div className="product-detail-rating-con">
-              <span>Product rating: </span>
-              <div className="star-rating">
-                {[...Array(5)].map((star, i) => {
-                  return (
-                    <span key={i} className="cart-item-star">
-                      &#9733;
-                    </span>
-                  );
-                })}
-              </div>{" "}
+              <h6 className="product-detail-rating-text">Product rating: </h6>
+              {/* <div className="star-rating"> */}
+              {[...Array(5)].map((star, i) => {
+                return (
+                  <h6 key={i} className="cart-item-star">
+                    &#9733;
+                  </h6>
+                );
+              })}
+              {/* </div>{" "} */}
             </div>
-            <h3>€49.99</h3>
+            <h3>€{productData.productPrice}</h3>
             {/* <hr className="sellerProductDivider" /> */}
 
             <div className="product-select-size-con">
@@ -212,7 +282,7 @@ const ProductDetailScreen = () => {
                 // <div className="product-detail-add-btn">
                 <div
                   className="product-detail-add-btn"
-                  onClick={() => setToggleCart(true)}
+                  onClick={handleAddtoCart}
                 >
                   <i className="fa fa-shopping-cart" aria-hidden="true"></i>
                   <span>Add to cart</span>
@@ -230,7 +300,7 @@ const ProductDetailScreen = () => {
                   readMoreText={"see more "}
                   readLessText={"see less "}
                 >
-                  {myLongText}
+                  {`${productData.productOrigin}`}
                 </ReactReadMoreReadLess>
               </span>
             </div>
@@ -238,16 +308,16 @@ const ProductDetailScreen = () => {
               <h4>Product Specifications</h4>
               <span>
                 <i className="fa fa-circle faaCircle" aria-hidden="true"></i>
-                Handmade
+                {productData.productSpecification}
               </span>
-              <span>
+              {/* <span>
                 <i className="fa fa-circle faaCircle" aria-hidden="true"></i>
                 100% cotton wool
               </span>
               <span>
                 <i className="fa fa-circle faaCircle" aria-hidden="true"></i>
                 Tye & Dye
-              </span>
+              </span> */}
             </div>
             <div className="product-origin-text-container">
               <h4>Product Details :</h4>
@@ -257,7 +327,7 @@ const ProductDetailScreen = () => {
                   readMoreText={"see more "}
                   readLessText={"see less "}
                 >
-                  {myLongText}
+                  {`${productData.productDetail}`}
                 </ReactReadMoreReadLess>
               </span>
             </div>

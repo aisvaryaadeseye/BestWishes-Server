@@ -7,7 +7,8 @@ import MoreSellerProduct from "../moreSellerProduct";
 import productImgS from "../../assets/images/productImgS.jpg";
 import Likedbutton from "../../assets/images/Likedbutton.svg";
 import LikedBtnDone from "../../assets/icons/LikedButton.svg";
-const items = [];
+import orderProductImg from "../../assets/images/orderProductImg.jpg";
+import productA from "../../assets/images/productA.jpg";
 const slideResponsive = {
   0: { items: 1 },
   300: { items: 1 },
@@ -25,6 +26,7 @@ const slideResponsive = {
   1624: { items: 1 },
   1924: { items: 1 },
 };
+const items = [orderProductImg, productA];
 
 const ProductImg = () => {
   const [likeBtn, setLikeBtn] = useState(false);
@@ -41,13 +43,36 @@ const ProductImg = () => {
     </div>
   );
 };
-const ProductDetailImgSlide = () => {
+const ProductDetailImgSlide = ({
+  frontImg,
+  backImg,
+  upwardImg,
+  backWardImg,
+}) => {
+  const handleDragStart = (e) => e.preventDefault();
+  const items = [
+    <div onDragStart={handleDragStart} className="product-detail-img-con">
+      <img src={backImg} alt="" className="product-img-s" />,
+    </div>,
+    <div onDragStart={handleDragStart} className="product-detail-img-con">
+      <img src={backImg} alt="" className="product-img-s" />,
+    </div>,
+    <div onDragStart={handleDragStart} className="product-detail-img-con">
+      <img src={upwardImg} alt="" className="product-img-s" />,
+    </div>,
+    <div onDragStart={handleDragStart} className="product-detail-img-con">
+      <img src={backWardImg} alt="" className="product-img-s" />,
+    </div>,
+  ];
+
   return (
     <AliceCarousel
       mouseTracking
-      items={productData.map((product) => {
-        return <ProductImg />;
-      })}
+      items={items}
+      autoPlay={false}
+      // items={productData.map((product) => {
+      //   return <ProductImg />;
+      // })}
       responsive={slideResponsive}
       controlsStrategy="alternate"
     />
