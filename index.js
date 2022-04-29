@@ -13,8 +13,16 @@ const PORT = process.env.PORT || 8880;
 
 app.use(express.static(__dirname + "/public/index.html"));
 app.use(express.json());
-app.use(helmet());
+// app.use(helmet());
 app.use(cors());
+app.use(
+  helmet.contentSecurityPolicy({
+    useDefaults: true,
+    directives: {
+      "img-src": ["'self'", "https: data:"],
+    },
+  })
+);
 
 app.use("/api/auth", require("./routes/auth"));
 
