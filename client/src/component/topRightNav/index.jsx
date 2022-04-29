@@ -365,7 +365,7 @@ const TopRightNav = ({ user }) => {
                       <i className="fa fa-cartfa fa-shopping-cart"></i>
                       {user && (
                         <div className="cartCounter">
-                          <span>{cartState.cart.length}</span>
+                          <span>{cartState?.cart?.length}</span>
                         </div>
                       )}
                     </Link>

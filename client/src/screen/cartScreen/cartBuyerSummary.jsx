@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./style.css";
 import { Modal } from "react-bootstrap";
 import Lottie from "lottie-react";
 import doneIcon from "../../assets/images/doneIcon.json";
 import masterCardIcon from "../../assets/icons/masterCardIcon.svg";
 import { Link } from "react-router-dom";
+import UserContext from "../../provider/userProvider";
+import CartContext from "../../provider/cartProvider";
+
 const CartBuyerSummary = () => {
   //
   const [show, setShow] = useState(false);
+  const { state, USER } = useContext(UserContext);
+  const { cartState, CART } = useContext(CartContext);
 
   const handleCloseModal = () => {
     setShow(false);
@@ -50,17 +55,17 @@ const CartBuyerSummary = () => {
           <span>Order summary</span>
           <div className="cart-order-summary-text">
             <span>Subtotal :</span>
-            <span>€49.99</span>
+            <span>€{cartState?.subTotal}</span>
           </div>
           <hr />
           <div className="cart-order-summary-text">
             <span>Shipping fee :</span>
-            <span>€49.99</span>
+            <span>€{cartState.cart.length === 0 ? "0.00" : "4.00"}</span>
           </div>
           <hr />
           <div className="cart-order-summary-text-total">
             <span>Total :</span>
-            <span>€49.99</span>
+            <span>€{cartState?.subTotal}</span>
           </div>
           <hr />
         </div>
@@ -86,22 +91,25 @@ const CartBuyerSummary = () => {
           <span>Shipping details</span>
           <div className="cart-order-summary-text">
             <span>Name :</span>
-            <span>John Doe</span>
+            <span>{state?.user?.user?.fullName}</span>
           </div>
           <hr />
           <div className="cart-order-summary-text">
             <span>Address : </span>
-            <span>Rakuten 31 B</span>
+            <span>{state?.user?.user?.streetAddress}</span>
           </div>
           <hr />
           <div className="cart-order-summary-text">
             <span>Email : </span>
-            <span>john.doe@gmail.com</span>
+            <span>{state?.user?.user?.email}</span>
           </div>
           <hr />
           <div className="cart-order-summary-text">
             <span>State, Country : </span>
-            <span>Helsinki, Finland</span>
+            <span>
+              {state?.user?.user?.countryState + ", "}{" "}
+              {state?.user?.user?.country}
+            </span>
           </div>
           <hr />
         </div>

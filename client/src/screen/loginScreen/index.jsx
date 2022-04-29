@@ -68,6 +68,7 @@ const LoginScreen = () => {
         // Check always mounted component
         // continue treatment of AJAX response... ;
         await USER.updateUserData(data);
+        console.log({ loginData: data });
         await USER.updateisSeller(data.user.isSeller);
         await USER.saveSeller(data.user.isSeller);
 

@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./style.css";
 import { productData } from "../data/productData";
 import ProductDetail from "../productDetail";
 import Pagination from "@material-ui/lab/Pagination";
 import { sellerProductTag } from "../data/sellerProductTag";
+import UserContext from "../../provider/userProvider";
 
 const SellerOtherCategoriesNav = () => {
+  const { state, USER } = useContext(UserContext);
+
   return (
     <div className="sellerAllCollectionNav">
       <div className="sellerAllCollectionNav-top">
@@ -20,7 +23,7 @@ const SellerOtherCategoriesNav = () => {
         </div> */}
       </div>
       <div className="sellerAllCollectionNav-bottom">
-        {productData.map((product) => {
+        {state?.allProducts.map((product) => {
           return <ProductDetail key={product.id} product={product} />;
         })}
       </div>

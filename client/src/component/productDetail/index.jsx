@@ -30,7 +30,7 @@ const ProductDetail = ({ showDiscount, product, sellerTag }) => {
           className="product-img-con"
         >
           <img
-            src={product && product.proFrontIMAGE[0].URL}
+            src={product && product?.proFrontIMAGE[0]?.URL}
             className="todayImage"
           />
         </Link>

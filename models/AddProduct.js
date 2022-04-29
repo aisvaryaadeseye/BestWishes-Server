@@ -6,6 +6,10 @@ const AddProductSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
+
+  sellerName: {
+    type: String,
+  },
   productName: {
     type: String,
   },

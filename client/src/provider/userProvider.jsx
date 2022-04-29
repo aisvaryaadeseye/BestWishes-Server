@@ -30,6 +30,11 @@ const userReducer = (state, action) => {
         ...state,
         switchUser: action.payload,
       };
+    case "all-products":
+      return {
+        ...state,
+        allProducts: action.payload,
+      };
   }
 };
 
@@ -41,6 +46,7 @@ export const UserProvider = (props) => {
     isSeller: false,
     saveSeller: false,
     switchUser: true,
+    allProducts: [],
   });
 
   async function updateUserData(val) {
@@ -97,6 +103,10 @@ export const UserProvider = (props) => {
       dispatch({ type: "update-isSeller", payload: isSeller });
     }
   }
+  async function saveAllProducts(val) {
+    // console.log({ allProduct: val });
+    dispatch({ type: "all-products", payload: val });
+  }
 
   const actions = {
     updateUserData,
@@ -109,6 +119,7 @@ export const UserProvider = (props) => {
     recoverSaveSeller,
     recoverSwitchUser,
     updateSwitchUser,
+    saveAllProducts,
   };
 
   return (

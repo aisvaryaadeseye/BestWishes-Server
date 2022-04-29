@@ -19,17 +19,32 @@ import HomeSlider from "../../component/homeSlider";
 import CartContext from "../../provider/cartProvider";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../../provider/userProvider";
+import { useIsMounted } from "../../component/isMounted";
 function HomeScreen() {
   const { state, USER } = useContext(UserContext);
+  const [hookState, setState] = useState();
   const navigate = useNavigate();
 
   // const { cartState, CART } = useContext(CartContext);
 
+  const isMounted = useIsMounted();
+
+  // useEffect(() => {
+  //   asyncOperation().then((data) => {
+  //     if (isMounted.current) {
+  //       setState(data);
+  //     }
+  //   });
+  // });
+
   useEffect(async () => {
     // console.log({ swichUswer: state.switchUser });
-    if (!state.switchUser) {
-      // console.log({ false: false });
-      navigate("/sellerprofilescreen/overview");
+
+    if (isMounted.current) {
+      if (!state.switchUser) {
+        // console.log({ false: false });
+        navigate("/sellerprofilescreen/overview");
+      }
     }
   }, [state]);
   return (

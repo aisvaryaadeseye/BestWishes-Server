@@ -52,18 +52,27 @@ const CartScreenItem = ({ item }) => {
         </div>
         <h4>€{item.productPrice}</h4>
         <div className="cart-item-right-bottom">
-          <div className="cart-remove" onClick={() => CART.removeFromCart()}>
+          <div
+            className="cart-remove"
+            onClick={() => CART.removeFromCart(item._id)}
+          >
             <i className="fa fa-trash" aria-hidden="true"></i>
             <span>Remove</span>
           </div>
           <div className="add-remove-div">
-            <div className="add-remove-btn" onClick={handleRemove}>
+            <div
+              className="add-remove-btn"
+              onClick={() => CART.removeFromCart(item._id)}
+            >
               <i className="fa fa-minus" aria-hidden="true"></i>
             </div>
             <div className="cart-item-counter">
-              <span>{qty}</span>
+              <span>{item.qty}</span>
             </div>
-            <div className="add-remove-btn" onClick={handleAdd}>
+            <div
+              className="add-remove-btn"
+              onClick={() => CART.addToCart(item._id)}
+            >
               <i className="fa fa-plus" aria-hidden="true"></i>
             </div>
           </div>

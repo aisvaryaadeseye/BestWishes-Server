@@ -4,7 +4,7 @@ const crypto = require("crypto");
 require("dotenv").config();
 const path = require("path");
 const uuid = require("uuid");
-
+const jwt = require("jsonwebtoken");
 const AWS = require("aws-sdk");
 const multer = require("multer");
 const multerS3 = require("multer-s3");
@@ -238,6 +238,25 @@ router.get("/verify-token", isResetTokenValid, async (req, res) => {
   res.json({ success: true });
 });
 
+//update-user datails
+router.put("/update-user", async (req, res) => {
+  const { token } = req.query;
+  try {
+    if (!token) {
+      return sendError(res, "Not authorized ");
+    }
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findByIdAndUpdate(decoded.id, {
+      $set: req.body,
+    });
+
+    // res.status(200).json(user);
+    sendToken(user, 200, res);
+  } catch (error) {
+    res.status(500).json(error + "error saving data");
+  }
+});
+
 //setting filter to the files just pictures with that format
 const fileFilter = (req, file, cb) => {
   if (
@@ -358,6 +377,25 @@ router.get("/get-seller", async (req, res) => {
 
     req.user = user;
     next();
+  } catch (error) {
+    return sendError(res, "User not authorized");
+  }
+});
+
+//get user ============================================================
+router.get("/get-user", async (req, res) => {
+  const { userID } = req.query;
+
+  try {
+    if (!isValidObjectId(userID)) return sendError(res, " invalid user ID");
+
+    const user = await User.findById(userID);
+
+    if (!user) return sendError(res, "user not found");
+    res.status(200).json(user);
+
+    // req.user = user;
+    // next();
   } catch (error) {
     return sendError(res, "User not authorized");
   }
