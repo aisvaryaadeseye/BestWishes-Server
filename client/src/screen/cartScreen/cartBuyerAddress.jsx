@@ -26,9 +26,11 @@ const CartBuyerAddress = () => {
   const [postaCode, setPostaCode] = useState();
   const [dob, setDob] = useState();
   const [selectGender, setSelectGender] = useState();
+  const [postalCode, setPostalCode] = useState();
+
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const [userData, setUserData] = useState({});
+  // const [userData, setUserData] = useState({});
   // const [userID, setUserID] = useState("");
   const size = ScreenSize();
   const handleClose = () => setOpen(false);
@@ -48,9 +50,9 @@ const CartBuyerAddress = () => {
     p: 4,
   };
 
-  const handleCloseModal = () => {
-    setShow(false);
-  };
+  // const handleCloseModal = () => {
+  //   setShow(false);
+  // };
   const options = useMemo(() => countryList().getData(), []);
 
   const countryHandler = (country) => {
@@ -58,6 +60,29 @@ const CartBuyerAddress = () => {
   };
 
   // formData.append("country", country.label);
+
+  useEffect(async () => {
+    if (isMounted.current) {
+      await axios
+        .get(`/api/auth/get-user?userID=${state?.user?.user?._id}`)
+        .then((res) => [
+          setFullName(res.data.user?.fullName),
+          setEmail(res.data.user?.email),
+          setPhone(res.data.user?.phone),
+          setDob(res.data.user?.dob),
+          setSelectGender(res.data.user?.selectGender),
+          setCountry(res.data.user?.country),
+          setCountryState(res.data.user?.countryState),
+          setStreetAddress(res.data.user?.streetAddress),
+          setCity(res.data.user?.city),
+          setPostalCode(res.data.user?.postalCode),
+          USER.updateUserData(res.data),
+          // console.log({ res: res.user?.data }),
+          // console.log({ fullname: res.data.user?.fullName }),
+        ])
+        .catch((err) => console.log(err));
+    }
+  }, []);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -77,9 +102,9 @@ const CartBuyerAddress = () => {
           selectGender,
         }
       );
-      USER.updateUserData(data);
-      console.log({ usess: data });
-      // localStorage.setItem("user", JSON.stringify(data));
+      await USER.updateUserData(data);
+      console.log({ data: data });
+
       setSuccess("Success!");
       setTimeout(() => {
         setSuccess("");
@@ -89,25 +114,6 @@ const CartBuyerAddress = () => {
       console.log(error + "erro saving");
     }
   }
-
-  function getUserData() {
-    const { data } = axios.get(`/api/auth/get-user?token=${state.token}`);
-
-    if (isMounted.current) {
-      setUserData(data);
-    }
-  }
-
-  useEffect(() => {
-    if (localStorage.getItem("user")) {
-      setUserData(JSON.parse(localStorage.getItem("user")));
-    }
-    // setTimeout(() => {
-    //   getUserData();
-    // }, 5000);
-
-    // console.log({ userData: userData.user.fullName });
-  }, []);
 
   return (
     <div className="cart-buyer-address">
@@ -144,175 +150,29 @@ const CartBuyerAddress = () => {
         <span>Shipping Details</span>
         <div className="cart-buyer-shipping-addr">
           <div className="cart-buyer-shipping-addr-text">
-            <h5>{state?.user?.user?.fullName}</h5>
+            <h5>{fullName}</h5>
             <img src={colorPen} alt="" onClick={() => setOpen(true)} />
           </div>
           <div className="cart-buyer-shipping-addr-text">
             <span>Phone Number :</span>
-            <span>{state?.user?.user?.phone && state?.user?.user?.phone}</span>
+            <span>{phone && phone}</span>
           </div>
           <div className="cart-buyer-shipping-addr-text">
             <span>Country, State :</span>
             <span>
-              {state?.user?.user?.country && state?.user?.user?.country + ","}
-              {state?.user?.user?.countryState &&
-                state?.user?.user?.countryState}{" "}
+              {country && country + ", "}
+              {countryState && countryState}{" "}
             </span>
           </div>
           <div className="cart-buyer-shipping-addr-text">
             <span>Address :</span>
-            <span>{state?.user?.user?.streetAddress}</span>
+            <span>{streetAddress}</span>
           </div>
         </div>
         <Link to="/cart-buyer-payment" className="address-proceed-btn">
           <span>Proceed to payment</span>
         </Link>
       </div>
-      {/* <Modal
-        show={show}
-        onHide={handleCloseModal}
-        backdrop="static"
-        keyboard={false}
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>
-            <div className="modal-container-top">
-              <div className="modal-top-text">
-                <h5>Edit Shipping Details</h5>
-                <h6>The Changes made here will reflect on your profile</h6>
-              </div>
-            </div>
-          
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <form className="modal-container" onSubmit={handleSubmit}>
-            <div className="modal-container-middle"></div>
-            <div className="modal-container-bottom buyyer-edit-address-container">
-              <div className="regInput passForm buyer-edit-input   ">
-                <span className="userEmail">Full name</span>
-                <div className="passwordContainer editCusInputField">
-                  <input
-                    placeholder="your name"
-                    name="fullName"
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
-                    className="passwordInput regInputField"
-                  />
-                </div>
-              </div>
-              <div className="regInput passForm buyer-edit-input   ">
-                <span className="userEmail">Email</span>
-                <div className="passwordContainer editCusInputField">
-                  <input
-                    placeholder="sample@gmail.com"
-                    name="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="passwordInput regInputField"
-                  />
-                </div>
-              </div>
-              <div className="regInput passForm buyer-edit-input   ">
-                <span className="userEmail">Phone Number</span>
-                <div className="passwordContainer editCusInputField">
-                  <input
-                    placeholder="your phone number"
-                    name="phone"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    className="passwordInput regInputField"
-                  />
-                </div>
-              </div>
-              <div className="regInput passForm buyer-edit-input  ">
-                <span className="userEmail">Date of birth (optional)</span>
-                <div className="passwordContainer editCusInputField">
-                  <input
-                    type="date"
-                    placeholder=""
-                    name="dob"
-                    value={dob}
-                    onChange={(e) => setDob(e.target.value)}
-                    className="passwordInput regInputField"
-                  />
-                </div>
-                <div className="regInput passForm buyer-edit-input ">
-                  <span className="userEmail">Gender</span>
-                  <div>
-                    <select
-                      className="selectContainer"
-                      value={selectGender}
-                      onChange={(e) => setSelectGender(e.target.value)}
-                    >
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
-                    </select>
-                  </div>
-                </div>
-                <div className="regInput passForm buyer-edit-input  ">
-                  <span className="userEmail">Country</span>
-                  <Select
-                    className="countrySelect"
-                    options={options}
-                    value={country}
-                    onChange={countryHandler}
-                  />
-                </div>
-                <div className="regInput passForm buyer-edit-input ">
-                  <span className="userEmail">State</span>
-                  <div className="passwordContainer editCusInputField">
-                    <input
-                      className="passwordInput regInputField"
-                      name="countryState"
-                      value={countryState}
-                      onChange={(e) => setCountryState(e.target.value)}
-                    />
-                  </div>
-                </div>
-                <div className="regInput passForm buyer-edit-input ">
-                  <span className="userEmail">City (optional)</span>
-                  <div className="passwordContainer editCusInputField">
-                    <input
-                      className="passwordInput regInputField"
-                      name="city"
-                      value={city}
-                      onChange={(e) => setCity(e.target.value)}
-                    />
-                  </div>
-                </div>
-                <div className="regInput passForm buyer-edit-input ">
-                  <span className="userEmail">Postal Code (Optional)</span>
-                  <div className="passwordContainer editCusInputField">
-                    <input
-                      className="passwordInput regInputField"
-                      name="postaCode"
-                      value={postaCode}
-                      onChange={(e) => setPostaCode(e.target.value)}
-                    />
-                  </div>
-                </div>
-                <div className="regInput passForm buyer-edit-input ">
-                  <span className="userEmail">Street Address</span>
-                  <div className="passwordContainer editCusInputField">
-                    <input
-                      className="passwordInput regInputField"
-                      name="streetAddress"
-                      value={streetAddress}
-                      onChange={(e) => setStreetAddress(e.target.value)}
-                    />
-                  </div>
-                </div>
-                <button className="edit-buyer-shipping-btn">
-                  <span>Save</span>
-                </button>
-              </div>
-            </div>
-            <h3 style={{ color: "green" }}>{success && success}</h3>
-          </form>
-        </Modal.Body>
-        <Modal.Footer></Modal.Footer>
-      </Modal> */}
 
       <Modal
         open={open}
@@ -391,16 +251,15 @@ const CartBuyerAddress = () => {
                     </select>
                   </div>
                 </div>
-                <div className="regInput passForm buyer-edit-input  ">
+                <div className="regInput passForm ">
                   <span className="userEmail">Country</span>
-                  {/* <div className="countrySelectContainer"> */}
-                  <Select
-                    className="countrySelect"
-                    options={options}
-                    value={country}
-                    onChange={countryHandler}
-                  />
-                  {/* </div> */}
+                  <div className="passwordContainer editCusInputField">
+                    <input
+                      className="passwordInput regInputField"
+                      value={country}
+                      onChange={(e) => setCountry(e.target.value)}
+                    />
+                  </div>
                 </div>
                 <div className="regInput passForm buyer-edit-input ">
                   <span className="userEmail">State</span>
@@ -430,7 +289,7 @@ const CartBuyerAddress = () => {
                     <input
                       className="passwordInput regInputField"
                       name="postaCode"
-                      value={postaCode}
+                      value={postalCode}
                       onChange={(e) => setPostaCode(e.target.value)}
                     />
                   </div>

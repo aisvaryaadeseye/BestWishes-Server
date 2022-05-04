@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import ProductDetail from "../../component/productDetail";
 import { productScreen, productScreenLeft, ProductScreenRight } from "./style";
 import "./style.css";
 import Pagination from "@material-ui/lab/Pagination";
 import ProductScreenSidebar from "../../component/productScreenSidebar";
 import { productData } from "../../component/data/productData";
+import UserContext from "../../provider/userProvider";
 
 // import Link
 const ProductScreenArt = () => {
+  const { state, USER } = useContext(UserContext);
+
   return (
     <div className="productScreenContainer">
       <div className="productScreenLeft">
@@ -25,10 +28,10 @@ const ProductScreenArt = () => {
           <p>Art & Craft</p>
         </div>
         <div className="productScreenRightBottom">
-          {productData.map((product) => {
+          {state?.allProducts.map((product) => {
             return (
               <ProductDetail
-                key={product.id}
+                key={product._id}
                 product={product}
                 sellerTag={true}
               />

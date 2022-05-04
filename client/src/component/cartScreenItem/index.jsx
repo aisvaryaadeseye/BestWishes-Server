@@ -54,7 +54,7 @@ const CartScreenItem = ({ item }) => {
         <div className="cart-item-right-bottom">
           <div
             className="cart-remove"
-            onClick={() => CART.removeFromCart(item._id)}
+            onClick={() => CART.removeCartItem(item._id)}
           >
             <i className="fa fa-trash" aria-hidden="true"></i>
             <span>Remove</span>
@@ -71,7 +71,7 @@ const CartScreenItem = ({ item }) => {
             </div>
             <div
               className="add-remove-btn"
-              onClick={() => CART.addToCart(item._id)}
+              onClick={() => CART.AddToCart(item._id)}
             >
               <i className="fa fa-plus" aria-hidden="true"></i>
             </div>

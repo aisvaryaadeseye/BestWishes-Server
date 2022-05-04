@@ -5,10 +5,12 @@ import Pagination from "@material-ui/lab/Pagination";
 import ProductScreenSidebar from "../../component/productScreenSidebar";
 import { productData } from "../../component/data/productData";
 import CartContext from "../../provider/cartProvider";
+import UserContext from "../../provider/userProvider";
 
 // import Link
 const ProductScreenHealth = () => {
-  const { state, CART } = useContext(CartContext);
+  const {  CART } = useContext(CartContext);
+  const { state, USER } = useContext(UserContext);
 
   useEffect(() => {
     // console.log({ mycart: state.cart });
@@ -31,7 +33,7 @@ const ProductScreenHealth = () => {
           <p>Health & Beauty</p>
         </div>
         <div className="productScreenRightBottom">
-          {productData.map((x, i) => {
+          {state?.allProducts.map((x, i) => {
             return <ProductDetail key={i} product={x} sellerTag={true} />;
           })}
 

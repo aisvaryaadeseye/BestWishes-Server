@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 
 import "./style.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import UserContext from "../../provider/userProvider";
 import { Button, Modal } from "react-bootstrap";
 import LogOut from "../logOut";
@@ -15,6 +15,20 @@ const SideDrawer = ({ show, click }) => {
   const [showAccountList, setShowBarAccountList] = useState(false);
   const handleClose = () => setShowBar(false);
   const handleShow = () => setShowBar(true);
+  const navigate = useNavigate();
+
+  const LogOut = () => {
+    // setShow(false);
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("user");
+    localStorage.removeItem("userID");
+    localStorage.removeItem("isSeller");
+    // localStorage.removeItem("sellerData");
+    localStorage.removeItem("saveSeller");
+    navigate("/");
+
+    window.location.reload();
+  };
 
   const handleLeftBar = () => {
     setShowBarLeftBar(!showLeftBar);

@@ -1,11 +1,32 @@
-import React from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Pagination from "@material-ui/lab/Pagination";
 import skypurpleGraph from "../../assets/images/skypurpleGraph.jpg";
 import ListOfOrders from "../../component/listOfOrders";
 import ListOfOrderSlider from "../../component/listOfOrderSlide";
 import OrdersStatus from "../../component/overviewCard/ordersStatus";
+import axios from "axios";
+import UserContext from "../../provider/userProvider";
+import { useIsMounted } from "../../component/isMounted";
 
-const SellerOrders = () => {
+const SellerOrders = ({ getOrders }) => {
+  // const [getOrders, setGetOrders] = useState([]);
+  const { state, USER } = useContext(UserContext);
+  const isMounted = useIsMounted();
+
+  // async function getAllOrders() {
+  //   const { data } = await axios.get(
+  //     `/api/auth/orders?sellerID=${state?.user?.user?._id}`
+  //   );
+  //   if (isMounted.current) {
+  //     setGetOrders(data[0]?.orderItem);
+  //     // console.log({ Orders: getOrders });
+  //     // console.log({ getOrders: getOrders[0]?.orderItem });
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   getAllOrders();
+  // }, [getOrders]);
   return (
     <div className="sellerOrders">
       <div className="sellerOrdersFirst">
@@ -59,10 +80,22 @@ const SellerOrders = () => {
               Status
             </span>
           </div>
-          <ListOfOrders orderType="Preparing" />
+          {getOrders &&
+            getOrders.map((order) => {
+              return (
+                <ListOfOrders
+                  key={order._id}
+                  orderType="Preparing"
+                  order={order}
+                  showProductImg={true}
+                />
+              );
+            })}
+
+          {/* <ListOfOrders orderType="Preparing" />
           <ListOfOrders orderType="Completed" />
           <ListOfOrders orderType="Delivering" />
-          <ListOfOrders orderType="Canceeled" />
+          <ListOfOrders orderType="Canceeled" /> */}
         </div>
       </div>
       {/* ======list of order mobile========== */}

@@ -16,6 +16,7 @@ import { Link, useParams } from "react-router-dom";
 // import { productDetail } from "../../component/data/productDetail";
 import axios from "axios";
 import CartContext from "../../provider/cartProvider";
+import UserContext from "../../provider/userProvider";
 
 const slideImg = [
   { id: "01", img: productImgS1 },
@@ -52,6 +53,7 @@ const ProductDetailScreen = ({ match }) => {
   var slideImgContainer = [];
   let { id } = useParams();
   const { cartState, CART } = useContext(CartContext);
+  const { state, USER } = useContext(UserContext);
 
   // const productDetailText = productData.productDetail;
 
@@ -125,9 +127,9 @@ const ProductDetailScreen = ({ match }) => {
     };
   }, [productData]);
 
-  function handleAddtoCart() {
+  function handleAddToCart() {
     setToggleCart(true);
-    CART.addToCart(productData._id);
+    CART.AddToCart(productData._id, state?.user?.user?._id);
   }
 
   return (
@@ -282,7 +284,7 @@ const ProductDetailScreen = ({ match }) => {
                 // <div className="product-detail-add-btn">
                 <div
                   className="product-detail-add-btn"
-                  onClick={handleAddtoCart}
+                  onClick={handleAddToCart}
                 >
                   <i className="fa fa-shopping-cart" aria-hidden="true"></i>
                   <span>Add to cart</span>

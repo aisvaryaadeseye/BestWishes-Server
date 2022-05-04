@@ -42,6 +42,9 @@ const SellerAcctSchema = new mongoose.Schema({
   certificateIMAGE: {
     type: [],
   },
+  orderItem: {
+    type: [],
+  },
 
   createdAt: {
     type: Date,

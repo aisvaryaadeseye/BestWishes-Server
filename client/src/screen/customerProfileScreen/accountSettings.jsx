@@ -5,12 +5,14 @@ const AccountSettings = () => {
   const { state } = useContext(UserContext);
 
   useEffect(() => {
-    console.log({ sellernow: state.sellerData.businessIMAGE[0].URL });
+    console.log({ sellernow: state?.sellerData?.businessIMAGE[0]?.URL });
   });
-  return <div>AccountSettings
-
-    <img src={state.sellerData.businessIMAGE[0].URL} alt="" />
-  </div>;
+  return (
+    <div>
+      AccountSettings
+      <img src={state?.sellerData?.businessIMAGE[0]?.URL} alt="" />
+    </div>
+  );
 };
 
 export default AccountSettings;

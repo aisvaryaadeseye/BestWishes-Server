@@ -16,11 +16,7 @@ const SellerAllCollectionNav = () => {
           <span>All Collections</span>
           <div className="title-underline"></div>
         </div>
-        {/* <div className="seller-product-top-tag">
-          {sellerProductTag.map((x) => {
-            return <span className="product-text-tag">{x.id}</span>;
-          })}
-        </div> */}
+      
       </div>
       <div className="sellerAllCollectionNav-bottom">
         {state?.allProducts.map((product) => {

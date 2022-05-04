@@ -2,31 +2,33 @@ import React from "react";
 import "./style.css";
 import orderProductImg from "../../assets/images/orderProductImg.jpg";
 
-const ListOfOrders = ({ orderType, showProductImg }) => {
+const ListOfOrders = ({ orderType, showProductImg, order }) => {
   return (
     <div className="listOfOrders">
-      <span>#00533</span>
+      <span>#{order?._id.slice(19, 24)}</span>
 
       <div className="orderTextContainer">
-        <div className="orderImgContainer">
-          <img src={orderProductImg} alt="" className="orderImg" />
-        </div>
-        <span>Rayna Torff</span>
+        {/* <div className="orderImgContainer">
+          <img src={order?.proFrontIMAGE} alt="" className="orderImg" />
+        </div> */}
+        <span>{order?.customerName}</span>
       </div>
 
       <div className="orderTextContainer">
         {showProductImg && (
           <div className="orderImgContainer">
-            <img src={orderProductImg} alt="" className="orderImage " />
+            <img src={order?.proFrontIMAGE} alt="" className="orderImage " />
           </div>
         )}
-        <span>Tye & dye shirt</span>
+        <span>{order?.productName}</span>
       </div>
 
-      <span>3</span>
+      <span>{order?.qty}</span>
       <span>
-        16b, gitmore drive, <br />
-        helski, Finland
+        {order?.customerAddress}
+        <br />
+        {order?.customerState + ","}
+        {" " + order?.customerCountry}
       </span>
       <div
         className="orderStatusContainer"

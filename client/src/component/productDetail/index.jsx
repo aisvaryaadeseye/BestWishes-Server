@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./style.css";
 import CartContext from "../../provider/cartProvider";
+import UserContext from "../../provider/userProvider";
 import Likedbutton from "../../assets/images/Likedbutton.svg";
 import LikedBtnDone from "../../assets/icons/LikedButton.svg";
 import { Link } from "react-router-dom";
@@ -9,13 +10,15 @@ import todayproduct from "../../assets/images/todayproduct4.jpg";
 const ProductDetail = ({ showDiscount, product, sellerTag }) => {
   const [likeBtn, setLikeBtn] = useState(false);
   const { cartState, CART } = useContext(CartContext);
+  const { state, USER } = useContext(UserContext);
+
   const [added, setAdded] = useState(false);
   const handleLike = () => {
     setLikeBtn(!likeBtn);
   };
 
   useEffect(() => {
-    // console.log({ product: product.proFrontIMAGE[0].URL });
+    // console.log({ productOwner: product.owner });
   }, []);
   // <Link to={{ pathname: `/product/${product._id}`}}>
 
@@ -52,10 +55,12 @@ const ProductDetail = ({ showDiscount, product, sellerTag }) => {
         </div>
         {sellerTag && (
           <Link
-            to="/seller-product-collection/all-collections"
+            to={{
+              pathname: `/seller-product-collection/${product.owner}/all-collections`,
+            }}
             className="shopName"
           >
-            <span> Sold by Chester Store</span>
+            <span> Sold by {product?.storeName}</span>
           </Link>
         )}
 
@@ -79,7 +84,11 @@ const ProductDetail = ({ showDiscount, product, sellerTag }) => {
               setAdded(true);
             }}
           >
-            <button onClick={() => CART.addToCart(product._id)}>
+            <button
+              onClick={() =>
+                CART.AddToCart(product._id, state?.user?.user?._id)
+              }
+            >
               <i className="fa fa-cartfa fa-shopping-cart faCart"></i> Add to
               Cart
             </button>

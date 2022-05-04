@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import ProductDetail from "../../component/productDetail";
 import {
   productScreenContainer,
@@ -9,9 +9,12 @@ import "./style.css";
 import Pagination from "@material-ui/lab/Pagination";
 import ProductScreenSidebar from "../../component/productScreenSidebar";
 import { productData } from "../../component/data/productData";
+import UserContext from "../../provider/userProvider";
 
 // import Link
 const ProductScreenOthers = () => {
+  const { state, USER } = useContext(UserContext);
+
   return (
     <div className="productScreenContainer">
       <div className="productScreenLeft">
@@ -29,25 +32,10 @@ const ProductScreenOthers = () => {
           <p>Other Categories</p>
         </div>
         <div className="productScreenRightBottom">
-          {productData.map((product) => {
-            return <ProductDetail key={product.id} product={product} />;
+          {state?.allProducts.map((product) => {
+            return <ProductDetail key={product._id} product={product} sellerTag={true} />;
           })}
-          {/* <ProductDetail />
-                    <ProductDetail />
-                    <ProductDetail />
-                    <ProductDetail />
-                    <ProductDetail />
-                    <ProductDetail />
-                    <ProductDetail />
-                    <ProductDetail />
-                    <ProductDetail />
-                    <ProductDetail />
-                    <ProductDetail />
-                    <ProductDetail />
-                    <ProductDetail />
-                    <ProductDetail />
-                    <ProductDetail />
-                    <ProductDetail /> */}
+
           <div className="pagginationContainer">
             <Pagination count={10} variant="outlined" />
           </div>

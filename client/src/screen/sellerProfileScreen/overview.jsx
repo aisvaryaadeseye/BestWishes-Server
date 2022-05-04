@@ -17,7 +17,7 @@ import reviewGraph from "../../assets/images/reviewGraph.jpg";
 import ListOfOrderSlider from "../../component/listOfOrderSlide";
 import StockReportSlide from "../../component/stockReportSlide";
 import { Link, useNavigate } from "react-router-dom";
-const ProfileOverView = () => {
+const ProfileOverView = ({ getOrders }) => {
   const [orders, setOrders] = useState(true);
   const [sales, setSales] = useState(false);
   const [income, setIncome] = useState(false);
@@ -154,10 +154,23 @@ const ProfileOverView = () => {
             Status
           </span>
         </div>
-        <ListOfOrders orderType="Preparing" showProductImg={true} />
+
+        {getOrders &&
+          getOrders.map((order) => {
+            return (
+              <ListOfOrders
+                key={order._id}
+                orderType="Preparing"
+                order={order}
+                showProductImg={true}
+              />
+            );
+          })}
+
+        {/* <ListOfOrders orderType="Preparing" showProductImg={true} />
         <ListOfOrders orderType="Completed" showProductImg={true} />
         <ListOfOrders orderType="Delivering" showProductImg={true} />
-        <ListOfOrders orderType="Canceeled" showProductImg={true} />
+        <ListOfOrders orderType="Canceeled" showProductImg={true} /> */}
       </div>
       {/* ======list of order mobile========== */}
       <div className="listOfOrdersMobileContainer">

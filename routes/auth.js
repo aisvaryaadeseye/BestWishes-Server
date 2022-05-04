@@ -18,10 +18,10 @@ const s3 = new AWS.S3({
 });
 
 const { validate } = require("../middleware/validator");
-
 const User = require("../models/User");
 const SellerAcct = require("../models/SellerAcct");
 const AddProduct = require("../models/AddProduct");
+const SellerOrder = require("../models/SellerOrder");
 const VerificationToken = require("../models/VerificationToken");
 const ResetToken = require("../models/ResetToken");
 const { sendError, createrandomBytes } = require("../utils/helper");
@@ -334,7 +334,7 @@ router.post(
       const newSeller = await new SellerAcct({
         owner: userID,
         sellerName,
-        storeName,
+        storeName: storeName[0].toUpperCase() + storeName.slice(1),
         storeAddress,
         storePhone,
         country,
@@ -363,6 +363,83 @@ router.post(
   }
 );
 
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "./client/public/uploads");
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
+
+const upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: process.env.BUCKET,
+    acl: "public-read",
+    metadata: function (req, file, cb) {
+      cb(null, { fieldName: file.fieldname });
+    },
+    key: function (req, file, cb) {
+      cb(null, Date.now().toString());
+    },
+  }),
+});
+
+// uploadS3.single("profileIMAGE"),
+const singleUpload = upload.single("profileIMAGE");
+
+router.put("/update-data", async (req, res) => {
+  singleUpload(req, res, async function (err, some) {
+    if (err) {
+      return res.status(422).send({
+        errors: [{ title: "Image Upload Error", detail: err.message }],
+      });
+    }
+    let imgUrl = req?.file?.location;
+    // console.log({ imageUrl: req.file.location });
+    // return res.json({ imageUrl: req.file.location });
+    try {
+      const { token } = req.query;
+      if (!token) {
+        return sendError(res, "Not authorized ");
+      }
+      // console.log({ imageUrl1: req.file.location });
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const currentUser = await User.findByIdAndUpdate(decoded.id)
+        // const currentUser = await User.findById(id)
+        .then((user) => {
+          user.fullName = req.body.fullName;
+          user.email = req.body.email;
+          user.phone = req.body.phone;
+          user.country = req.body.country;
+          user.countryState = req.body.countryState;
+          user.streetAddress = req.body.streetAddress;
+          user.dob = req.body.dob;
+          user.city = req.body.city;
+          user.postalCode = req.body.postalCode;
+          user.selectGender = req.body.selectGender;
+          // user.profileIMAGE = file?.Location;
+          user.profileIMAGE = imgUrl;
+
+          user.save();
+          sendToken(currentUser, 200, res);
+          // .then(() => res.json("Success!!!"))
+          // .catch((err) =>
+          //   res.status(500).send(err + " " + "error saving data")
+          // );
+          // console.log({ Location: assets[0] });
+        });
+      // console.log({ imageUrl: req.file.location });
+      // .catch((err) =>
+      //   res.status(500).send(err + "  " + "error updating user")
+      // );
+    } catch (err) {
+      res.status(500).json(err + +"  " + " error saving data");
+    }
+  });
+});
+
 //get selller ============================================================
 router.get("/get-seller", async (req, res) => {
   const { userID } = req.query;
@@ -375,8 +452,8 @@ router.get("/get-seller", async (req, res) => {
     if (!user) return sendError(res, "user not found");
     res.status(200).json(seller);
 
-    req.user = user;
-    next();
+    // req.user = user;
+    // next();
   } catch (error) {
     return sendError(res, "User not authorized");
   }
@@ -392,7 +469,7 @@ router.get("/get-user", async (req, res) => {
     const user = await User.findById(userID);
 
     if (!user) return sendError(res, "user not found");
-    res.status(200).json(user);
+    sendToken(user, 200, res);
 
     // req.user = user;
     // next();
@@ -420,6 +497,7 @@ router.post(
       const user = await User.findById(userID);
 
       if (!user) return sendError(res, "user not found");
+      const seller = await SellerAcct.findOne({ owner: user._id });
 
       // if (user.isSeller) return sendError(res, "Already a selller");
 
@@ -444,7 +522,9 @@ router.post(
 
       const newProduct = await new AddProduct({
         owner: userID,
-        productName,
+        storeName:
+          seller.storeName[0].toUpperCase() + seller.storeName.slice(1),
+        productName: productName[0].toUpperCase() + productName.slice(1),
         productPrice,
         productQuantity,
         productDetail,
@@ -494,6 +574,58 @@ router.get("/product", async (req, res) => {
     res.status(500).json(error + "error fething data");
   }
 });
+//post seller order
+router.put("/seller-order", async (req, res) => {
+  try {
+    const response = await SellerOrder.updateMany({
+      $push: { orderItem: req.body },
+    });
+    res.status(200).json("success!!!");
+  } catch (error) {
+    res.status(500).json(error + "error saving data");
+  }
+});
+// db.collection.find({ "products.metaData.value": "abc" })
+router.get("/orders", async (req, res) => {
+  const { sellerID } = req.query;
+  try {
+    const order = await SellerOrder.find(
+      {
+        orderItem: {
+          $elemMatch: {
+            $elemMatch: {
+              sellerId: sellerID,
+            },
+          },
+        },
+      },
+      {
+        orderItem: {
+          $reduce: {
+            input: "$orderItem",
+            initialValue: [],
+            in: {
+              $concatArrays: [
+                {
+                  $filter: {
+                    input: "$$this",
+                    cond: {
+                      $eq: ["$$this.sellerId", sellerID],
+                    },
+                  },
+                },
+                "$$value",
+              ],
+            },
+          },
+        },
+      }
+    );
+    res.status(200).json(order);
+  } catch (error) {
+    res.status(500).json(error + "error fetching data");
+  }
+});
 
 //reuseable function to generate token ===================================
 const sendToken = (user, statusCode, res) => {
@@ -502,3 +634,47 @@ const sendToken = (user, statusCode, res) => {
 };
 
 module.exports = router;
+
+/*
+db.collection.aggregate([
+  {
+    $match: {
+      "_id": "627261a17acf7875b30d6e34"
+    }
+  },
+  {
+    $project: {
+      "description": 1,
+      "orderItem": {
+        $reduce: {
+          input: "$orderItem",
+          initialValue: [],
+          in: {
+            "$concatArrays": [
+              "$$value",
+              "$$this"
+            ]
+          }
+        }
+      }
+    }
+  },
+  {
+    $project: {
+      orderItem: {
+        $filter: {
+          input: "$orderItem",
+          as: "item",
+          cond: {
+            $eq: [
+              "$$item.sellerId",
+              "62470b37f2052b6a6463f9b3"
+            ]
+          }
+        }
+      }
+    }
+  }
+])
+
+*/

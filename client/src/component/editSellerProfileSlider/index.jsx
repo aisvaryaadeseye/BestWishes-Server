@@ -16,18 +16,18 @@ const sellerImgData = [
     description: "",
   },
 ];
-function EditSellerProfileSlider() {
+function EditSellerProfileSlider({ storeName }) {
   return (
     <div className="editSellerContainer">
       <Carousel fade>
         {sellerImgData.map((x, i) => {
           return (
-            <Carousel.Item>
+            <Carousel.Item key={i}>
               <div className="editSellerImageContainer" key={i}>
                 <img src={x.img} alt="" className="editSellerImg" />
                 <div className="editSellerTextContainer">
-                  <span>{x.title}</span>
-                  <span>{x.description}</span>
+                  <span>Welcome to {storeName}</span>
+                  {/* <span>{x.description}</span> */}
                 </div>
               </div>
             </Carousel.Item>

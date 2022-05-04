@@ -419,6 +419,10 @@
   align-items: center;
   justify-content: center;
 }
+.goto-profile-btn > span {
+  color: var(--orangeColor);
+}
+
 .cont-shopping-btn {
   display: flex;
   /* border: 2px solid var(--lightGreyColor); */
@@ -431,5 +435,8 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+}
+.cont-shopping-btn > span {
+  color: #fff;
 }
 /* ==========Cart-buyer summary======xxxxxxxxxxxxxxxx=========== */

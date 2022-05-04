@@ -10,21 +10,18 @@ const UserSchema = new mongoose.Schema({
   email: {
     type: String,
     require: true,
-    max: 50,
   },
   phone: {
     type: String,
     require: true,
-    max: 20,
   },
 
   password: {
     type: String,
     require: true,
   },
-  avatar: {
+  profileIMAGE: {
     type: String,
-    default: "",
   },
   country: {
     type: String,

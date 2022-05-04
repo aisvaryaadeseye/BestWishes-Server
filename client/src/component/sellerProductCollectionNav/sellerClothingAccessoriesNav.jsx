@@ -16,15 +16,11 @@ const SellerClothingAccessoriesNav = () => {
           <span>Clothing & Accessories</span>
           <div className="title-underline-clothing"></div>
         </div>
-        {/* <div className="seller-product-top-tag">
-          {sellerProductTag.map((x) => {
-            return <span className="product-text-tag">{x.id}</span>;
-          })}
-        </div> */}
+      
       </div>
       <div className="sellerAllCollectionNav-bottom">
         {state?.allProducts.map((product) => {
-          return <ProductDetail key={product.id} product={product} />;
+          return <ProductDetail key={product._id} product={product} />;
         })}
       </div>
       <div className="pagginationContainer">

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./style.css";
 import { Modal } from "react-bootstrap";
 import Lottie from "lottie-react";
@@ -7,16 +7,32 @@ import masterCardIcon from "../../assets/icons/masterCardIcon.svg";
 import { Link } from "react-router-dom";
 import UserContext from "../../provider/userProvider";
 import CartContext from "../../provider/cartProvider";
-
+import axios from "axios";
 const CartBuyerSummary = () => {
   //
   const [show, setShow] = useState(false);
   const { state, USER } = useContext(UserContext);
   const { cartState, CART } = useContext(CartContext);
+  const [cartList, setCartList] = useState([]);
+
+  useEffect(() => {
+    if (localStorage.getItem("cartItems")) {
+      setCartList(JSON.parse(localStorage.getItem("cartItems")));
+      // console.log(JSON.parse(localStorage.getItem("cartItems")));
+    }
+    console.log({ cartList: cartList });
+  }, []);
 
   const handleCloseModal = () => {
     setShow(false);
   };
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setShow(true);
+    const { res } = await axios.put("/api/auth/seller-order", cartList);
+    console.log("success");
+  }
   return (
     <div className="cart-buyer-address">
       <div className="cart-buyer-address-top">
@@ -114,7 +130,7 @@ const CartBuyerSummary = () => {
           <hr />
         </div>
 
-        <div className="address-proceed-btn" onClick={() => setShow(true)}>
+        <div className="address-proceed-btn" onClick={handleSubmit}>
           <span>Complete payment</span>
         </div>
       </div>

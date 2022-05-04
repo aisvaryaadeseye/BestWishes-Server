@@ -85,11 +85,12 @@ import ProductDetailScreen from "./screen/productDetailScreen";
 import AddProductScreen from "./screen/addProductScreen";
 import CartContext from "./provider/cartProvider";
 import { useIsMounted } from "./component/isMounted";
+import axios from "axios";
 function App() {
   const { state, USER } = useContext(UserContext);
   const { CART } = useContext(CartContext);
   const [sideToggle, setSideToggle] = useState(false);
-  // const [userID, setUserID] = useState("");
+  const [getOrders, setGetOrders] = useState([]);
 
   const isMounted = useIsMounted();
   useEffect(async () => {
@@ -101,15 +102,39 @@ function App() {
     await CART.recoverCart();
   }, []);
 
-  // useEffect(() => {
-  //   if (localStorage.getItem("userID")) {
-  //     if (isMounted.current) {
-  //       setUserID(localStorage.getItem("userID"));
-  //     }
-  //   }
+  async function getAllProducts() {
+    try {
+      const { data } = await axios.get("/api/auth/products");
+      if (isMounted.current) {
+        USER.saveAllProducts(data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
-  //   // console.log({ userID: state.token });
-  // }, [state]);
+  useEffect(async () => {
+    getAllProducts();
+    if (localStorage.getItem("cartItems")) {
+      const cartItems = JSON.parse(localStorage.getItem("cartItems"));
+      // await CART.updateCartData(cartItems);
+    }
+  }, [state]);
+
+  async function getAllOrders() {
+    const { data } = await axios.get(
+      `/api/auth/orders?sellerID=${state?.user?.user?._id}`
+    );
+    if (isMounted.current) {
+      setGetOrders(data[0]?.orderItem);
+      // console.log({ Orders: getOrders });
+      // console.log({ getOrders: getOrders[0]?.orderItem });
+    }
+  }
+
+  useEffect(() => {
+    getAllOrders();
+  }, [getOrders]);
 
   return (
     <div className="App">
@@ -154,7 +179,7 @@ function App() {
           />
           {/* ==============seller product collection ======== */}
           <Route
-            path="/seller-product-collection"
+            path="/seller-product-collection/:id"
             element={<SellerProductCollection />}
           >
             <Route
@@ -207,7 +232,10 @@ function App() {
               state.token ? <SellerProfileScreen /> : <Navigate to="/" />
             }
           >
-            <Route path="overview" element={<ProfileOverView />} />
+            <Route
+              path="overview"
+              element={<ProfileOverView getOrders={getOrders} />}
+            />
             <Route path="stockreports" element={<StockReports />} />
             {/* === */}
             <Route path="sellerproduct" element={<SellerProducts />}>
@@ -235,7 +263,10 @@ function App() {
 
             <Route path="editprofile" element={<EditProfile />} />
             <Route path="seller-review" element={<SellerReviews />} />
-            <Route path="seller-orders" element={<SellerOrders />} />
+            <Route
+              path="seller-orders"
+              element={<SellerOrders getOrders={getOrders} />}
+            />
             <Route path="seller-sales" element={<SellerSales />} />
             {/* ===selller income===== */}
             <Route path="seller-income" element={<SellerIncome />}>

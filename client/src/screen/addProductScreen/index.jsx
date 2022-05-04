@@ -13,7 +13,9 @@ const AddProductScreen = () => {
   const [productQuantity, setproductQuantity] = useState("");
   const [productDetail, setProductDetail] = useState("");
   const [productOrigin, setProductOrigin] = useState("");
-  const [productCategory, setProductCategory] = useState("");
+  const [productCategory, setProductCategory] = useState(
+    "clothingsAndAccessories"
+  );
   const [productType, setProductType] = useState("");
   const [productDeliveryTime, setProductDeliveryTime] = useState("");
   const [productSpecification, setProductSpecification] = useState("");
@@ -78,6 +80,19 @@ const AddProductScreen = () => {
       setTimeout(() => {
         setSuccess("");
         setOpen(false);
+        setProductName("");
+        setProductPrice("");
+        setproductQuantity("");
+        setProductDetail("");
+        setProductOrigin("");
+        setProductType("");
+        setProductDeliveryTime("");
+        setProductFrontImg("");
+        setProductBackImg("");
+        setProductUpwardImg("");
+        setProductDownWardImg("");
+        setProductSpecification("")
+        setProductCategory("")
         window.location.reload();
       }, 1700);
     } catch (error) {
@@ -85,7 +100,7 @@ const AddProductScreen = () => {
       setError(error.response.data);
       setTimeout(() => {
         setError("");
-        window.location.reload();
+        // window.location.reload();
       }, 1500);
     }
   }

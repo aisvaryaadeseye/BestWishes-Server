@@ -15,7 +15,7 @@ import sell from "../../assets/icons/sell.svg";
 import orders from "../../assets/icons/order.png";
 import profile from "../../assets/icons/profile.svg";
 import customerImg from "../../assets/images/customerImg.jpg";
-import LogOut from "../logOut";
+// import LogOut from "../logOut";
 import UserContext from "../../provider/userProvider";
 import CartContext from "../../provider/cartProvider";
 const TopRightNav = ({ user }) => {
@@ -27,6 +27,18 @@ const TopRightNav = ({ user }) => {
   const [saveSeller, setSaveSeller] = useState(false);
   const navigate = useNavigate();
 
+  const LogOut = () => {
+    setShow(false);
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("user");
+    localStorage.removeItem("userID");
+    localStorage.removeItem("isSeller");
+    // localStorage.removeItem("sellerData");
+    localStorage.removeItem("saveSeller");
+    navigate("/");
+
+    window.location.reload();
+  };
   useEffect(() => {
     if (localStorage.getItem("saveSeller")) {
       setSaveSeller(localStorage.getItem("saveSeller"));

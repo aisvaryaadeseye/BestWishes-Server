@@ -43,8 +43,6 @@ const BecomeSeller = () => {
     setCountry(country);
   };
 
-  
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 

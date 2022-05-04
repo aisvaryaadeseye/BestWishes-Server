@@ -7,7 +7,7 @@ const AddProductSchema = new mongoose.Schema({
     required: true,
   },
 
-  sellerName: {
+  storeName: {
     type: String,
   },
   productName: {
