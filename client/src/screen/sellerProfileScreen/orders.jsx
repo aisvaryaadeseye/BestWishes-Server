@@ -103,7 +103,7 @@ const SellerOrders = ({ getOrders }) => {
         <div className="listOfOrdersMobileTopText">
           <h2>List of Orders</h2>
         </div>
-        <ListOfOrderSlider />
+        <ListOfOrderSlider getOrders={getOrders} />
       </div>
       <div className="sellerOrdersFouth">
         <div className="pagginationContainer">

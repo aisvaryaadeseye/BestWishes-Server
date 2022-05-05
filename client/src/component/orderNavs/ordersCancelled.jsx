@@ -1,18 +1,15 @@
 import React from "react";
 import OrderProduct from "../oderProduct";
 
-
-const OrdersCancelled = () => {
-  return <div className="orderCancelled">
-          <OrderProduct status="Cancelled" />
-          <OrderProduct status="Cancelled" />
-          <OrderProduct status="Cancelled" />
-          <OrderProduct status="Cancelled" />
-          <OrderProduct status="Cancelled" />
-          <OrderProduct status="Cancelled" />
-          <OrderProduct status="Cancelled" />
-
-  </div>;
+const OrdersCancelled = ({ getCustomerOrder }) => {
+  return (
+    <div className="orderCancelled">
+      {getCustomerOrder &&
+        getCustomerOrder.map((order) => {
+          return <OrderProduct order={order} status="Cancelled" />;
+        })}
+    </div>
+  );
 };
 
 export default OrdersCancelled;

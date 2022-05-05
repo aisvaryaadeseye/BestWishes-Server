@@ -564,6 +564,35 @@ router.get("/products", async (req, res) => {
   }
 });
 
+//get all seller products
+router.get("/seller-products", async (req, res) => {
+  const { sellerID } = req.query;
+  const seller = await User.findById(sellerID);
+  try {
+    const sellerProducts = await AddProduct.find({ owner: seller._id });
+
+    res.status(200).json(sellerProducts);
+  } catch (error) {
+    res.status(500).json(error + "error fething data");
+  }
+});
+
+//get all seller products
+router.get("/seller-product-data", async (req, res) => {
+  const { token } = req.query;
+
+  // const seller = await User.findById(sellerID);
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const seller = await User.findById(decoded.id);
+    const sellerProducts = await AddProduct.find({ owner: seller._id });
+
+    res.status(200).json(sellerProducts);
+  } catch (error) {
+    res.status(500).json(error + "error fething data");
+  }
+});
+
 //get product by id
 router.get("/product", async (req, res) => {
   const { productId } = req.query;
@@ -585,8 +614,8 @@ router.put("/seller-order", async (req, res) => {
     res.status(500).json(error + "error saving data");
   }
 });
-// db.collection.find({ "products.metaData.value": "abc" })
-router.get("/orders", async (req, res) => {
+// get all seller orders
+router.get("/seller-orders", async (req, res) => {
   const { sellerID } = req.query;
   try {
     const order = await SellerOrder.find(
@@ -626,6 +655,47 @@ router.get("/orders", async (req, res) => {
     res.status(500).json(error + "error fetching data");
   }
 });
+// get all buyer orders
+router.get("/customer-orders", async (req, res) => {
+  const { customerID } = req.query;
+  try {
+    const order = await SellerOrder.find(
+      {
+        orderItem: {
+          $elemMatch: {
+            $elemMatch: {
+              customerId: customerID,
+            },
+          },
+        },
+      },
+      {
+        orderItem: {
+          $reduce: {
+            input: "$orderItem",
+            initialValue: [],
+            in: {
+              $concatArrays: [
+                {
+                  $filter: {
+                    input: "$$this",
+                    cond: {
+                      $eq: ["$$this.customerId", customerID],
+                    },
+                  },
+                },
+                "$$value",
+              ],
+            },
+          },
+        },
+      }
+    );
+    res.status(200).json(order);
+  } catch (error) {
+    res.status(500).json(error + "error fetching data");
+  }
+});
 
 //reuseable function to generate token ===================================
 const sendToken = (user, statusCode, res) => {
@@ -634,47 +704,3 @@ const sendToken = (user, statusCode, res) => {
 };
 
 module.exports = router;
-
-/*
-db.collection.aggregate([
-  {
-    $match: {
-      "_id": "627261a17acf7875b30d6e34"
-    }
-  },
-  {
-    $project: {
-      "description": 1,
-      "orderItem": {
-        $reduce: {
-          input: "$orderItem",
-          initialValue: [],
-          in: {
-            "$concatArrays": [
-              "$$value",
-              "$$this"
-            ]
-          }
-        }
-      }
-    }
-  },
-  {
-    $project: {
-      orderItem: {
-        $filter: {
-          input: "$orderItem",
-          as: "item",
-          cond: {
-            $eq: [
-              "$$item.sellerId",
-              "62470b37f2052b6a6463f9b3"
-            ]
-          }
-        }
-      }
-    }
-  }
-])
-
-*/

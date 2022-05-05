@@ -91,8 +91,17 @@ function App() {
   const { CART } = useContext(CartContext);
   const [sideToggle, setSideToggle] = useState(false);
   const [getOrders, setGetOrders] = useState([]);
-
+  const [getCustomerOrder, setGetCustomerOrder] = useState([]);
+  const [getToken, setGetToken] = useState("");
+  const [tokenState, settokenState] = useState(true);
+  const [getSellerPro, setGetSellerPro] = useState([]);
+  const [token, setToken] = useState("");
   const isMounted = useIsMounted();
+
+  useEffect(() => {
+    setToken(state?.token);
+    // console.log({ token: token });
+  });
   useEffect(async () => {
     await USER.recoverSwitchUser();
     await USER.recoverData();
@@ -102,39 +111,66 @@ function App() {
     await CART.recoverCart();
   }, []);
 
-  async function getAllProducts() {
+  async function getSellerProducts() {
     try {
-      const { data } = await axios.get("/api/auth/products");
-      if (isMounted.current) {
-        USER.saveAllProducts(data);
+      const { data } = await axios.get(
+        `/api/auth/seller-product-data?token=${token}`
+      );
+      if (data) {
+        if (isMounted.current) {
+          setGetSellerPro(data);
+        }
       }
+
+      // console.log({ getSellerPro: getSellerPro });
     } catch (error) {
       console.log(error);
     }
   }
 
-  useEffect(async () => {
-    getAllProducts();
-    if (localStorage.getItem("cartItems")) {
-      const cartItems = JSON.parse(localStorage.getItem("cartItems"));
-      // await CART.updateCartData(cartItems);
+  async function getAllProducts() {
+    try {
+      const { data } = await axios.get("/api/auth/products");
+      if (isMounted.current) {
+        await USER.saveAllProducts(data);
+      }
+    } catch (error) {
+      console.log(error.response);
     }
-  }, [state]);
+  }
 
-  async function getAllOrders() {
+  async function getSellerOrders() {
     const { data } = await axios.get(
-      `/api/auth/orders?sellerID=${state?.user?.user?._id}`
+      `/api/auth/seller-orders?sellerID=${state?.user?.user?._id}`
     );
     if (isMounted.current) {
       setGetOrders(data[0]?.orderItem);
-      // console.log({ Orders: getOrders });
-      // console.log({ getOrders: getOrders[0]?.orderItem });
+    }
+  }
+  async function getCustomerOrders() {
+    const { data } = await axios.get(
+      `/api/auth/customer-orders?customerID=${state?.user?.user?._id}`
+    );
+    if (isMounted.current) {
+      setGetCustomerOrder(data[0]?.orderItem);
     }
   }
 
   useEffect(() => {
-    getAllOrders();
-  }, [getOrders]);
+    getSellerOrders();
+    getCustomerOrders();
+    getSellerProducts();
+    getAllProducts();
+  }, [getCustomerOrder, getSellerPro]);
+
+  useEffect(async () => {
+    if (localStorage.getItem("authToken")) {
+      await settokenState(true);
+    } else {
+      settokenState(false);
+    }
+    // console.log({ getToken: getToken });
+  }, [state, tokenState]);
 
   return (
     <div className="App">
@@ -174,7 +210,7 @@ function App() {
           <Route path="/cart-buyer-payment" element={<CartBuyerPayment />} />
           <Route path="/cart-buyer-summary" element={<CartBuyerSummary />} />
           <Route
-            path="/seller-product-details-screen"
+            path="/seller-product-details-screen/:id"
             element={<SellerProductDetailScreen />}
           />
           {/* ==============seller product collection ======== */}
@@ -229,25 +265,62 @@ function App() {
           <Route
             path="/sellerprofilescreen"
             element={
-              state.token ? <SellerProfileScreen /> : <Navigate to="/" />
+              tokenState ? (
+                <SellerProfileScreen getOrders={getOrders && getOrders} />
+              ) : (
+                <Navigate to="/" />
+              )
             }
           >
             <Route
               path="overview"
-              element={<ProfileOverView getOrders={getOrders} />}
+              element={<ProfileOverView getOrders={getOrders && getOrders} />}
             />
             <Route path="stockreports" element={<StockReports />} />
             {/* === */}
             <Route path="sellerproduct" element={<SellerProducts />}>
-              <Route path="all-collections" element={<AllCollections />} />
-              <Route path="health-beauty" element={<HealthAndBeauty />} />
-              <Route path="other-categories" element={<OtherCategories />} />
+              <Route
+                path="all-collections"
+                element={
+                  <AllCollections getSellerPro={getSellerPro && getSellerPro} />
+                }
+              />
+              <Route
+                path="health-beauty"
+                element={
+                  <HealthAndBeauty
+                    getSellerPro={getSellerPro && getSellerPro}
+                  />
+                }
+              />
+              <Route
+                path="other-categories"
+                element={
+                  <OtherCategories
+                    getSellerPro={getSellerPro && getSellerPro}
+                  />
+                }
+              />
               <Route
                 path="clothings-accessories"
-                element={<ClothingsAndAccessories />}
+                element={
+                  <ClothingsAndAccessories
+                    getSellerPro={getSellerPro && getSellerPro}
+                  />
+                }
               />
-              <Route path="pottery" element={<Pottery />} />
-              <Route path="art-craft" element={<ArtAndCraft />} />
+              <Route
+                path="pottery"
+                element={
+                  <Pottery getSellerPro={getSellerPro && getSellerPro} />
+                }
+              />
+              <Route
+                path="art-craft"
+                element={
+                  <ArtAndCraft getSellerPro={getSellerPro && getSellerPro} />
+                }
+              />
             </Route>
             {/* ===   seller message */}
             <Route path="seller-message" element={<SellerMessages />}>
@@ -265,7 +338,7 @@ function App() {
             <Route path="seller-review" element={<SellerReviews />} />
             <Route
               path="seller-orders"
-              element={<SellerOrders getOrders={getOrders} />}
+              element={<SellerOrders getOrders={getOrders && getOrders} />}
             />
             <Route path="seller-sales" element={<SellerSales />} />
             {/* ===selller income===== */}
@@ -288,16 +361,50 @@ function App() {
           <Route
             path="/customerProfileScreen"
             element={
-              state.token ? <CustomerProfileScreen /> : <Navigate to="/" />
+              tokenState ? (
+                <CustomerProfileScreen
+                  getCustomerOrder={getCustomerOrder && getCustomerOrder}
+                />
+              ) : (
+                <Navigate to="/" />
+              )
             }
           >
             <Route path="messages" element={<Messages />} />
             {/* =====customer order =========== */}
             <Route path="customerOrders" element={<CustomerOrders />}>
-              <Route path="orderAll" element={<OrdersAll />} />
-              <Route path="orderPending" element={<OrdersPending />} />
-              <Route path="orderCompleted" element={<OrdersCompleted />} />
-              <Route path="orderCancelled" element={<OrdersCancelled />} />
+              <Route
+                path="orderAll"
+                element={
+                  <OrdersAll
+                    getCustomerOrder={getCustomerOrder && getCustomerOrder}
+                  />
+                }
+              />
+              <Route
+                path="orderPending"
+                element={
+                  <OrdersPending
+                    getCustomerOrder={getCustomerOrder && getCustomerOrder}
+                  />
+                }
+              />
+              <Route
+                path="orderCompleted"
+                element={
+                  <OrdersCompleted
+                    getCustomerOrder={getCustomerOrder && getCustomerOrder}
+                  />
+                }
+              />
+              <Route
+                path="orderCancelled"
+                element={
+                  <OrdersCancelled
+                    getCustomerOrder={getCustomerOrder && getCustomerOrder}
+                  />
+                }
+              />
             </Route>
             {/* ========= XX===============*/}
 

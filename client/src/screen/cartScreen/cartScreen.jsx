@@ -25,9 +25,11 @@ const CartScreen = () => {
 
   function handleCheckOut() {
     // CART.saveTotalPrice(totalPrice)
-    CART.saveSubTotal(totalPrice.toFixed(2));
+    if (cartState?.cart.length > 0) {
+      CART.saveSubTotal(totalPrice.toFixed(2));
 
-    navigate("/cart-buyer-address");
+      navigate("/cart-buyer-address");
+    }
   }
 
   return (

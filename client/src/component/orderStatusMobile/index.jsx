@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 
-const OrderStatusMobile = ({ orderStatus }) => {
+const OrderStatusMobile = ({ orderStatus, order }) => {
   return (
     <div className="listOfOrderBody">
       <div className="listOfOrdersMobileTop">
@@ -26,23 +26,27 @@ const OrderStatusMobile = ({ orderStatus }) => {
       <div className="listOfOrdersMobileMiddle">
         <div className="listOfOrdersMobileMiddleA">
           <span>Order number: </span>
-          <span>#0125678999 </span>
+          <span>#{order?.orderNum}</span>
         </div>
         <div className="listOfOrdersMobileMiddleA">
-          <span>Name: </span>
-          <span>Rayna Torff </span>
+          <span>Customer: </span>
+          <span>{order?.customerName}</span>
         </div>
         <div className="listOfOrdersMobileMiddleA">
-          <span>Name: </span>
-          <span>Tye & dye Shirt</span>
+          <span>Product: </span>
+          <span>{order?.productName}</span>
         </div>
         <div className="listOfOrdersMobileMiddleA">
           <span>Quantity: </span>
-          <span>5pcs</span>
+          <span>{order?.qty}pcs</span>
         </div>
         <div className="listOfOrdersMobileMiddleA">
           <span>Delivery location: </span>
-          <span>16b, gilmore drive helsik, finland </span>
+          <span>
+            {order?.customerAddress + ", "}
+            {order?.customerState + ","}
+            {" " + order?.customerCountry}
+          </span>
         </div>
       </div>
     </div>

@@ -1,13 +1,15 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import "./style.css";
-import orderProductImg from "../../assets/images/orderProductImg.jpg";
 import CartContext from "../../provider/cartProvider";
+import UserContext from "../../provider/userProvider";
+
 const CartScreenItem = ({ item }) => {
   const { CART } = useContext(CartContext);
+  const { state, USER } = useContext(UserContext);
 
   const [qty, setQty] = useState(0);
   //
-  const getStarRating = [...Array(5)].map((star, i) => {
+  const getStarRating = [...Array(4)].map((star, i) => {
     return (
       <span key={i} className="cart-item-star">
         &#9733;
@@ -15,22 +17,6 @@ const CartScreenItem = ({ item }) => {
     );
   });
 
-  // useEffect(() => {
-  //   console.log({ item: item });
-  // }, []);
-
-  function handleRemoveItem(_id) {
-    CART.removeFromCart(_id);
-  }
-
-  function handleAdd() {
-    setQty(qty + 1);
-  }
-  function handleRemove() {
-    if (qty > 0) {
-      setQty(qty - 1);
-    }
-  }
   return (
     <div className="cart-screen-item">
       <div className="cart-screen-item-left">
@@ -71,7 +57,7 @@ const CartScreenItem = ({ item }) => {
             </div>
             <div
               className="add-remove-btn"
-              onClick={() => CART.AddToCart(item._id)}
+              onClick={() => CART.AddToCart(item._id, state?.user?.user?._id)}
             >
               <i className="fa fa-plus" aria-hidden="true"></i>
             </div>

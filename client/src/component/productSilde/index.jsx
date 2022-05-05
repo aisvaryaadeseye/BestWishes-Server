@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./style.css";
 import ProductDetail from "../productDetail";
 import { slideResponsive } from "../../component/data/slideResponsive";
@@ -22,7 +22,7 @@ const ProductSlider = () => {
       const { data } = await axios.get("/api/auth/products");
       if (isMounted.current) {
         setGetProduct(data);
-        USER.saveAllProducts(data)
+        USER.saveAllProducts(data);
       }
     } catch (error) {
       console.log(error);
@@ -32,12 +32,27 @@ const ProductSlider = () => {
   useEffect(() => {
     getAllProducts();
   }, [getproduct]);
+
+  const handleDragStart = (e) => e.preventDefault();
   return (
     <AliceCarousel
-      mouseTracking
+      // mouseTracking
+      // items={this.state.galleryItems}
+      // responsive={this.responsive}
+      autoPlayInterval={2000}
+      autoPlayDirection="rtl"
+      autoPlay={true}
+      fadeOutAnimation={false}
+      mouseTrackingEnabled={false}
+      disableAutoPlayOnAction={false}
       items={getproduct.map((product) => {
         return (
-          <ProductDetail key={product._id} product={product} sellerTag={true} />
+          <ProductDetail
+            key={product._id}
+            product={product}
+            sellerTag={true}
+            onDragStart={handleDragStart}
+          />
         );
       })}
       responsive={slideResponsive}

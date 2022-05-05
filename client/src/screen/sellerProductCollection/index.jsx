@@ -7,13 +7,14 @@ import LikedBtnDone from "../../assets/icons/LikedButton.svg";
 import message from "../../assets/icons/message.svg";
 import { Slider } from "@reach/slider";
 import "@reach/slider/styles.css";
-import { Outlet, Link, useParams } from "react-router-dom";
+import { Outlet, Link, useParams, useOutletContext } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import sendIcon from "../../assets/icons/sendIcon.svg";
 import UserChatBox from "../../component/chatBox/userChatBox";
 import FriendChatBox from "../../component/chatBox/friendChatBox";
 import axios from "axios";
+import { useIsMounted } from "../../component/isMounted";
 var navLinks = [
   { link: "all-collections", text: "All Collections" },
   { link: "clothings-accessories", text: "Clothings & Accessories" },
@@ -33,13 +34,14 @@ const SellerProductCollection = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [sellerDetail, setSellerDetail] = useState({});
-  const [userId, setUserId] = useState("");
-
+  const isMounted = useIsMounted();
   async function getSellertDetail() {
     try {
       const { data } = await axios.get(`/api/auth/get-seller?userID=${id}`);
       if (data) {
-        setSellerDetail(data);
+        if (isMounted.current) {
+          setSellerDetail(data);
+        }
       }
 
       // console.log({ sellerDetail: sellerDetail });
@@ -51,6 +53,7 @@ const SellerProductCollection = () => {
   useEffect(() => {
     getSellertDetail();
   }, [sellerDetail]);
+
   const style = {
     position: "absolute",
     top: "50%",

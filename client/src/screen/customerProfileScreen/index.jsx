@@ -73,7 +73,7 @@ const CustomerProfileScreen = () => {
           <div className="customerProfileImgContainer">
             <img src={customerImg} alt="" className="customerProfileImg" />
           </div>
-          {<span>{state.user.user.email}</span>}
+          {<span>{state?.user?.user?.email}</span>}
         </div>
 
         <nav className="customerProfileSideBarBottom">
@@ -127,7 +127,7 @@ const CustomerProfileScreen = () => {
           <div className="customerProfileImgContainer">
             <img src={customerImg} alt="" className="customerProfileImg" />
           </div>
-          {<span>{state.user.user.email}</span>}
+          {<span>{state?.user?.user?.email}</span>}
         </div>
 
         <nav className="customerProfileSideBarBottom">

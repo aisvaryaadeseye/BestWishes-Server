@@ -20,7 +20,7 @@ const CartBuyerSummary = () => {
       setCartList(JSON.parse(localStorage.getItem("cartItems")));
       // console.log(JSON.parse(localStorage.getItem("cartItems")));
     }
-    console.log({ cartList: cartList });
+    // console.log({ cartList: cartList });
   }, []);
 
   const handleCloseModal = () => {
@@ -31,7 +31,9 @@ const CartBuyerSummary = () => {
     e.preventDefault();
     setShow(true);
     const { res } = await axios.put("/api/auth/seller-order", cartList);
-    console.log("success");
+    // console.log("success");
+    localStorage.removeItem("cartItems");
+    window.location.reload();
   }
   return (
     <div className="cart-buyer-address">

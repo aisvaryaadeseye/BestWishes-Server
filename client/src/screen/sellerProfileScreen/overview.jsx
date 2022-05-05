@@ -181,7 +181,7 @@ const ProfileOverView = ({ getOrders }) => {
           <h2>List of Orders</h2>
         </Link>
 
-        <ListOfOrderSlider />
+        <ListOfOrderSlider getOrders={getOrders} />
       </div>
       {/* ======list of order mobile=====XXXxx===== */}
 

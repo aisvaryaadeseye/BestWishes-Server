@@ -3,19 +3,15 @@ import CardPayment from "../cardPayment";
 import OrderProduct from "../oderProduct";
 import "./style.css";
 
-const OrdersAll = () => {
+const OrdersAll = ({ getCustomerOrder }) => {
   return (
     <div className="orderAll">
-      <OrderProduct status="Completed" />
-      <OrderProduct status="Pending" />
-      <OrderProduct status="Cancelled" />
-      <OrderProduct status="Pending" />
-      <OrderProduct status="Cancelled" />
-      <OrderProduct status="Completed" />
-      <OrderProduct status="Pending" />
-      <OrderProduct status="Cancelled" />
-      <OrderProduct status="Completed" />
-      {/* <CardPayment /> */}
+      {getCustomerOrder &&
+        getCustomerOrder.map((order) => {
+          return (
+            <OrderProduct status="Pending" key={order._id} order={order} />
+          );
+        })}
     </div>
   );
 };

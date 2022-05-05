@@ -37,7 +37,7 @@ var navLinks = [
   { img: setting, link: "overview", text: "Account Settings" },
 ];
 
-const SellerProfileScreen = () => {
+const SellerProfileScreen = ({ getOrders }) => {
   const { state, USER } = useContext(UserContext);
   const navigate = useNavigate();
   const DrawerClass = ["profileSideBar"];
@@ -60,9 +60,6 @@ const SellerProfileScreen = () => {
   const handleSeller = () => {
     USER.updateSwitchUser(true);
     navigate("/");
-    // if (state.isSeller) {
-    //   navigate("/");
-    // }
   };
 
   return (
@@ -144,7 +141,7 @@ const SellerProfileScreen = () => {
                     <div className="messageCount">3</div>
                   )}
                   {x.text === "Orders" && (
-                    <div className="messageCount">10</div>
+                    <div className="messageCount">{getOrders?.length}</div>
                   )}
                 </div>
               </Link>

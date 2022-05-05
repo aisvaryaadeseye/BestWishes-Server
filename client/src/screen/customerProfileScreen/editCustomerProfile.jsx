@@ -30,9 +30,7 @@ const EditCustomerProfile = ({ showDescription }) => {
     if (localStorage.getItem("userID")) {
       setUserId(localStorage.getItem("userID"));
     }
-    // console.log({ id: state?.user?.user?._id });
-    console.log({ token: state?.token });
-    // console.log({ user: state?.user?.user?.fullName });
+
     if (isMounted.current) {
       await axios
         .get(`/api/auth/get-user?userID=${state?.user?.user?._id}`)
@@ -77,7 +75,7 @@ const EditCustomerProfile = ({ showDescription }) => {
         `/api/auth/update-data?token=${state?.token}`,
         formData
       );
-      await USER.updateUserData(data);
+      // await USER.updateUserData(data);
       // console.log({ profileImg: profileImg });
       console.log("Success");
       // if (isMounted.current) {
@@ -146,9 +144,7 @@ const EditCustomerProfile = ({ showDescription }) => {
             <span className="userEmail">Full name</span>
             <div className="passwordContainer editCusInputField">
               <input
-                // placeholder="your name"
-                // name="fullName"
-                value={fullName}
+                value={fullName ?? ""}
                 onChange={(e) => setFullName(e.target.value)}
                 className="passwordInput regInputField"
               />
@@ -160,7 +156,7 @@ const EditCustomerProfile = ({ showDescription }) => {
               <input
                 placeholder="sample@gmail.com"
                 // name="email"
-                value={email}
+                value={email ?? ""}
                 onChange={(e) => setEmail(e.target.value)}
                 className="passwordInput regInputField"
               />
@@ -174,7 +170,7 @@ const EditCustomerProfile = ({ showDescription }) => {
               <input
                 placeholder="+358 909 345"
                 // name="fullName"
-                value={phone}
+                value={phone ?? ""}
                 onChange={(e) => setPhone(e.target.value)}
                 className="passwordInput regInputField"
               />
@@ -187,7 +183,7 @@ const EditCustomerProfile = ({ showDescription }) => {
                 type="date"
                 // placeholder="sample@gmail.com"
                 // name="email"
-                value={dob}
+                value={dob ?? ""}
                 onChange={(e) => setDob(e.target.value)}
                 className="passwordInput regInputField"
               />
@@ -200,7 +196,7 @@ const EditCustomerProfile = ({ showDescription }) => {
             <div>
               <select
                 className="selectContainer"
-                value={selectGender}
+                value={selectGender ?? ""}
                 onChange={(e) => setSelectGender(e.target.value)}
               >
                 <option value="male">Male</option>
@@ -213,7 +209,7 @@ const EditCustomerProfile = ({ showDescription }) => {
             <div className="passwordContainer editCusInputField">
               <input
                 className="passwordInput regInputField"
-                value={country}
+                value={country ?? ""}
                 onChange={(e) => setCountry(e.target.value)}
               />
             </div>
@@ -235,9 +231,7 @@ const EditCustomerProfile = ({ showDescription }) => {
             <span className="userEmail">State</span>
             <div className="passwordContainer editCusInputField">
               <input
-                // placeholder="Helski"
-                // name="fullName"
-                value={countryState}
+                value={countryState ?? ""}
                 onChange={(e) => setCountryState(e.target.value)}
                 className="passwordInput regInputField"
               />
@@ -249,7 +243,7 @@ const EditCustomerProfile = ({ showDescription }) => {
             <div className="passwordContainer editCusInputField">
               <input
                 className="passwordInput regInputField"
-                value={city}
+                value={city ?? ""}
                 onChange={(e) => setCity(e.target.value)}
               />
             </div>
@@ -261,7 +255,7 @@ const EditCustomerProfile = ({ showDescription }) => {
             <div className="passwordContainer editCusInputField">
               <input
                 className="passwordInput regInputField"
-                value={postalCode}
+                value={postalCode ?? ""}
                 onChange={(e) => setPostalCode(e.target.value)}
               />
             </div>
@@ -271,7 +265,7 @@ const EditCustomerProfile = ({ showDescription }) => {
             <div className="passwordContainer editCusInputField">
               <input
                 className="passwordInput regInputField"
-                value={streetAddress}
+                value={streetAddress ?? ""}
                 onChange={(e) => setStreetAddress(e.target.value)}
               />
             </div>

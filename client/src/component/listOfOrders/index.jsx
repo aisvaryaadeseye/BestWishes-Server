@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style.css";
 import orderProductImg from "../../assets/images/orderProductImg.jpg";
+import { generateRan } from "../data/genRandonNum";
 
 const ListOfOrders = ({ orderType, showProductImg, order }) => {
   return (
     <div className="listOfOrders">
-      <span>#{order?._id.slice(19, 24)}</span>
+      <span>#{order?.orderNum}</span>
 
       <div className="orderTextContainer">
         {/* <div className="orderImgContainer">

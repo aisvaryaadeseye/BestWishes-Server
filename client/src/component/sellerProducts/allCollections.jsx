@@ -3,23 +3,14 @@ import SellerProductDetail from "../selllerProductDetail";
 import Pagination from "@material-ui/lab/Pagination";
 
 import "./style.css";
-const AllCollections = () => {
+const AllCollections = ({ getSellerPro }) => {
   return (
     <div className="allCollections">
       <div className="allCollectionsTop">
-        <SellerProductDetail />
-        <SellerProductDetail />
-        <SellerProductDetail />
-        <SellerProductDetail />
-        <SellerProductDetail />
-        <SellerProductDetail />
-        <SellerProductDetail />
-        <SellerProductDetail />
-        <SellerProductDetail />
-        <SellerProductDetail />
-        <SellerProductDetail />
-        <SellerProductDetail />
-        <SellerProductDetail />
+        {getSellerPro &&
+          getSellerPro.map((product) => {
+            return <SellerProductDetail product={product} />;
+          })}
       </div>
       <div className="allCollectionsBottom">
         <div className="pagginationContainer">

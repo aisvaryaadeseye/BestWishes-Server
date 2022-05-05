@@ -18,3 +18,8 @@
   display: flex !important;
   flex-direction: row !important;
 }
+.slider-box {
+  width: 300px !important;
+  background-color: red !important;
+  height: 200px;
+}

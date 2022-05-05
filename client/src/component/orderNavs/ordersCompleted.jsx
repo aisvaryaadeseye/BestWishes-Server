@@ -1,17 +1,15 @@
 import React from "react";
 import OrderProduct from "../oderProduct";
 
-
-const OrdersCompleted = () => {
-  return <div className="orderCompleted">
-          <OrderProduct status="Completed" />
-          <OrderProduct status="Completed" />
-          <OrderProduct status="Completed" />
-          <OrderProduct status="Completed" />
-          <OrderProduct status="Completed" />
-          <OrderProduct status="Completed" />
-
-  </div>;
+const OrdersCompleted = ({ getCustomerOrder }) => {
+  return (
+    <div className="orderCompleted">
+      {getCustomerOrder &&
+        getCustomerOrder.map((order) => {
+          return <OrderProduct order={order} status="Completed" />;
+        })}
+    </div>
+  );
 };
 
 export default OrdersCompleted;

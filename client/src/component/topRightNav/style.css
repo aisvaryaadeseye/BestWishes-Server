@@ -7,6 +7,9 @@
   margin-right: 3rem !important;
   font-size: 0.8rem;
   text-decoration: none;
+  margin-top: 0.5em !important;
+
+  /* background-color: red !important; */
 }
 .topRightNavLink:hover {
   color: var(--orangeColor) !important;
@@ -25,6 +28,8 @@
   color: var(--blackColor) !important;
   margin-right: 2rem !important;
   font-size: 0.8rem;
+  /* margin-bottom: 2em !important; */
+  /* background-color: red !important; */
 }
 #topRightDropdown:hover {
   color: var(--orangeColor) !important;

@@ -1,13 +1,39 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./style.css";
-import { productData } from "../data/productData";
 import ProductDetail from "../productDetail";
 import Pagination from "@material-ui/lab/Pagination";
-import { sellerProductTag } from "../data/sellerProductTag";
 import UserContext from "../../provider/userProvider";
-
+import { useIsMounted } from "../isMounted";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+//
 const SellerArtCraftNav = () => {
-  const { state, USER } = useContext(UserContext);
+
+  let { id } = useParams();
+  const [sellerProduct, setSellerProduct] = useState([]);
+  const isMounted = useIsMounted();
+
+  async function getSellerProducts() {
+    try {
+      const { data } = await axios.get(
+        `/api/auth/seller-products?sellerID=${id}`
+      );
+      if (data) {
+        if (isMounted.current) {
+          setSellerProduct(data);
+        }
+      }
+
+      // console.log({ sellerProduct: sellerProduct });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    getSellerProducts();
+    // console.log({ id: id });
+  }, [sellerProduct]);
 
   return (
     <div className="sellerAllCollectionNav">
@@ -16,10 +42,9 @@ const SellerArtCraftNav = () => {
           <span>Art & Craft</span>
           <div className="title-underline-art"></div>
         </div>
-      
       </div>
       <div className="sellerAllCollectionNav-bottom">
-        {state?.allProducts.map((product) => {
+        {sellerProduct.map((product) => {
           return <ProductDetail key={product._id} product={product} />;
         })}
       </div>

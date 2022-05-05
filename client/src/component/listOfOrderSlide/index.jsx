@@ -12,11 +12,13 @@ const items = [
   <OrderStatusMobile orderStatus="Delivering" />,
   <OrderStatusMobile orderStatus="Preparing" />,
 ];
-const ListOfOrderSlider = () => {
+const ListOfOrderSlider = ({getOrders}) => {
   return (
     <AliceCarousel
       mouseTracking
-      items={items}
+      items={getOrders?.map((order) =>{
+        return (  <OrderStatusMobile  key={order._id} orderStatus="Preparing" order={order} />)
+      })}
       responsive={slideResponsive}
       controlsStrategy="alternate"
     />
