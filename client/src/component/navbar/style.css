@@ -179,6 +179,9 @@ a {
   z-index: 999;
   box-shadow: 2px 2px rgb(228, 215, 215);
 }
+.navbar-toggler-icon {
+  display: none !important;
+}
 @media screen and (max-width: 800px) {
   .navBar {
     display: none !important;

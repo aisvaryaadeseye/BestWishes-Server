@@ -40,7 +40,7 @@ const ProductSlider = () => {
       // items={this.state.galleryItems}
       // responsive={this.responsive}
       autoPlayInterval={2000}
-      autoPlayDirection="rtl"
+      autoPlayDirection="ltr"
       autoPlay={true}
       fadeOutAnimation={false}
       mouseTrackingEnabled={false}

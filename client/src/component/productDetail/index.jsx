@@ -54,7 +54,7 @@ const ProductDetail = ({ showDiscount, product, sellerTag }) => {
           <i className="fa fa-star starIcon" aria-hidden="true"></i>
         </div>
         {sellerTag && (
-          <Link
+          <Link 
             to={{
               pathname: `/seller-product-collection/${product.owner}/all-collections`,
             }}

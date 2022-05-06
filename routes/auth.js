@@ -458,6 +458,25 @@ router.get("/get-seller", async (req, res) => {
     return sendError(res, "User not authorized");
   }
 });
+//get selller with token ============================================================
+router.get("/get-seller-token", async (req, res) => {
+  const { token } = req.query;
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findById(decoded.id);
+    if (!user) return sendError(res, "user not found");
+
+    const seller = await SellerAcct.findOne({ owner: user._id });
+
+    res.status(200).json(seller);
+
+    // req.user = user;
+    // next();
+  } catch (error) {
+    return sendError(res, "User not authorized");
+  }
+});
 
 //get user ============================================================
 router.get("/get-user", async (req, res) => {
@@ -552,6 +571,63 @@ router.post(
   }
 );
 
+// update product
+router.put(
+  "/update-product",
+  uploadS3.fields([
+    { name: "proFrontIMAGE", maxCount: 1 },
+    { name: "proBackIMAGE", maxCount: 1 },
+    { name: "proUpwardIMAGE", maxCount: 1 },
+    { name: "proDownWardIMAGE", maxCount: 1 },
+  ]),
+  async (req, res) => {
+    try {
+      const { productId } = req.query;
+      let assets = [];
+      for (const property in req.files) {
+        for (let i = 0; i < req.files[property].length; i++) {
+          let asset = {
+            URL: req.files[property][i].location,
+          };
+
+          assets.push(asset);
+        }
+      }
+      const product = await AddProduct.findByIdAndUpdate(productId).then(
+        (pro) => {
+          pro.productName = req.body.productName;
+          pro.productPrice = req.body.productPrice;
+          pro.productDetail = req.body.productDetail;
+          pro.productOrigin = req.body.productOrigin;
+          pro.productCategory = req.body.productCategory;
+          pro.productDeliveryTime = req.body.productDeliveryTime;
+          pro.productSpecification = req.body.productSpecification;
+          pro.proFrontIMAGE = assets[0];
+          pro.proBackIMAGE = assets[1];
+          pro.proUpwardIMAGE = assets[2];
+          pro.proDownWardIMAGE = assets[3];
+
+          pro.save();
+          res.status(200).json("Success!");
+        }
+      );
+    } catch (error) {
+      res.status(500).json(error + "error saving data");
+    }
+  }
+);
+
+//delete product
+router.delete("/delete-product", async (req, res) => {
+  const { productId } = req.query;
+  try {
+    const product = await AddProduct.findByIdAndDelete(productId);
+    res.status(200).send("product deleted successfull!");
+  } catch (error) {
+    res.status(500).json(error + "error deleting data");
+  }
+});
+
 //get all products
 router.get("/products", async (req, res) => {
   try {
@@ -577,7 +653,7 @@ router.get("/seller-products", async (req, res) => {
   }
 });
 
-//get all seller products
+//get all seller products data
 router.get("/seller-product-data", async (req, res) => {
   const { token } = req.query;
 

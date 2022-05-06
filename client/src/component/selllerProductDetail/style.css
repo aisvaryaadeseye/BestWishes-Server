@@ -91,7 +91,7 @@
   color: var(--orangeColor);
   font-size: 0.6rem;
 }
-.priceBtnContainer {
+.priceBtnCon {
   cursor: pointer;
   display: flex;
   align-content: center;
@@ -101,18 +101,21 @@
   background-color: transparent;
   border: 1px solid var(--orangeColor);
   border-radius: 0.3rem;
-  /* margin-top: 0.5rem; */
+  padding-top: 0.2rem;
 }
-.priceBtnContainer:hover {
+.priceBtnCon:hover {
   background-color: var(--orangeColor);
 }
-.priceBtnContainer > button {
+.priceBtnCon:hover .price-btn-span {
+  color: #fff;
+}
+.price-btn-span {
   cursor: pointer;
   border: none;
   background-color: transparent;
   color: var(--orangeColor);
 }
-.priceBtnContainer:hover button {
+.price-btn-span:hover {
   color: var(--whiteColor);
 }
 .faCart {

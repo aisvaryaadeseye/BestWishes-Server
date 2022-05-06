@@ -17,6 +17,7 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import CartContext from "../../provider/cartProvider";
 import UserContext from "../../provider/userProvider";
+import { useIsMounted } from "../../component/isMounted";
 
 const slideImg = [
   { id: "01", img: productImgS1 },
@@ -54,7 +55,7 @@ const ProductDetailScreen = ({ match }) => {
   let { id } = useParams();
   const { cartState, CART } = useContext(CartContext);
   const { state, USER } = useContext(UserContext);
-
+  const isMounted = useIsMounted();
   // const productDetailText = productData.productDetail;
 
   function handleAllreview() {
@@ -77,7 +78,9 @@ const ProductDetailScreen = ({ match }) => {
     try {
       const { data } = await axios.get(`/api/auth/product?productId=${id}`);
       if (data) {
-        setProductData(data);
+        if (isMounted.current) {
+          setProductData(data);
+        }
       }
 
       // console.log({ productDetail: data });
@@ -210,7 +213,7 @@ const ProductDetailScreen = ({ match }) => {
         </div>
         <div className="product-detail-screen-top-right">
           <div className="product-detail-screen-top-right-top">
-            <span>Chesterfield Store</span>
+            <span>{productData.storeName}</span>
             <h2>{productData.productName}</h2>
             <div className="product-detail-rating-con">
               <h6 className="product-detail-rating-text">Product rating: </h6>

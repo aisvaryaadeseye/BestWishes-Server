@@ -71,9 +71,16 @@ const CustomerProfileScreen = () => {
       <div className={customerDrawerClass.join(" ")}>
         <div className="customerProfileSideBarTop">
           <div className="customerProfileImgContainer">
-            <img src={customerImg} alt="" className="customerProfileImg" />
+            <img
+              src={
+                state?.user?.user?.profileIMAGE &&
+                state?.user?.user?.profileIMAGE
+              }
+              alt=""
+              className="customerProfileImg"
+            />
           </div>
-          {<span>{state?.user?.user?.email}</span>}
+          {<span>{state?.user?.user?.fullName}</span>}
         </div>
 
         <nav className="customerProfileSideBarBottom">
@@ -125,9 +132,16 @@ const CustomerProfileScreen = () => {
       <div className="customerProfileSideBar">
         <div className="customerProfileSideBarTop">
           <div className="customerProfileImgContainer">
-            <img src={customerImg} alt="" className="customerProfileImg" />
+            <img
+              src={
+                state?.user?.user?.profileIMAGE &&
+                state?.user?.user?.profileIMAGE
+              }
+              alt=""
+              className="customerProfileImg"
+            />
           </div>
-          {<span>{state?.user?.user?.email}</span>}
+          {<span>{state?.user?.user?.fullName}</span>}
         </div>
 
         <nav className="customerProfileSideBarBottom">

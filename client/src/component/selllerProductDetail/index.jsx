@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./style.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Likedbutton from "../../assets/images/Likedbutton.svg";
 import LikedBtnDone from "../../assets/icons/LikedButton.svg";
 
@@ -46,11 +46,14 @@ const SellerProductDetail = ({ showDiscount, product }) => {
             <del> €70.99</del>
           </div>
         </div>
-        <div className="priceBtnContainer">
-          <button onClick={() => navigate("/seller-product-details-screen")}>
-            View product
-          </button>
-        </div>
+        {/* <div className="priceBtnCon"> */}
+        <Link
+          className="priceBtnCon"
+          to={{ pathname: `/seller-product-details-screen/${product?._id}` }}
+        >
+          <span className="price-btn-span">View product</span>
+        </Link>
+        {/* </div> */}
       </div>
     </div>
   );

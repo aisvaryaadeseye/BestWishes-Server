@@ -108,6 +108,7 @@ function App() {
     await USER.recoverisSeller();
     await USER.recoverSellerData();
     await USER.recoverSaveSeller();
+    await USER.recoverSwitchUser();
     await CART.recoverCart();
   }, []);
 
@@ -421,10 +422,7 @@ function App() {
             <Route path="savedItems" element={<SavedItems />} />
             <Route path="becomeSeller" element={<BecomeSeller />} />
             <Route path="account-settings" element={<AccountSettings />} />
-            {/* <Route
-              path="/product-detail-screen"
-              element={<ProductDetailScreen />}
-            /> */}
+           
           </Route>
         </Routes>
         <Footer />

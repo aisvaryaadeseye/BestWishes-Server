@@ -43,7 +43,7 @@ const EditCustomerProfile = ({ showDescription }) => {
           setCountry(res.data.user?.country),
           setCountryState(res.data.user?.countryState),
           setStreetAddress(res.data.user?.streetAddress),
-          setCity(res.data.user?.city),
+          setCity(res.data .user?.city),
           setPostalCode(res.data.user?.postalCode),
           setProfileImg(res.data.user?.profileIMAGE),
           USER.updateUserData(res.data),

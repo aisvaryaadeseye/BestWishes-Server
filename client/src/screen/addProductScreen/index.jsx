@@ -27,8 +27,9 @@ const AddProductScreen = () => {
   const [success, setSuccess] = useState();
   const [error, setError] = useState();
   const [showSpinner, setShowSpinner] = useState(true);
-  const handleClose = () => setOpen(false);
+ 
   const [open, setOpen] = React.useState(false);
+  const handleClose = () => setOpen(false);
   const size = ScreenSize();
 
   const style = {
@@ -91,8 +92,8 @@ const AddProductScreen = () => {
         setProductBackImg("");
         setProductUpwardImg("");
         setProductDownWardImg("");
-        setProductSpecification("")
-        setProductCategory("")
+        setProductSpecification("");
+        setProductCategory("");
         window.location.reload();
       }, 1700);
     } catch (error) {
@@ -111,8 +112,6 @@ const AddProductScreen = () => {
       //   console.log({ userID: userID });
     }
   }, []);
-
-  const imageRef = React.useRef(null);
 
   function GetFrontImg() {
     const [frontImgRes, setFrontImgRes] = React.useState("");
@@ -200,107 +199,97 @@ const AddProductScreen = () => {
       <h3 style={{ color: "green" }}>{success && success}</h3>
       <form className="add-product-screen-bottom" onSubmit={handleSubmit}>
         <div className="add-product-img-con">
-          {frontImgRes ? (
-            <div className="add-prodcut-img-container">
-              <img
-                src={frontImgRes}
-                // ref={imageRef}
-                className="add-product-img"
-              />
-            </div>
-          ) : (
-            <label htmlFor="front-view" className="add-img-box">
-              <input
-                filename="proFrontIMAGE"
-                onChange={(e) => {
-                  setProductFrontImg(e.target.files[0]);
-                  frontImgUploader(e);
-                }}
-                type="file"
-                id="front-view"
-                style={{ display: "none" }}
-              />
-              <img src={Camera} alt="" />
+          <label htmlFor="front-view" className="add-img-box">
+            <input
+              filename="proFrontIMAGE"
+              onChange={(e) => {
+                setProductFrontImg(e.target.files[0]);
+                frontImgUploader(e);
+              }}
+              type="file"
+              id="front-view"
+              style={{ display: "none" }}
+            />
+            <img
+              src={frontImgRes ? frontImgRes : Camera}
+              className={
+                frontImgRes ? "add-product-img" : "add-product-img-icon"
+              }
+            />
+            <div className="image-text-container">
               <h6>Front view</h6>
               <span>Upload product image</span>
-            </label>
-          )}
-
-          {backImgRes ? (
-            <div className="add-prodcut-img-container">
-              <img
-                src={backImgRes}
-                // ref={imageRef}
-                className="add-product-img"
-              />
             </div>
-          ) : (
-            <label htmlFor="back-view" className="add-img-box">
-              <input
-                filename="proBackIMAGE"
-                onChange={(e) => {
-                  setProductBackImg(e.target.files[0]);
-                  backImgUploader(e);
-                }}
-                type="file"
-                id="back-view"
-                style={{ display: "none" }}
-              />
-              <img src={Camera} alt="" />
+          </label>
+
+          <label htmlFor="back-view" className="add-img-box">
+            <input
+              filename="proBackIMAGE"
+              onChange={(e) => {
+                setProductBackImg(e.target.files[0]);
+                backImgUploader(e);
+              }}
+              type="file"
+              id="back-view"
+              style={{ display: "none" }}
+            />
+            <img
+              src={backImgRes ? backImgRes : Camera}
+              className={
+                backImgRes ? "add-product-img" : "add-product-img-icon"
+              }
+            />
+            <div className="image-text-container">
               <h6>Back view</h6>
               <span>Upload product image</span>
-            </label>
-          )}
-          {upWardImgRes ? (
-            <div className="add-prodcut-img-container">
-              <img
-                src={upWardImgRes}
-                // ref={imageRef}
-                className="add-product-img"
-              />
             </div>
-          ) : (
-            <label htmlFor="upward-view" className="add-img-box">
-              <input
-                filename="proUpwardIMAGE"
-                onChange={(e) => {
-                  setProductUpwardImg(e.target.files[0]);
-                  upwardImgUploader(e);
-                }}
-                type="file"
-                id="upward-view"
-                style={{ display: "none" }}
-              />
-              <img src={Camera} alt="" />
+          </label>
+
+          <label htmlFor="upward-view" className="add-img-box">
+            <input
+              filename="proUpwardIMAGE"
+              onChange={(e) => {
+                setProductUpwardImg(e.target.files[0]);
+                upwardImgUploader(e);
+              }}
+              type="file"
+              id="upward-view"
+              style={{ display: "none" }}
+            />
+            <img
+              src={upWardImgRes ? upWardImgRes : Camera}
+              className={
+                upWardImgRes ? "add-product-img" : "add-product-img-icon"
+              }
+            />
+            <div className="image-text-container">
               <h6>Upward view</h6>
               <span>Upload product image</span>
-            </label>
-          )}
-          {downwardImgRes ? (
-            <div className="add-prodcut-img-container">
-              <img
-                src={downwardImgRes}
-                // ref={imageRef}
-                className="add-product-img"
-              />
             </div>
-          ) : (
-            <label htmlFor="downward-view" className="add-img-box">
-              <input
-                filename="proDownWardIMAGE"
-                onChange={(e) => {
-                  setProductDownWardImg(e.target.files[0]);
-                  downWardImgUploader(e);
-                }}
-                type="file"
-                id="downward-view"
-                style={{ display: "none" }}
-              />
-              <img src={Camera} alt="" />
-              <h6>Downward view</h6>
+          </label>
+
+          <label htmlFor="downward-view" className="add-img-box">
+            <input
+              filename="proDownWardIMAGE"
+              onChange={(e) => {
+                setProductDownWardImg(e.target.files[0]);
+                downWardImgUploader(e);
+              }}
+              type="file"
+              id="downward-view"
+              style={{ display: "none" }}
+            />
+            <img
+              src={downwardImgRes ? downwardImgRes : Camera}
+              className={
+                downwardImgRes ? "add-product-img" : "add-product-img-icon"
+              }
+            />
+            <div className="image-text-container">
+              <h6>Backward view</h6>
               <span>Upload product image</span>
-            </label>
-          )}
+            </div>
+          </label>
         </div>
 
         <div className="add-product-bottom-input-con">
@@ -309,7 +298,7 @@ const AddProductScreen = () => {
               <div className="add-pro-input-box">
                 <span>Product Name:</span>
                 <input
-                  value={productName}
+                  value={productName ?? ""}
                   required
                   onChange={(e) => setProductName(e.target.value)}
                   type="text"
@@ -319,7 +308,7 @@ const AddProductScreen = () => {
               <div className="add-pro-input-box">
                 <span>Product Price:</span>
                 <input
-                  value={productPrice}
+                  value={productPrice ?? ""}
                   required
                   onChange={(e) => setProductPrice(e.target.value)}
                   type="text"
@@ -331,7 +320,7 @@ const AddProductScreen = () => {
               <div className="add-pro-input-box">
                 <span>Product Quality:</span>
                 <input
-                  value={productQuantity}
+                  value={productQuantity ?? ""}
                   required
                   onChange={(e) => setproductQuantity(e.target.value)}
                   type="text"
@@ -343,7 +332,7 @@ const AddProductScreen = () => {
               <div className="add-pro-input-box">
                 <span>Product Details:</span>
                 <textarea
-                  value={productDetail}
+                  value={productDetail ?? ""}
                   required
                   onChange={(e) => setProductDetail(e.target.value)}
                   type="text"
@@ -356,7 +345,7 @@ const AddProductScreen = () => {
               <div className="add-pro-input-box">
                 <span>Origin Story of the Product:</span>
                 <textarea
-                  value={productOrigin}
+                  value={productOrigin ?? ""}
                   required
                   onChange={(e) => setProductOrigin(e.target.value)}
                   type="text"
@@ -371,7 +360,7 @@ const AddProductScreen = () => {
               <div className="add-pro-input-box">
                 <span>Category:</span>
                 <select
-                  value={productCategory}
+                  value={productCategory ?? ""}
                   onChange={handleProductCate}
                   className="add-pro-input-long"
                 >
@@ -389,7 +378,7 @@ const AddProductScreen = () => {
               <div className="add-pro-input-box">
                 <span>Product Type:</span>
                 <input
-                  value={productType}
+                  value={productType ?? ""}
                   required
                   onChange={(e) => setProductType(e.target.value)}
                   type="text"
@@ -402,7 +391,7 @@ const AddProductScreen = () => {
               <div className="add-pro-input-box">
                 <span>Delivery Time:</span>
                 <input
-                  value={productDeliveryTime}
+                  value={productDeliveryTime ?? ""}
                   required
                   onChange={(e) => setProductDeliveryTime(e.target.value)}
                   type="date"
@@ -415,7 +404,7 @@ const AddProductScreen = () => {
               <div className="add-pro-input-box">
                 <span>Product Specifications:</span>
                 <input
-                  value={productSpecification}
+                  value={productSpecification ?? ""}
                   required
                   onChange={(e) => setProductSpecification(e.target.value)}
                   type="text"

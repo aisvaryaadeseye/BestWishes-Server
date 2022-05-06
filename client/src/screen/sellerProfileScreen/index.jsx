@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "./style.css";
 import customerImg from "../../assets/images/customerImg.jpg";
 import { Link, Outlet, useNavigate } from "react-router-dom";
@@ -17,7 +17,9 @@ import card from "../../assets/icons/card.svg";
 import income from "../../assets/icons/income.svg";
 import UserContext from "../../provider/userProvider";
 import LogOut from "../../component/logOut";
-
+import { useIsMounted } from "../../component/isMounted";
+import axios from "axios";
+//
 var navLinks = [
   { img: overviewIcon, link: "overview", text: "Overview" },
   { img: stock, link: "stockreports", text: "Stock Reports" },
@@ -43,7 +45,8 @@ const SellerProfileScreen = ({ getOrders }) => {
   const DrawerClass = ["profileSideBar"];
   const [sideToggle, setSideToggle] = useState(true);
   const [selectedLink, setSelectedLink] = useState(null);
-
+  const [sellerDetail, setSellerDetail] = useState({});
+  const isMounted = useIsMounted();
   if (sideToggle) {
     DrawerClass.push("show");
   }
@@ -62,6 +65,26 @@ const SellerProfileScreen = ({ getOrders }) => {
     navigate("/");
   };
 
+  async function getSellertDetail() {
+    try {
+      const { data } = await axios.get(
+        `/api/auth/get-seller-token?token=${state?.token}`
+      );
+      if (data) {
+        if (isMounted.current) {
+          setSellerDetail(data);
+        }
+      }
+
+      // console.log({ sellerDetail: sellerDetail });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    getSellertDetail();
+  }, [sellerDetail]);
   return (
     <div className="profileScreen" onClick={handleSide}>
       <div className="sidebarMenu">
@@ -73,10 +96,18 @@ const SellerProfileScreen = ({ getOrders }) => {
       <div className={DrawerClass.join(" ")}>
         <div className="profileSideBarTop">
           <div className="profileImgContainer">
-            <img src={customerImg} alt="" className="profileImg" />
+            <img
+              src={state?.user?.user?.profileIMAGE}
+              alt=""
+              className="profileImg"
+            />
           </div>
-          <h1>Chesterfiled Store</h1>
-          <h2>Helsinki, Finland</h2>
+          <h1>{sellerDetail?.storeName}</h1>
+          <h2>
+            {" "}
+            {sellerDetail && sellerDetail?.storeAddress + "," + " "}{" "}
+            {sellerDetail && sellerDetail?.country}
+          </h2>
           <h3>
             4.5 ratings <i className="fa fa-star" aria-hidden="true"></i>
           </h3>
@@ -115,10 +146,16 @@ const SellerProfileScreen = ({ getOrders }) => {
       <div className="profileSideBarMenu">
         <div className="profileSideBarTop">
           <div className="profileImgContainer">
-            <img src={customerImg} alt="" className="profileImg" />
+            <img
+              src={state?.user?.user?.profileIMAGE}
+              alt=""
+              className="profileImg"
+            />
           </div>
-          <h1>Chesterfiled Store</h1>
-          <h2>Helsinki, Finland</h2>
+          <h1>{sellerDetail?.storeName}</h1>
+          <h2>
+            {sellerDetail?.storeAddress + "," + " "} {sellerDetail?.country}
+          </h2>
           <h3>
             4.5 ratings <i className="fa fa-star" aria-hidden="true"></i>
           </h3>
@@ -141,7 +178,13 @@ const SellerProfileScreen = ({ getOrders }) => {
                     <div className="messageCount">3</div>
                   )}
                   {x.text === "Orders" && (
-                    <div className="messageCount">{getOrders?.length}</div>
+                    <div className="messageCount">
+                      {!getOrders? (
+                        <span>0</span>
+                      ) : (
+                        getOrders?.length
+                      )}
+                    </div>
                   )}
                 </div>
               </Link>

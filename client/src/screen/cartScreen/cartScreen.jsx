@@ -34,50 +34,57 @@ const CartScreen = () => {
 
   return (
     <div className="cart-screen">
-      <div className="cart-screen-on">
-        <div className="cart-screen-left">
-          {showCartItem}
-          {/* <CartScreenItem />
+      {cartState.cart.length > 0 ? (
+        <div className="cart-screen-on">
+          <div className="cart-screen-left">
+            {showCartItem}
+            {/* <CartScreenItem />
           <CartScreenItem /> */}
-        </div>
-        <div className="cart-screen-right">
-          <div className="cart-screen-summary">
-            <h5>Cart Summary</h5>
-            <hr />
-            <div className="cart-screen-summary-text">
-              <span>Items total ({cartState?.cart?.length})</span>
-              <span>€{itemsPrice.toFixed(2)}</span>
-            </div>
-            <hr />
-            <div className="cart-screen-summary-text">
-              <span>Shipping fee</span>
-              <span>
-                €{cartState.cart.length === 0 ? "0.00" : shippingFee.toFixed(2)}
-              </span>
-            </div>
-            <hr />
-            <div className="cart-screen-summary-total">
-              <span>Subtotal</span>
-              <span>
-                €{cartState.cart.length === 0 ? "0.00" : totalPrice.toFixed(2)}
-              </span>
-            </div>
-            <hr />
-            <div className="cart-screen-summary-btn" onClick={handleCheckOut}>
-              <span>Proceed to check-out</span>
+          </div>
+          <div className="cart-screen-right">
+            <div className="cart-screen-summary">
+              <h5>Cart Summary</h5>
+              <hr />
+              <div className="cart-screen-summary-text">
+                <span>Items total ({cartState?.cart?.length})</span>
+                <span>€{itemsPrice.toFixed(2)}</span>
+              </div>
+              <hr />
+              <div className="cart-screen-summary-text">
+                <span>Shipping fee</span>
+                <span>
+                  €
+                  {cartState.cart.length === 0
+                    ? "0.00"
+                    : shippingFee.toFixed(2)}
+                </span>
+              </div>
+              <hr />
+              <div className="cart-screen-summary-total">
+                <span>Subtotal</span>
+                <span>
+                  €
+                  {cartState.cart.length === 0 ? "0.00" : totalPrice.toFixed(2)}
+                </span>
+              </div>
+              <hr />
+              <div className="cart-screen-summary-btn" onClick={handleCheckOut}>
+                <span>Proceed to check-out</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      {/* <div className="cart-screen-off">
-        <h1>Your cart is empty</h1>
-        <span>
-          Browser our platform to start enjoying the best of handmade product
-        </span>
-        <Link to="/product-screen-clothing">
-          <button className="cart-btn">Start shopping now</button>
-        </Link>
-      </div> */}
+      ) : (
+        <div className="cart-screen-off">
+          <h1>Your cart is empty</h1>
+          <span>
+            Browser our platform to start enjoying the best of handmade product
+          </span>
+          <Link to="/product-screen-clothing">
+            <button className="cart-btn">Start shopping now</button>
+          </Link>
+        </div>
+      )}
     </div>
   );
 };

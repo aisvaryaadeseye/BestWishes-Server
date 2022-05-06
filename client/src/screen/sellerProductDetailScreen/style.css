@@ -110,6 +110,18 @@
   border-top: 2px solid grey;
   margin-top: 2em;
 }
+.productDetailBtnContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 350px;
+  height: 36px;
+  background-color: var(--orangeColor);
+  color: #fff;
+  cursor: pointer;
+  border-radius: 0.4em;
+  margin-top: 3em;
+}
 
 @media screen and (max-width: 800px) {
   .productDetailBottomA {

@@ -1,15 +1,18 @@
 import React from "react";
 import SellerProductDetail from "../selllerProductDetail";
 import Pagination from "@material-ui/lab/Pagination";
+// import { useParams } from "react-router-dom";
 
 import "./style.css";
 const AllCollections = ({ getSellerPro }) => {
+  //
+
   return (
     <div className="allCollections">
       <div className="allCollectionsTop">
         {getSellerPro &&
           getSellerPro.map((product) => {
-            return <SellerProductDetail product={product} />;
+            return <SellerProductDetail product={product} key={product._id} />;
           })}
       </div>
       <div className="allCollectionsBottom">
