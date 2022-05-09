@@ -38,6 +38,9 @@
   padding: 0.3rem 0;
   margin-top: 1rem;
 }
+.accountVerifyBtnContainer > span {
+  color: #fff;
+}
 .accountVerifyBtnContainer > button {
   outline: none;
   border: none;

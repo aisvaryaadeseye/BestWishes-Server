@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.bd41e889.css",
-    "main.js": "/static/js/main.b95feb78.js",
+    "main.css": "/static/css/main.018e97ac.css",
+    "main.js": "/static/js/main.3d2c16ee.js",
     "static/js/787.375bfa4a.chunk.js": "/static/js/787.375bfa4a.chunk.js",
     "static/media/blogImg1.jpg": "/static/media/blogImg1.9180253d51bd91808348.jpg",
     "static/media/homeImg4.jpg": "/static/media/homeImg4.806866fe94cfba0ff626.jpg",
@@ -27,6 +27,7 @@
     "static/media/productimg3.jpg": "/static/media/productimg3.7bdefe66a9e8a617fb68.jpg",
     "static/media/moreSellerProduct.jpg": "/static/media/moreSellerProduct.e123706ceffc282c54a6.jpg",
     "static/media/productB.jpg": "/static/media/productB.c419d3fbf8e13718be51.jpg",
+    "static/media/spinnerLoading.gif": "/static/media/spinnerLoading.696cd6cc8b3126c6f770.gif",
     "static/media/fontawesome-webfont.woff?v=4.7.0": "/static/media/fontawesome-webfont.f691f37e57f04c152e23.woff",
     "static/media/productF.jpg": "/static/media/productF.401dc71130fc3a8cb006.jpg",
     "static/media/todayproduct4.jpg": "/static/media/todayproduct4.23ae8aac81ebaefe99b5.jpg",
@@ -82,12 +83,12 @@
     "static/media/logout.svg": "/static/media/logout.81dabe4622365f98c81e91a1b764b51f.svg",
     "static/media/ccvIcon.svg": "/static/media/ccvIcon.dcfdf37b910b6062bc8aa4e119b46be4.svg",
     "static/media/need.svg": "/static/media/need.7b754e8b078e2d1168ba2003aa94b22c.svg",
-    "main.bd41e889.css.map": "/static/css/main.bd41e889.css.map",
-    "main.b95feb78.js.map": "/static/js/main.b95feb78.js.map",
+    "main.018e97ac.css.map": "/static/css/main.018e97ac.css.map",
+    "main.3d2c16ee.js.map": "/static/js/main.3d2c16ee.js.map",
     "787.375bfa4a.chunk.js.map": "/static/js/787.375bfa4a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.bd41e889.css",
-    "static/js/main.b95feb78.js"
+    "static/css/main.018e97ac.css",
+    "static/js/main.3d2c16ee.js"
   ]
 }

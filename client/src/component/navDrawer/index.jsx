@@ -6,6 +6,7 @@ import UserContext from "../../provider/userProvider";
 import { Button, Modal } from "react-bootstrap";
 import LogOut from "../logOut";
 import bestWishLogo from "../../assets/images/bestWishesLogo.svg";
+import CartContext from "../../provider/cartProvider";
 
 const SideDrawer = ({ show, click }) => {
   const { state } = useContext(UserContext);
@@ -16,6 +17,7 @@ const SideDrawer = ({ show, click }) => {
   const handleClose = () => setShowBar(false);
   const handleShow = () => setShowBar(true);
   const navigate = useNavigate();
+  const { cartState, CART } = useContext(CartContext);
 
   const LogOut = () => {
     // setShow(false);
@@ -273,12 +275,13 @@ const SideDrawer = ({ show, click }) => {
                   </div>
                 </div>
               )}
-              <Link
-                to="/blogScreen/lifestyle"
-                className="mobileNavLink"
-                onClick={click}
-              >
-                Cart
+              <Link to="/cart-screen" className="mobileNavLink" onClick={click}>
+                <div className="navCart-con">
+                  Cart{" "}
+                  <div className="navCart">
+                    <span>{cartState?.cart?.length}</span>
+                  </div>
+                </div>{" "}
               </Link>
               <Link
                 to="/product-screen-clothing"

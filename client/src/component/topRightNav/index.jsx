@@ -18,6 +18,7 @@ import customerImg from "../../assets/images/customerImg.jpg";
 // import LogOut from "../logOut";
 import UserContext from "../../provider/userProvider";
 import CartContext from "../../provider/cartProvider";
+import axios from "axios";
 const TopRightNav = ({ user }) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -25,7 +26,25 @@ const TopRightNav = ({ user }) => {
   const { state, USER } = useContext(UserContext);
   const { cartState, CART } = useContext(CartContext);
   const [saveSeller, setSaveSeller] = useState(false);
+  const [checkSeller, setCheckSeller] = useState();
   const navigate = useNavigate();
+  const [token, setToken] = useState("");
+
+  useEffect(() => {
+    // if (localStorage.getItem("authToken")) {
+    //   setToken(localStorage.getItem("authToken"));
+    // }
+    // setToken(state?.token);
+    // console.log({ token: token });
+  });
+  useEffect(async () => {
+    if (localStorage.getItem("authToken")) {
+      await setToken(localStorage.getItem("authToken"));
+      // console.log({ token: token });
+      await getUserData();
+      // console.log({ IScheckSeller: checkSeller });
+    }
+  }, [token, checkSeller]);
 
   const LogOut = () => {
     setShow(false);
@@ -40,10 +59,17 @@ const TopRightNav = ({ user }) => {
     window.location.reload();
   };
   useEffect(() => {
+    // console.log({ isSeller: state.isSeller });
     if (localStorage.getItem("saveSeller")) {
       setSaveSeller(localStorage.getItem("saveSeller"));
     }
   }, []);
+
+  async function getUserData() {
+    await axios
+      .get(`/api/auth/get-user-token?token=${token}`)
+      .then((res) => [setCheckSeller(res.data.user?.isSeller)]);
+  }
 
   const handleBuyer = () => {
     USER.updateSwitchUser(false);
@@ -306,7 +332,7 @@ const TopRightNav = ({ user }) => {
                           </Link>
                         </NavDropdown.Item>
 
-                        {state.isSeller ? (
+                        {checkSeller ? (
                           <NavDropdown.Item className="topRightLink">
                             <div className="navLinks" onClick={handleBuyer}>
                               <img
@@ -314,14 +340,14 @@ const TopRightNav = ({ user }) => {
                                 alt=""
                                 className="navIcons sellIcon"
                               />
-                              Switch to Seller
+                              Switch to Sellers
                             </div>
                           </NavDropdown.Item>
                         ) : (
                           <NavDropdown.Item className="topRightLink">
                             <Link
                               className="navLinks"
-                              to="/registerScreen/sellerRegisterAccount"
+                              to="/customerProfileScreen/becomeSeller"
                             >
                               <img
                                 src={sell}

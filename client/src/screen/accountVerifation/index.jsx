@@ -8,12 +8,12 @@ import Dialog from "@material-ui/core/Dialog";
 import Button from "@material-ui/core/Button";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-// import Lottie from 'react-lottie';
-import Lottie from "lottie-react";
-import doneIcon from "../../assets/images/doneIcon.json";
+
+import spinnerLoading from "../../assets/icons/spinnerLoading.gif";
 
 const AccountVerifcationScreen = () => {
   let navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const [open, setOpen] = useState(false);
 
@@ -23,7 +23,7 @@ const AccountVerifcationScreen = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setIsLoading(true);
     try {
       const userId = localStorage.getItem("userId");
       const res = await axios.post(`/api/auth/verify?userId=${userId}`, {
@@ -32,6 +32,7 @@ const AccountVerifcationScreen = () => {
 
       setSuccess("Account Successfully verified");
       localStorage.removeItem("userId");
+      setIsLoading(false);
       setTimeout(() => {
         setSuccess("");
         navigate("/loginScreen");
@@ -39,10 +40,12 @@ const AccountVerifcationScreen = () => {
     } catch (error) {
       setError(error.response.data.error);
       setOtp("");
+      setIsLoading(false);
 
       setTimeout(() => {
         setError("");
       }, 5000);
+      setIsLoading(false);
     }
   };
   return (
@@ -75,9 +78,13 @@ const AccountVerifcationScreen = () => {
               className="passwordInput"
             />
           </div>
-          <div className="accountVerifyBtnContainer">
-            <button> Verify Account</button>
-          </div>
+          <button className="accountVerifyBtnContainer">
+            {isLoading ? (
+              <img src={spinnerLoading} alt="" className="sign-up-spinner" />
+            ) : (
+              <span>Verify Account</span>
+            )}{" "}
+          </button>
         </form>
       </div>
     </div>

@@ -103,9 +103,9 @@ function App() {
     // console.log({ token: token });
   });
   useEffect(async () => {
+    await USER.recoverisSeller();
     await USER.recoverSwitchUser();
     await USER.recoverData();
-    await USER.recoverisSeller();
     await USER.recoverSellerData();
     await USER.recoverSaveSeller();
     await USER.recoverSwitchUser();
@@ -422,7 +422,6 @@ function App() {
             <Route path="savedItems" element={<SavedItems />} />
             <Route path="becomeSeller" element={<BecomeSeller />} />
             <Route path="account-settings" element={<AccountSettings />} />
-           
           </Route>
         </Routes>
         <Footer />

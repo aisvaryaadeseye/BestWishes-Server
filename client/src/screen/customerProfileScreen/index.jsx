@@ -14,7 +14,7 @@ import card from "../../assets/icons/card.svg";
 import savedItem from "../../assets/icons/savedItem.svg";
 import LogOut from "../../component/logOut";
 import UserContext from "../../provider/userProvider";
-
+import axios from "axios";
 const CustomerProfileScreen = () => {
   const { state, USER } = useContext(UserContext);
   const [show, setShow] = useState(false);
@@ -25,6 +25,8 @@ const CustomerProfileScreen = () => {
   const [sideToggle, setSideToggle] = useState(true);
   const navigate = useNavigate();
   const [selectedLink, setSelectedLink] = useState(null);
+  const [token, setToken] = useState("");
+  const [checkSeller, setCheckSeller] = useState();
 
   var navLinks = [
     { img: edit, link: "editCustomerProfile", text: "Edit Profile" },
@@ -38,6 +40,21 @@ const CustomerProfileScreen = () => {
 
   if (sideToggle) {
     customerDrawerClass.push("show");
+  }
+
+  useEffect(async () => {
+    if (localStorage.getItem("authToken")) {
+      await setToken(localStorage.getItem("authToken"));
+      // console.log({ token: token });
+      await getUserData();
+      // console.log({ IScheckSellerprofile: checkSeller });
+    }
+  }, [token, checkSeller]);
+
+  async function getUserData() {
+    await axios
+      .get(`/api/auth/get-user-token?token=${token}`)
+      .then((res) => [setCheckSeller(res.data.user?.isSeller)]);
   }
 
   const handleBuyer = () => {
@@ -108,7 +125,7 @@ const CustomerProfileScreen = () => {
             );
           })}
 
-          {state.saveSeller ? (
+          {checkSeller ? (
             <div className="sidebarNav" onClick={handleBuyer}>
               <img src={becomeSeller} alt="" className="iconImg" />
               Switch to Seller
@@ -169,7 +186,7 @@ const CustomerProfileScreen = () => {
             );
           })}
 
-          {state.saveSeller ? (
+          {checkSeller ? (
             <div className="sidebarNav" onClick={handleBuyer}>
               <img src={becomeSeller} alt="" className="iconImg" />
               Switch to Seller

@@ -4,7 +4,7 @@ import { Modal } from "react-bootstrap";
 import Lottie from "lottie-react";
 import doneIcon from "../../assets/images/doneIcon.json";
 import masterCardIcon from "../../assets/icons/masterCardIcon.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import UserContext from "../../provider/userProvider";
 import CartContext from "../../provider/cartProvider";
 import axios from "axios";
@@ -14,7 +14,7 @@ const CartBuyerSummary = () => {
   const { state, USER } = useContext(UserContext);
   const { cartState, CART } = useContext(CartContext);
   const [cartList, setCartList] = useState([]);
-
+  const navigate = useNavigate();
   useEffect(() => {
     if (localStorage.getItem("cartItems")) {
       setCartList(JSON.parse(localStorage.getItem("cartItems")));
@@ -33,7 +33,8 @@ const CartBuyerSummary = () => {
     const { res } = await axios.put("/api/auth/seller-order", cartList);
     // console.log("success");
     localStorage.removeItem("cartItems");
-    window.location.reload();
+    // window.location.reload();
+    // navigate("/");
   }
   return (
     <div className="cart-buyer-address">

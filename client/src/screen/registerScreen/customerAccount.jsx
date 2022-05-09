@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import spinnerLoading from "../../assets/icons/spinnerLoading.gif";
 const CustomerRegisterAccount = () => {
   let navigate = useNavigate();
 
@@ -12,7 +12,7 @@ const CustomerRegisterAccount = () => {
   const [error, setError] = useState();
   const [success, setSuccess] = useState();
   const [showPass, setShowPass] = useState(false);
-
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("authToken")) {
@@ -22,6 +22,7 @@ const CustomerRegisterAccount = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     if (password.length < 6) {
       setPassword("");
@@ -53,6 +54,7 @@ const CustomerRegisterAccount = () => {
       });
       setSuccess("Registeration Successfull");
       localStorage.setItem("userId", data._id);
+      setIsLoading(false);
       setTimeout(() => {
         setSuccess("");
         navigate("/verifyAccount");
@@ -68,9 +70,11 @@ const CustomerRegisterAccount = () => {
       setPassword("");
       setEmail("");
       setPhone("");
+      setIsLoading(false);
       setTimeout(() => {
         setError("");
       }, 5000);
+      setIsLoading(false);
     }
   };
 
@@ -133,7 +137,7 @@ const CustomerRegisterAccount = () => {
             <span className="userEmail">Password</span>
             <div className="passwordContainer">
               <input
-                type={showPass? "text" : "password"}
+                type={showPass ? "text" : "password"}
                 placeholder="********"
                 name="password"
                 value={password}
@@ -141,11 +145,21 @@ const CustomerRegisterAccount = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 className="passwordInput regInputField"
               />
-              <i className="fa fa-eye" aria-hidden="true" onClick={()=>setShowPass(!showPass)} ></i>
+              <i
+                className="fa fa-eye"
+                aria-hidden="true"
+                onClick={() => setShowPass(!showPass)}
+              ></i>
             </div>
           </div>
         </div>
-        <button className="signupBtnContainer">Sign up</button>
+        <button className="signupBtnContainer">
+          {isLoading ? (
+            <img src={spinnerLoading} alt="" className="sign-up-spinner" />
+          ) : (
+            <span>Sign up</span>
+          )}{" "}
+        </button>
 
         <div className="alreadyAccountContainer">
           <p>Already have an accoint ? </p>
@@ -159,16 +173,16 @@ const CustomerRegisterAccount = () => {
           <hr className="RegDivider" />
         </div>
         <div className="sigupWithGoogleContainer">
-          <p>
+          <span>
             <i className="fab fa-google fa-3x"></i>
             Sign up with google
-          </p>
+          </span>
         </div>
         <div className="sigupWithFacebookContainer">
-          <p>
+          <span>
             <i className="fa-brands fa-facebook"></i>
             Sign up with facebook
-          </p>
+          </span>
         </div>
         <div className="termsContainer regTermsContainer">
           <p>Terms of use</p>

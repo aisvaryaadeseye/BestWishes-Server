@@ -496,6 +496,23 @@ router.get("/get-user", async (req, res) => {
     return sendError(res, "User not authorized");
   }
 });
+//get user by token============================================================
+router.get("/get-user-token", async (req, res) => {
+  const { token } = req.query;
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findById(decoded.id);
+    if (!user) return sendError(res, "user not found");
+
+    sendToken(user, 200, res);
+
+    // req.user = user;
+    // next();
+  } catch (error) {
+    return sendError(res, "User not authorized");
+  }
+});
 
 // Add new product ======================================
 router.post(

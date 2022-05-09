@@ -31,27 +31,29 @@ const EditCustomerProfile = ({ showDescription }) => {
       setUserId(localStorage.getItem("userID"));
     }
 
-    if (isMounted.current) {
-      await axios
-        .get(`/api/auth/get-user?userID=${state?.user?.user?._id}`)
-        .then((res) => [
-          setFullName(res.data.user?.fullName),
-          setEmail(res.data.user?.email),
-          setPhone(res.data.user?.phone),
-          setDob(res.data.user?.dob),
-          setSelectGender(res.data.user?.selectGender),
-          setCountry(res.data.user?.country),
-          setCountryState(res.data.user?.countryState),
-          setStreetAddress(res.data.user?.streetAddress),
-          setCity(res.data .user?.city),
-          setPostalCode(res.data.user?.postalCode),
-          setProfileImg(res.data.user?.profileIMAGE),
-          USER.updateUserData(res.data),
-          // console.log({ res: res.user?.data }),
-          // console.log({ fullname: res.data.user?.fullName }),
-        ])
-        .catch((err) => console.log(err));
-    }
+    // if (isMounted.current) {
+    const getDta = await axios
+      .get(`/api/auth/get-user?userID=${state?.user?.user?._id}`)
+      .then((res) => [
+        setFullName(res.data.user?.fullName),
+        setEmail(res.data.user?.email),
+        setPhone(res.data.user?.phone),
+        setDob(res.data.user?.dob),
+        setSelectGender(res.data.user?.selectGender),
+        setCountry(res.data.user?.country),
+        setCountryState(res.data.user?.countryState),
+        setStreetAddress(res.data.user?.streetAddress),
+        setCity(res.data.user?.city),
+        setPostalCode(res.data.user?.postalCode),
+        setProfileImg(res.data.user?.profileIMAGE),
+        USER.updateUserData(res.data),
+        // console.log({ res: res.user?.data }),
+        // console.log({ fullname: res.data.user?.fullName }),
+      ])
+      .catch((err) => console.log(err));
+    // }
+
+    return () => clearInterval(getDta);
   }, []);
 
   async function handleSubmit(e) {
@@ -122,7 +124,7 @@ const EditCustomerProfile = ({ showDescription }) => {
           <i className="fa fa-camera faCamera" aria-hidden="true"></i>
           <label htmlFor="editCustomerImg">
             <img
-              src={profileImg}
+              src={profileImgRes ? profileImgRes : profileImg}
               alt=""
               className="customerProfileImg editCustomerPic"
             />
@@ -130,7 +132,7 @@ const EditCustomerProfile = ({ showDescription }) => {
               filename="profileIMAGE"
               onChange={(e) => {
                 setProfileImg(e.target.files[0]);
-                // profileImgUploader(e);
+                profileImgUploader(e);
               }}
               type="file"
               id="editCustomerImg"

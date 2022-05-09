@@ -91,6 +91,24 @@
 li {
   list-style: none;
 }
+.navCart-con {
+  display: flex;
+  align-items: center;
+}
+.navCart {
+  display: flex;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: var(--orangeColor);
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.5em;
+}
+.navCart > span {
+  font-size: 0.8em;
+  color: white;
+}
 
 @media (min-width: 960px) {
   .sidedrawer {

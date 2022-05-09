@@ -27,7 +27,7 @@ const AddProductScreen = () => {
   const [success, setSuccess] = useState();
   const [error, setError] = useState();
   const [showSpinner, setShowSpinner] = useState(true);
- 
+
   const [open, setOpen] = React.useState(false);
   const handleClose = () => setOpen(false);
   const size = ScreenSize();

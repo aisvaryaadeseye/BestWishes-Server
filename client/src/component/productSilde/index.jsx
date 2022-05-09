@@ -44,7 +44,7 @@ const ProductSlider = () => {
       autoPlay={true}
       fadeOutAnimation={false}
       mouseTrackingEnabled={false}
-      disableAutoPlayOnAction={false}
+      disableAutoPlayOnAction={true}
       items={getproduct.map((product) => {
         return (
           <ProductDetail

@@ -283,6 +283,9 @@
   height: 2em;
   color: var(--whiteColor);
 }
+.becomeSellerBtn > span {
+  color: #fff;
+}
 @media screen and (max-width: 1200px) {
   .customerProfileSideBar {
     width: 300px;

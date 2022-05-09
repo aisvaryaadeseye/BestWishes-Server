@@ -37,16 +37,16 @@ function HomeScreen() {
   //   });
   // });
 
-  useEffect(async () => {
-    // console.log({ swichUswer: state.switchUser });
+  // useEffect(async () => {
+  //   // console.log({ swichUswer: state.switchUser });
 
-    if (isMounted.current) {
-      if (!state.switchUser) {
-        // console.log({ false: false });
-        navigate("/sellerprofilescreen/overview");
-      }
-    }
-  }, [state]);
+  //   if (isMounted.current) {
+  //     if (!state.switchUser) {
+  //       // console.log({ false: false });
+  //       navigate("/sellerprofilescreen/overview");
+  //     }
+  //   }
+  // }, [state]);
   return (
     <Container>
       {/* ===========topContainer================= */}

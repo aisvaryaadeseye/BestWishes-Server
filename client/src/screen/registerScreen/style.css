@@ -208,6 +208,9 @@ input {
   outline: none;
   border: none;
 }
+.sign-up-spinner {
+  width: 20px;
+}
 .alreadyAccountContainer {
   display: flex;
   margin-top: 1rem;
@@ -233,13 +236,13 @@ input {
 }
 .sigupWithGoogleContainer {
   display: flex;
-  /* align-items: center; */
+  align-items: center;
   justify-content: center;
   width: 200px;
   border: 1px solid var(--greyColor);
   border-radius: 0.2rem;
-  height: 25px;
-  padding-top: 0.1rem;
+  height: 30px;
+  /* padding-top: 0.3rem; */
   margin-bottom: 1rem;
   cursor: pointer;
 }
@@ -259,18 +262,22 @@ input {
   font-size: 0.7rem;
   margin-right: 0.5rem;
 }
-.sigupWithGoogleContainer > p,
-.sigupWithFacebookContainer > p {
+.sigupWithGoogleContainer > span,
+.sigupWithFacebookContainer > span {
   font-size: 0.7rem;
   font-weight: 600;
+}
+.sigupWithFacebookContainer > span {
+  color: #fff;
 }
 .sigupWithFacebookContainer {
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 200px;
   border: 1px solid var(--greyColor);
   border-radius: 0.2rem;
-  height: 25px;
+  height: 30px;
   padding-top: 0.2rem;
   background-color: blue;
   border: none;

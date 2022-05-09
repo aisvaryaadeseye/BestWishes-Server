@@ -71,9 +71,11 @@ const LoginScreen = () => {
         console.log({ loginData: data });
         await USER.updateisSeller(data.user.isSeller);
         await USER.saveSeller(data.user.isSeller);
+        // console.log({ checkSeller: data.user.isSeller });
 
         localStorage.setItem("userID", JSON.stringify(data.user._id));
         localStorage.setItem("authToken", data.token);
+        localStorage.setItem("isSeller", data.user.isSeller);
         setSuccess("Success!");
         setTimeout(() => {
           setSuccess("");

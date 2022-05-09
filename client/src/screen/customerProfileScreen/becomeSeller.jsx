@@ -6,6 +6,7 @@ import axios from "axios";
 import UserContext from "../../provider/userProvider";
 // import LogOut from "../../component/logOut";
 import { Link, useNavigate } from "react-router-dom";
+import spinnerLoading from "../../assets/icons/spinnerLoading.gif";
 
 const BecomeSeller = () => {
   const [sellerName, setSellerName] = useState("");
@@ -29,6 +30,7 @@ const BecomeSeller = () => {
   const [sellerDetails, setSellerDetails] = useState([]);
   const { state, USER } = useContext(UserContext);
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(async () => {
     if (localStorage.getItem("userID")) {
@@ -44,6 +46,7 @@ const BecomeSeller = () => {
   };
 
   const handleSubmit = async (e) => {
+    setIsLoading(true);
     e.preventDefault();
 
     if (!checkTerms) {
@@ -84,6 +87,7 @@ const BecomeSeller = () => {
 
       setTimeout(() => {
         setSuccess("");
+        setIsLoading(false);
       }, 1700);
       console.log({ country: country.label });
       await USER.saveSeller(data.isSeller);
@@ -108,6 +112,7 @@ const BecomeSeller = () => {
         console.log(error.response.status);
         console.log(error.response.headers);
       }
+      setIsLoading(false);
       setError(error.response.data.error);
       setSellerName("");
       setStoreName("");
@@ -123,6 +128,7 @@ const BecomeSeller = () => {
       setTimeout(() => {
         setError("");
       }, 5000);
+      setIsLoading(false);
     }
   };
 
@@ -351,7 +357,14 @@ const BecomeSeller = () => {
           </div>
         </div>
 
-        <button className="becomeSellerBtn">Save</button>
+        <button className="becomeSellerBtn">
+          {" "}
+          {isLoading ? (
+            <img src={spinnerLoading} alt="" className="sign-up-spinner" />
+          ) : (
+            <span>Save</span>
+          )}{" "}
+        </button>
 
         <div className="customerProfileImgContainer"></div>
       </form>
